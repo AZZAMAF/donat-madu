@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+@theme {
+  --font-headline: 'Fraunces', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  --color-neutral-dark: #3B2A1E;
+  --color-accent-dark: #805600;
+  --color-accent-red: #B3261E;
+  --color-secondary: #C97F0D;
+  --color-primary: #F2A81D;
+  --color-bg-cream: #FFF8EC;
+}

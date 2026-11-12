@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donat Madu</title>
+  <link rel="stylesheet" href="./src/output.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+
+<body>
+  <header
+    class="sticky top-0 z-50 grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-8 border-b border-[rgb(59_42_30_/_9%)] bg-bg-cream px-12 py-4 shadow-md max-[900px]:grid-cols-[minmax(0,1fr)_auto] max-[900px]:gap-x-2 max-[900px]:gap-y-2 max-[900px]:px-4">
+    <!-- Logo -->
+    <div class="whitespace-nowrap font-headline text-2xl font-bold text-neutral-dark">
+      Madu Donat
+    </div>
+
+    <!-- Nav Links -->
+    <nav
+      class="flex items-center gap-8 font-sans max-[900px]:col-span-full max-[900px]:row-start-2 max-[900px]:justify-center max-[900px]:gap-8">
+      <a href="#" class="font-medium tracking-wide text-secondary">Home</a>
+      <a href="#" class="font-medium tracking-wide text-neutral-dark hover:text-secondary">Menu</a>
+      <a href="#" class="font-medium tracking-wide text-neutral-dark hover:text-secondary">About</a>
+      <a href="#" class="font-medium tracking-wide text-neutral-dark hover:text-secondary">Contact</a>
+    </nav>
+
+    <!-- Actions (Search, Cart, Order Button, Profile) -->
+    <div
+      class="flex items-center justify-self-end gap-6 max-[900px]:col-start-2 max-[900px]:row-start-1 max-[900px]:gap-3 max-[420px]:gap-1">
+      <!-- Tombol Search -->
+      <button
+        class="group relative flex size-10 items-center justify-center rounded-full bg-transparent text-neutral-dark transition-all duration-200 hover:bg-neutral-dark/5 hover:text-accent-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
+        type="button" aria-label="Search">
+        <i class="bi bi-search text-xl" aria-hidden="true"></i>
+      </button>
+
+      <!-- Tombol Cart -->
+      <button
+        class="group relative flex size-10 items-center justify-center rounded-full bg-transparent text-neutral-dark transition-all duration-200 hover:bg-neutral-dark/5 hover:text-accent-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
+        type="button" aria-label="Shopping bag, 2 items">
+        <i class="bi bi-bag text-xl" aria-hidden="true"></i>
+        <span
+          class="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-accent-red font-sans text-[0.65rem] font-bold text-white shadow-sm"
+          aria-hidden="true">2</span>
+      </button>
+
+      <!-- Tombol Profile -->
+      <button
+        class="group relative flex size-10 items-center justify-center rounded-full bg-accent-dark text-white transition-all duration-200 hover:bg-[#684600] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
+        type="button" aria-label="User Profile">
+        <i class="bi bi-person text-xl" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section
+    class="relative isolate flex min-h-[calc(100svh-4.5625rem-174px)] flex-col items-center overflow-hidden bg-bg-cream px-6 pt-14 text-center max-[900px]:min-h-[calc(100svh-6.5625rem-174px)] max-[700px]:min-h-[620px] max-[420px]:px-4 max-[420px]:pt-8">
+
+  
+
+    <div class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center pb-[18rem] max-[700px]:pb-48">
+      <h1 class="mb-4 font-headline text-4xl font-normal leading-[1.05] text-neutral-dark sm:text-5xl md:text-6xl">
+        Donat Madu Fresh Baked,<br class="hidden sm:block" /> Setiap Hari.
+      </h1>
+      <p class="mb-7 max-w-[32rem] font-sans text-base leading-relaxed text-neutral-dark/70 sm:text-lg">
+        Kualitas tepung pilihan bertemu kebaikan madu murni. Tanpa pemanis buatan, disajikan hangat langsung dari oven.
+      </p>
+
+      <div class="mb-8 flex items-center gap-3">
+        <a href="#"
+          class="inline-flex h-11 items-center justify-center rounded-full bg-primary px-6 font-sans text-sm font-semibold text-neutral-dark transition-colors hover:bg-[#e99b0c] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-dark sm:px-7 sm:text-base">
+          Order Now
+        </a>
+        <a href="#"
+          class="inline-flex h-11 items-center justify-center rounded-full border border-neutral-dark/60 px-6 font-sans text-sm font-semibold text-neutral-dark transition-colors hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-dark sm:px-7 sm:text-base">
+          See Menu
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-sans text-xs font-medium text-neutral-dark/60 sm:text-sm">
+        <span class="text-primary" aria-hidden="true">★</span>
+        <span>4.9/5 from 3,200+ honey lovers</span>
+        <span class="text-neutral-dark/30" aria-hidden="true">•</span>
+        <span>Same-day warm delivery</span>
+      </div>
+    </div>
+
+    <!-- ganti 2 <img> absolut tadi dengan ini -->
+<div class="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-auto aspect-1280/560 w-[min(100%,1280px)] max-[700px]:w-900px max-[700px]:left-1/2 max-[700px]:-translate-x-1/2 max-[700px]:mx-0">
+<img
+  src="./assets/curve.svg"
+  alt=""
+  aria-hidden="true"
+  class="pointer-events-none absolute bottom-[-28vw] left-[55%] -translate-x-1/2 z-0 w-[110vw] h-auto max-w-none  select-none rotate-[-4deg]"
+/>
+
+
+
+  <img src="./assets/donat-hero.png" alt="Assorted honey donuts on a red gingham tablecloth"
+       class="absolute bottom-0 left-1/2 h-auto w-[44%] -translate-x-1/2 select-none" />
+</div>
+
+  </section>
+
+  <div
+    aria-hidden="true"
+    class="h-[174px] w-full bg-[url('../assets/checker-tile.svg')] bg-[length:230px_174px] bg-center bg-repeat-x max-[700px]:h-[130px] max-[700px]:bg-[length:172px_130px]"
+  ></div>
+
+</body>
+
+</html>
