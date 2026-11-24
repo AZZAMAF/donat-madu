@@ -38,11 +38,11 @@ export default function App() {
   }, [])
 
   // --- KERANGKA CART ---
-  // TODO(gua): useState cart. Seed dari localStorage, fallback ke PLACEHOLDER_CART.
-  const cart = PLACEHOLDER_CART
+  // TODO: useState cart. Seed dari localStorage, fallback ke PLACEHOLDER_CART.
+  const [cart, setCart] = useState([])
 
   const [isCartOpen, setIsCartOpen] = useState(false)
-  
+
   // TODO(gua): addToCart(item) -> { ...item, qty: 1 }, gabung kalau id sudah ada.
   const addToCart = () => {}
 
