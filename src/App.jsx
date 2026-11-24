@@ -42,10 +42,10 @@ export default function App() {
   const [cart, setCart] = useState(()=> {
     try {
       const savedCart = localStorage.getItem('madu_donat_cart')
-      return savedCart ? JSON.parse(savedCart) : PLACEHOLDER_CART
+      return savedCart ? JSON.parse(savedCart) : []
     } catch (error) {
       console.error('Error parsing cart from localStorage:', error)
-      return PLACEHOLDER_CART
+      return []
     }
   })
 
