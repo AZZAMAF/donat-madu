@@ -68,8 +68,11 @@ export default function App() {
 
   // TODO: useEffect [cart] simpan cart ke localStorage.
 
+ useEffect(() => {
+    localStorage.setItem('madu_donat_cart', JSON.stringify(cart))
+  },[cart])
+  
   const totalQty = cart.reduce((total, item) => total + item.qty, 0)
-  const totalHarga = cart.reduce((total, item) => total + item.price * item.qty, 0)
 
   return (
     <>
