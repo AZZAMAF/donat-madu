@@ -41,12 +41,8 @@ export default function App() {
   // TODO(gua): useState cart. Seed dari localStorage, fallback ke PLACEHOLDER_CART.
   const cart = PLACEHOLDER_CART
 
-  // TODO(gua): useState isCartOpen (default false), dipakai hover + klik ikon tas.
-  const isCartOpen = false
-
-  // TODO(gua): setIsCartOpen + toggle onClick, dan menutup saat Esc / mouse keluar.
-  const setIsCartOpen = () => {}
-
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  
   // TODO(gua): addToCart(item) -> { ...item, qty: 1 }, gabung kalau id sudah ada.
   const addToCart = () => {}
 
