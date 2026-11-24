@@ -59,10 +59,14 @@ export default function App() {
     setCart(cart.filter((c) => c.id !== id))
   }
 
-  // TODO(gua): changeQty(id, qty); batas 1..99 sudah di QuantityCounter.
-  const changeQty = () => {}
+  // TODO: changeQty(id, qty); batas 1..99 sudah di QuantityCounter.
+  const changeQty = (id, qty) => {
+    setCart(
+      cart.map((c) => (c.id === id ? { ...c, qty } : c))
+    )
+  }
 
-  // TODO(gua): useEffect [cart] simpan cart ke localStorage.
+  // TODO: useEffect [cart] simpan cart ke localStorage.
 
   const totalQty = cart.reduce((total, item) => total + item.qty, 0)
   const totalHarga = cart.reduce((total, item) => total + item.price * item.qty, 0)
