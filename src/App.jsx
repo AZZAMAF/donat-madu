@@ -43,9 +43,16 @@ export default function App() {
 
   const [isCartOpen, setIsCartOpen] = useState(false)
 
-  // TODO(gua): addToCart(item) -> { ...item, qty: 1 }, gabung kalau id sudah ada.
+  // TODO: addToCart(item) -> { ...item, qty: 1 }, gabung kalau id sudah ada.
   const addToCart = (item) => {
-    setCart([...cart, { ...item, qty: 1 }])
+    const available = cart.find((c) => c.id === item.id)
+    if(available) {
+      setCart(
+        cart.map((c) => (c.id === item.id ? { ...c, qty: c.qty + 1 } : c))
+      )
+    } else{
+      setCart([...cart, { ...item, qty: 1 }])
+    }
   }
   // TODO(gua): removeFromCart(id).
   const removeFromCart = () => {}
