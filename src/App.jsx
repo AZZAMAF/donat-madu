@@ -54,8 +54,10 @@ export default function App() {
       setCart([...cart, { ...item, qty: 1 }])
     }
   }
-  // TODO(gua): removeFromCart(id).
-  const removeFromCart = () => {}
+  // TODO: removeFromCart(id).
+  const removeFromCart = (id) => {
+    setCart(cart.filter((c) => c.id !== id))
+  }
 
   // TODO(gua): changeQty(id, qty); batas 1..99 sudah di QuantityCounter.
   const changeQty = () => {}
