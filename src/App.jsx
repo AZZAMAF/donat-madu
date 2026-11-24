@@ -39,7 +39,15 @@ export default function App() {
 
   // --- KERANGKA CART ---
   // TODO: useState cart. Seed dari localStorage, fallback ke PLACEHOLDER_CART.
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(()=> {
+    try {
+      const savedCart = localStorage.getItem('madu_donat_cart')
+      return savedCart ? JSON.parse(savedCart) : PLACEHOLDER_CART
+    } catch (error) {
+      console.error('Error parsing cart from localStorage:', error)
+      return PLACEHOLDER_CART
+    }
+  })
 
   const [isCartOpen, setIsCartOpen] = useState(false)
 
