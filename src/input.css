@@ -1,14 +1,25 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
 
 @theme {
   --font-headline: 'Fraunces', serif;
   --font-sans: 'Plus Jakarta Sans', sans-serif;
 
   --color-neutral-dark: #3B2A1E;
+  --color-choco-dark: #24190F;
   --color-accent-dark: #805600;
   --color-accent-red: #B3261E;
   --color-secondary: #C97F0D;
   --color-primary: #F2A81D;
+  --color-primary-dark: #E99B0C;
   --color-bg-cream: #FFF8EC;
+  --color-cream-deep: #F8F1E4;
+  --color-gold-pale: #DFAF65;
 }
+
+/* Scroll ke anchor tidak tertutup header sticky. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
