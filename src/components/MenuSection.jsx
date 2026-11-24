@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import Icon from './Icon'
+import MenuCard from './MenuCard'
 import SectionHeading from './SectionHeading'
 
-export default function MenuSection({ menus, categories, loading, error }) {
+export default function MenuSection({ menus, categories, loading, error, onAddToCart }) {
   const [activeCategory, setActiveCategory] = useState('All')
 
   const filtered = activeCategory === 'All' ? menus : menus.filter((item) => item.category === activeCategory)
@@ -25,16 +25,7 @@ export default function MenuSection({ menus, categories, loading, error }) {
             <p className="col-span-full py-16 text-center text-neutral-dark/60">Belum ada menu di kategori ini.</p>
           )}
           {!loading && !error && filtered.map((item) => (
-            <article key={item.id} className="overflow-hidden rounded-[16px] border border-neutral-dark/10 bg-white">
-              <div className="h-[260px] overflow-hidden bg-gold-pale">
-                <img src={item.image} alt={item.name} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-              </div>
-              <div className="p-6">
-                <div className="mb-3 flex items-start justify-between gap-4"><h3 className="font-headline text-2xl leading-tight text-neutral-dark">{item.name}</h3><strong className="shrink-0 text-secondary">Rp {item.price.toLocaleString('id-ID')}</strong></div>
-                <p className="mb-5 text-sm leading-relaxed text-neutral-dark/65">{item.description}</p>
-                <button type="button" className="grid size-10 place-items-center rounded-full bg-primary text-neutral-dark transition hover:bg-primary-dark" aria-label={`Add ${item.name} to cart`}><Icon name="plus" className="size-5" /></button>
-              </div>
-            </article>
+            <MenuCard key={item.id} item={item} onAddToCart={onAddToCart} />
           ))}
         </div>
         <a href="#menu-list" className="mx-auto mt-10 flex w-fit items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark">Explore Full Menu (18 Flavors) <span aria-hidden="true">→</span></a>

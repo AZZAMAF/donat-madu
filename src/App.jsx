@@ -7,6 +7,13 @@ import Promises from './components/Promises'
 import Signatures from './components/Signatures'
 import Testimonials from './components/Testimonials'
 
+// Contoh isi keranjang supaya layout dropdown bisa dilihat.
+// TODO(gua): ganti dengan useState cart + localStorage.
+const PLACEHOLDER_CART = [
+  { id: 1, name: 'Smoked Honey & Sea Salt', price: 25000, image: '/images/menu-1.jpg', qty: 1 },
+  { id: 4, name: 'Choco Honeycomb', price: 28000, image: '/images/menu-4.jpg', qty: 2 },
+]
+
 export default function App() {
   const [menus, setMenus] = useState([])
   const [categories, setCategories] = useState([])
@@ -30,14 +37,51 @@ export default function App() {
       .finally(() => setLoading(false))
   }, [])
 
+  // --- KERANGKA CART ---
+  // TODO(gua): useState cart. Seed dari localStorage, fallback ke PLACEHOLDER_CART.
+  const cart = PLACEHOLDER_CART
+
+  // TODO(gua): useState isCartOpen (default false), dipakai hover + klik ikon tas.
+  const isCartOpen = false
+
+  // TODO(gua): setIsCartOpen + toggle onClick, dan menutup saat Esc / mouse keluar.
+  const setIsCartOpen = () => {}
+
+  // TODO(gua): addToCart(item) -> { ...item, qty: 1 }, gabung kalau id sudah ada.
+  const addToCart = () => {}
+
+  // TODO(gua): removeFromCart(id).
+  const removeFromCart = () => {}
+
+  // TODO(gua): changeQty(id, qty); batas 1..99 sudah di QuantityCounter.
+  const changeQty = () => {}
+
+  // TODO(gua): useEffect [cart] simpan cart ke localStorage.
+
+  const totalQty = cart.reduce((total, item) => total + item.qty, 0)
+  const totalHarga = cart.reduce((total, item) => total + item.price * item.qty, 0)
+
   return (
     <>
-      <Header />
+      <Header
+        totalQty={totalQty}
+        isCartOpen={isCartOpen}
+        setIsCartOpen={setIsCartOpen}
+        cart={cart}
+        onQtyChange={changeQty}
+        onRemove={removeFromCart}
+      />
       <main>
         <Hero />
         <Signatures />
         <Promises />
-        <MenuSection menus={menus} categories={categories} loading={loading} error={error} />
+        <MenuSection
+          menus={menus}
+          categories={categories}
+          loading={loading}
+          error={error}
+          onAddToCart={addToCart}
+        />
         <Testimonials />
       </main>
       <Footer />
