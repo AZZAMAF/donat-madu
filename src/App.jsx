@@ -6,6 +6,7 @@ import MenuSection from './components/MenuSection'
 import Promises from './components/Promises'
 import Signatures from './components/Signatures'
 import Testimonials from './components/Testimonials'
+import Wishlist from './components/Wishlist'
 
 // Contoh isi keranjang supaya layout dropdown bisa dilihat.
 // TODO(gua): ganti dengan useState cart + localStorage.
@@ -103,6 +104,7 @@ export default function App() {
           error={error}
           onAddToCart={addToCart}
         />
+        <Wishlist />
         <Testimonials />
       </main>
       <Footer />
