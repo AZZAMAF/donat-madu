@@ -44,8 +44,9 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false)
 
   // TODO(gua): addToCart(item) -> { ...item, qty: 1 }, gabung kalau id sudah ada.
-  const addToCart = () => {}
-
+  const addToCart = (item) => {
+    setCart([...cart, { ...item, qty: 1 }])
+  }
   // TODO(gua): removeFromCart(id).
   const removeFromCart = () => {}
 
