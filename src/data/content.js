@@ -97,7 +97,7 @@ export const FOOTER = {
   quickLinks: ['Beranda', 'Menu', 'Tentang', 'Kontak'],
   contact: {
     address: 'Jl. Senopati No. 45, Jakarta',
-    phone: '+62 812-3456-7890',
+    phone: '+62 899-9724-4659',
     hours: 'Senin - Minggu: 07.00 - 21.00',
   },
   copyright: '© 2026 Madu Donut. Hak cipta dilindungi.',
