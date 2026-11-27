@@ -27,7 +27,7 @@ export default function MenuSection({ menus, categories, loading, error, onAddTo
               role="tab"
               aria-selected={activeCategory === category}
               onClick={() => setActiveCategory(category)}
-              className={`h-11 shrink-0 rounded-full px-5 text-sm font-semibold transition ${activeCategory === category ? 'bg-primary text-neutral-dark shadow-[0_4px_12px_rgba(242,168,29,0.35)]' : 'bg-[#FFFDF8] text-[#7A6455] shadow-[0_2px_6px_rgba(59,42,30,0.08)] hover:bg-white hover:text-neutral-dark'}`}
+              className={`h-11 shrink-0 rounded-full px-5 text-sm font-semibold transition border-2 ${activeCategory === category ? 'border-neutral-dark bg-neutral-dark text-white' : 'border-white bg-transparent text-[#7A6455] hover:bg-white hover:text-neutral-dark'}`}
             >
               {categoryLabel(category)}
             </button>

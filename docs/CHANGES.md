@@ -169,3 +169,8 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - Foto `public/images/menu-1.jpg` sampai `menu-9.jpg` diganti foto baru (900×900, dikompres ±130 KB per foto) sehingga tidak ada lagi latar hitam/blur.
 - Deskripsi beberapa menu (Golden Honey Crunch, Choco Honeycomb, Honeycomb Creme Brulee, Passionfruit Honey Burst) disesuaikan dengan isi fotonya.
 - Nama file tetap sama, jadi data produk yang sudah diubah lewat Admin tetap memakai foto baru.
+
+## CTA dan filter menu dibuat lebih polos
+
+- **CTA banner:** tidak kuning lagi. Sekarang kartu cream dengan border tipis, tanpa lingkaran dekorasi, tombol cokelat gelap.
+- **Filter menu:** yang tidak aktif hanya border putih dengan latar transparan (latar putih muncul saat hover). Yang aktif cokelat gelap dengan teks putih.
