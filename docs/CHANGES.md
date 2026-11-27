@@ -147,3 +147,10 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - **Menu akun** (`components/UserMenu.jsx`): belum masuk, ikon orang membuka `/login`. Sudah masuk, ikon berubah jadi foto/inisial dan membuka menu Profil, Pesanan, Alamat, Wishlist, Admin (khusus admin), Keluar.
 - **Profil** (`/profil`) punya tab lewat hash: `#pesanan` (riwayat, filter, progres status, pesan lagi), `#alamat` (tambah, ubah, hapus, alamat utama), `#akun` (data diri), `#voucher`. Alamat tersimpan bisa dipilih di Checkout.
 - **Login praktis:** tombol "Masuk sebagai Admin/Pelanggan", ikon mata untuk melihat password, centang "Ingat saya" (default aktif, sesi tetap ada walau browser ditutup), email terakhir terisi otomatis, pesan error yang membedakan email tidak terdaftar dan password salah.
+
+## Revisi landing sesuai Figma (Menu, Promise, Testimonials, CTA)
+
+- **Menu** (`MenuSection.jsx`, `MenuCard.jsx`): layout tetap, warna tombol disamakan dengan Figma. Filter kategori aktif berwarna kuning (`primary`), yang lain putih dengan shadow tipis. Kartu putih rounded 20px dengan shadow halus. Tombol "+" kuning 44px di kanan bawah, "Lihat detail" jadi tombol outline di kiri, dan baris tombol selalu sejajar antar kartu.
+- **Promise** (`Promises.jsx`): heading di tengah, 3 kartu putih rounded dengan ikon dalam lingkaran kuning pucat. Ikon baru `droplet` dan `bread` ditambahkan di `Icon.jsx` (sebelumnya nama ikon `bi-*` tidak terpetakan sehingga ikonnya kosong).
+- **Testimonials** (`Testimonials.jsx`): latar cream, eyebrow "What Our Guests Say", 3 kartu putih rounded, bintang oranye. Teks kutipan disamakan dengan Figma.
+- **CTA banner** (`Footer.jsx`): kartu kuning rounded 28px yang tidak full sampai pinggir layar, aksen lingkaran putih transparan, teks Figma, tombol pill gelap. Banner ini muncul di semua halaman toko.

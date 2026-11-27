@@ -39,19 +39,19 @@ export const PROMISES = {
   title: 'Naturally Better, From Hive to Bite',
   items: [
     {
-      icon: 'bi-flower1',
+      icon: 'droplet',
       title: 'Real Raw Honey',
       description:
-        'Sourced sustainably from local apiaries across Java and Flores. No corn syrup or artificial sweeteners ever.',
+        'Sourced sustainably from local organic beekeepers across Java and Flores. No corn syrup or artificial sweeteners ever.',
     },
     {
-      icon: 'bi-cup-hot',
+      icon: 'bread',
       title: 'Baked Fresh Daily',
       description:
         'Crafted in small batches every morning at 5 AM with French butter and a 24-hour slow-fermented brioche dough.',
     },
     {
-      icon: 'bi-truck',
+      icon: 'truck',
       title: 'Fast Warm Delivery',
       description:
         'Delivered in temperature-controlled insulated eco-boxes so every bite arrives delightfully warm and fluffy.',
@@ -60,7 +60,7 @@ export const PROMISES = {
 }
 
 export const TESTIMONIALS = {
-  eyebrow: 'Testimonials',
+  eyebrow: 'What Our Guests Say',
   title: 'Love at First Drizzle',
   items: [
     {
@@ -71,14 +71,14 @@ export const TESTIMONIALS = {
     },
     {
       quote:
-        'The Honey Butter Sea Salt donut changed my life. Sweet, savory, fluffy perfection. Arrived warm within 25 minutes.',
+        'The Honey Butter Sea Salt donut changed my life. Sweet, savory, fluffy perfection. Arrived warm within 35 minutes.',
       author: 'Reza Pratama',
       role: 'Food Reviewer',
     },
     {
       quote:
-        'Ordered the 12-donut sharing box for our office meeting. Everyone was asking about the roasted almond flavor. Stunning packaging too.',
-      author: 'Clarissa Tan',
+        'Ordered the 12-donut sharing box for our office meeting. Everyone was asking about the toasted almond flavor. Stunning packaging too.',
+      author: 'Clarissa Salim',
       role: 'Corporate Client',
     },
   ],
@@ -87,7 +87,7 @@ export const TESTIMONIALS = {
 export const CTA_BANNER = {
   title: 'Taste the Golden Difference Today.',
   description:
-    'Use code HONEY15 for a complimentary jar of wildflower raw honey drizzle on orders over Rp 100.000.',
+    'First-time order? Enjoy complimentary warm delivery and a free signature mini donut box on orders over Rp 100.000.',
   buttonText: 'Order Fresh Donuts Now',
 }
 
