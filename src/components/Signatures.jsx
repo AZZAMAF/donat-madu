@@ -1,7 +1,14 @@
-import donatHero from '../../assets/donat-hero.png'
+import berry from '../../assets/signatures/berry.png'
+import choco from '../../assets/signatures/choco.png'
+import golden from '../../assets/signatures/golden.png'
+import matcha from '../../assets/signatures/matcha.png'
+import swirl from '../../assets/signatures/swirl.png'
 import { SIGNATURES } from '../data/content'
 import Icon from './Icon'
 import SectionHeading from './SectionHeading'
+
+// Gambar donat per kartu (dari desain Figma), urut sesuai nomor 01-04.
+const IMAGES = { '01': berry, '02': golden, '03': matcha, '04': choco }
 
 export default function Signatures() {
   return (
@@ -27,11 +34,16 @@ export default function Signatures() {
               </div>
 
               <img
-                src={donatHero}
+                src={swirl}
                 alt=""
                 aria-hidden="true"
+                className="pointer-events-none absolute -right-8 -top-16 h-[95%] w-auto opacity-30 select-none"
+              />
+              <img
+                src={IMAGES[item.number]}
+                alt={item.title}
                 loading="lazy"
-                className="absolute -bottom-16 left-1/2 w-[145%] max-w-none -translate-x-1/2 transition-transform duration-500 group-hover:scale-105"
+                className="absolute left-1/2 top-[42%] w-[68%] max-w-[230px] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_18px_24px_rgba(0,0,0,0.25)] transition-transform duration-700 group-hover:rotate-[18deg] group-hover:scale-105"
               />
 
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-neutral-dark/90 via-neutral-dark/35 to-transparent px-5 pb-5 pt-24 text-white">
