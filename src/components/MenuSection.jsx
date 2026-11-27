@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import MenuCard from './MenuCard'
 import SectionHeading from './SectionHeading'
 
@@ -28,7 +29,7 @@ export default function MenuSection({ menus, categories, loading, error, onAddTo
             <MenuCard key={item.id} item={item} onAddToCart={onAddToCart} />
           ))}
         </div>
-        <a href="#menu-list" className="mx-auto mt-10 flex w-fit items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark">Explore Full Menu (18 Flavors) <span aria-hidden="true">→</span></a>
+        <Link to="/promo" className="mx-auto mt-10 flex w-fit items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-secondary hover:text-secondary">Lihat Promo & Voucher Hari Ini <span aria-hidden="true">→</span></Link>
       </div>
     </section>
   )

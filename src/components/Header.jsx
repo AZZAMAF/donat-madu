@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { BRAND, NAV_LINKS } from '../data/content'
 import CartDropdown from './CartDropdown'
 import Icon from './Icon'
@@ -6,15 +7,16 @@ import IconButton from './IconButton'
 export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQtyChange, onRemove }) {
   return (
     <header className="sticky top-0 z-50 grid w-full grid-cols-[1fr_auto_1fr] items-center border-b border-neutral-dark/10 bg-bg-cream px-12 py-4 max-[900px]:grid-cols-[1fr_auto] max-[900px]:px-5">
-      <a href="#top" className="font-headline text-2xl font-bold text-neutral-dark">
+      <Link to="/#top" className="font-headline text-2xl font-bold text-neutral-dark">
         {BRAND}
-      </a>
+      </Link>
 
       <nav className="flex items-center gap-8 font-sans max-[900px]:col-span-full max-[900px]:mt-3 max-[900px]:justify-center max-[900px]:gap-7">
         {NAV_LINKS.map((link, index) => (
-          <a
+          // Link ke "/#anchor" supaya dari halaman lain tetap kembali ke bagian landing page.
+          <Link
             key={link.label}
-            href={link.href}
+            to={`/${link.href}`}
             className={
               index === 0
                 ? 'font-semibold text-secondary'
@@ -22,12 +24,12 @@ export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQt
             }
           >
             {link.label}
-          </a>
+          </Link>
         ))}
       </nav>
 
       <div className="flex items-center justify-self-end gap-4 max-[900px]:col-start-2 max-[900px]:row-start-1">
-        <IconButton label="Search" icon="search" />
+        <IconButton label="Cari menu" icon="search" to="/#menu-list" />
 
         {/* Satu wrapper buat hover + klik. onMouseLeave ada di sini supaya panel
             tidak tertutup saat pointer pindah dari ikon ke panel dropdown. */}
@@ -52,10 +54,12 @@ export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQt
             </span>
           </button>
 
-          {isCartOpen && <CartDropdown cart={cart} onQtyChange={onQtyChange} onRemove={onRemove} />}
+          {isCartOpen && (
+            <CartDropdown cart={cart} onQtyChange={onQtyChange} onRemove={onRemove} onClose={() => setIsCartOpen(false)} />
+          )}
         </div>
 
-        <IconButton label="User profile" icon="person" />
+        <IconButton label="Akun saya" icon="person" to="/profil" />
       </div>
     </header>
   )

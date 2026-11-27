@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { BRAND, CTA_BANNER, FOOTER, NAV_LINKS } from '../data/content'
 
 // Quick links di footer menunjuk anchor yang sama dengan nav utama,
@@ -15,12 +16,12 @@ export default function Footer() {
             </h2>
             <p className="max-w-2xl text-neutral-dark/70">{CTA_BANNER.description}</p>
           </div>
-          <a
-            href="#menu-list"
+          <Link
+            to="/#menu-list"
             className="shrink-0 rounded-full bg-neutral-dark px-7 py-4 font-semibold text-white transition hover:bg-accent-dark"
           >
             {CTA_BANNER.buttonText}
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -38,9 +39,9 @@ export default function Footer() {
                 const href = QUICK_LINK_MAP[label.toLowerCase()] ?? '#top'
                 return (
                   <li key={label}>
-                    <a href={href} className="transition hover:text-primary">
+                    <Link to={`/${href}`} className="transition hover:text-primary">
                       {label}
-                    </a>
+                    </Link>
                   </li>
                 )
               })}

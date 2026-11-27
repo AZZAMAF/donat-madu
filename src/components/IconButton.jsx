@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom'
 import Icon from './Icon'
 
-export default function IconButton({ label, icon, badge }) {
+// Kalau diberi `to`, tombol berubah jadi Link ke halaman lain dengan tampilan yang sama.
+export default function IconButton({ label, icon, badge, to }) {
+  const Tag = to ? Link : 'button'
   return (
-    <button
-      type="button"
+    <Tag
+      {...(to ? { to } : { type: 'button' })}
       aria-label={label}
       className="relative grid size-10 place-items-center rounded-full text-neutral-dark transition hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
     >
@@ -13,6 +16,6 @@ export default function IconButton({ label, icon, badge }) {
           {badge}
         </span>
       )}
-    </button>
+    </Tag>
   )
 }

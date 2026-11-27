@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom'
+import { formatRupiah } from '../utils/format'
 import QuantityCounter from './QuantityCounter'
 
-export default function CartDropdown({ cart, onQtyChange, onRemove }) {
+export default function CartDropdown({ cart, onQtyChange, onRemove, onClose }) {
   const totalHarga = cart.reduce((total, item) => total + item.price * item.qty, 0)
 
   return (
@@ -19,7 +21,7 @@ export default function CartDropdown({ cart, onQtyChange, onRemove }) {
                   <div className="min-w-0">
                     <p className="truncate font-headline text-lg leading-tight text-neutral-dark">{item.name}</p>
                     <p className="text-sm font-semibold text-secondary">
-                      Rp {(item.price * item.qty).toLocaleString('id-ID')}
+                      {formatRupiah(item.price * item.qty)}
                     </p>
                   </div>
 
@@ -40,16 +42,23 @@ export default function CartDropdown({ cart, onQtyChange, onRemove }) {
 
             <div className="mt-5 flex items-center justify-between border-t border-neutral-dark/10 pt-4">
               <span className="font-semibold text-neutral-dark">Total</span>
-              <strong className="text-secondary">Rp {totalHarga.toLocaleString('id-ID')}</strong>
+              <strong className="text-secondary">{formatRupiah(totalHarga)}</strong>
             </div>
 
-            <button
-              type="button"
-              // TODO(gua): rangkai checkout (pembayaran / halaman terima kasih).
-              className="mt-4 w-full rounded-full bg-primary py-3 font-semibold text-neutral-dark transition hover:bg-primary-dark"
+            <Link
+              to="/checkout"
+              onClick={onClose}
+              className="mt-4 block w-full rounded-full bg-primary py-3 text-center font-semibold text-neutral-dark transition hover:bg-primary-dark"
             >
               Checkout
-            </button>
+            </Link>
+            <Link
+              to="/keranjang"
+              onClick={onClose}
+              className="mt-3 block text-center text-sm font-semibold text-neutral-dark/70 underline-offset-4 hover:text-secondary hover:underline"
+            >
+              Lihat keranjang lengkap
+            </Link>
           </>
         )}
       </div>
