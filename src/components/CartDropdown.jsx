@@ -20,7 +20,7 @@ export default function CartDropdown({ cart, onQtyChange, onRemove, onClose }) {
                 <li key={item.id} className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate font-headline text-lg leading-tight text-neutral-dark">{item.name}</p>
-                    <p className="text-sm font-semibold text-secondary">
+                    <p className="text-sm font-semibold text-accent-dark">
                       {formatRupiah(item.price * item.qty)}
                     </p>
                   </div>
@@ -42,20 +42,20 @@ export default function CartDropdown({ cart, onQtyChange, onRemove, onClose }) {
 
             <div className="mt-5 flex items-center justify-between border-t border-neutral-dark/10 pt-4">
               <span className="font-semibold text-neutral-dark">Total</span>
-              <strong className="text-secondary">{formatRupiah(totalHarga)}</strong>
+              <strong className="text-accent-dark">{formatRupiah(totalHarga)}</strong>
             </div>
 
             <Link
               to="/checkout"
               onClick={onClose}
-              className="mt-4 block w-full rounded-full bg-primary py-3 text-center font-semibold text-neutral-dark transition hover:bg-primary-dark"
+              className="mt-4 block w-full rounded-full bg-neutral-dark py-3 text-center font-semibold text-white transition hover:bg-choco-dark"
             >
               Checkout
             </Link>
             <Link
               to="/keranjang"
               onClick={onClose}
-              className="mt-3 block text-center text-sm font-semibold text-neutral-dark/70 underline-offset-4 hover:text-secondary hover:underline"
+              className="mt-3 block text-center text-sm font-semibold text-neutral-dark/70 underline-offset-4 hover:text-accent-dark hover:underline"
             >
               Lihat keranjang lengkap
             </Link>

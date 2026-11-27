@@ -53,7 +53,7 @@ export default function VoucherInput({ subtotal }) {
         </form>
       )}
       {!voucherCode && message && <p className="mt-2 text-xs text-accent-red">{message}</p>}
-      <Link to="/promo" className="mt-2 inline-block text-xs font-semibold text-secondary hover:underline">
+      <Link to="/promo" className="mt-2 inline-block text-xs font-semibold text-accent-dark hover:underline">
         Lihat semua voucher →
       </Link>
     </div>

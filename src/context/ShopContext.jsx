@@ -208,6 +208,8 @@ export function ShopProvider({ children }) {
   }
   const updateOrderStatus = (id, status) =>
     setOrders((current) => current.map((o) => (o.id === id ? { ...o, status } : o)))
+  const cancelOrder = (id) =>
+    setOrders((current) => current.map((o) => (o.id === id ? { ...o, status: 'Dibatalkan', cancelledAt: new Date().toISOString() } : o)))
   const getOrder = (id) => orders.find((o) => o.id === id)
 
   const value = {
@@ -216,7 +218,7 @@ export function ShopProvider({ children }) {
     voucherCode, setVoucherCode,
     wishlist, isWishlisted, toggleWishlist,
     user, lastEmail, register, login, loginWithGoogle, logout, updateProfile, saveAddress, deleteAddress, setDefaultAddress,
-    orders, placeOrder, updateOrderStatus, getOrder,
+    orders, placeOrder, updateOrderStatus, cancelOrder, getOrder,
     toast, showToast,
   }
 

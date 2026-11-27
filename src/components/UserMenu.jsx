@@ -40,7 +40,7 @@ export default function UserMenu() {
         aria-label={`Menu akun ${user.name}`}
         aria-expanded={open}
         onClick={() => setOpen(!open)}
-        className="grid size-10 place-items-center rounded-full transition hover:ring-2 hover:ring-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
+        className="grid size-11 place-items-center rounded-full transition hover:ring-2 hover:ring-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
       >
         <Avatar user={user} className="size-9 text-base" />
       </button>

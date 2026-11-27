@@ -29,22 +29,20 @@ export default function WishlistPage() {
       ) : saved.length === 0 ? (
         <EmptyState icon="heart" title="Wishlist masih kosong" description="Tekan ikon hati di kartu menu untuk menyimpan donat favorit." />
       ) : (
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
           {saved.map((item) => (
-            <article key={item.id} className="flex flex-col overflow-hidden rounded-[16px] border border-neutral-dark/10 bg-white">
-              <Link to={`/menu/${item.id}`} className="h-52 overflow-hidden bg-gold-pale">
+            <article key={item.id} data-reveal className="flex flex-col overflow-hidden rounded-[20px] bg-[#FFFDF8] shadow-[0_4px_8px_rgba(59,42,30,0.06)]">
+              <Link to={`/menu/${item.id}`} className="h-[260px] overflow-hidden bg-gold-pale">
                 <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-500 hover:scale-105" />
               </Link>
               <div className="flex flex-1 flex-col p-5">
-                <div className="mb-4 flex items-start justify-between gap-3">
-                  <Link to={`/menu/${item.id}`} className="font-headline text-xl leading-tight text-neutral-dark hover:text-secondary">{item.name}</Link>
-                  <strong className="shrink-0 text-secondary">{formatRupiah(item.price)}</strong>
-                </div>
+                <Link to={`/menu/${item.id}`} className="mb-1 font-headline text-2xl leading-tight text-neutral-dark hover:text-accent-dark">{item.name}</Link>
+                <strong className="mb-5 text-lg font-bold text-neutral-dark">{formatRupiah(item.price)}</strong>
                 <div className="mt-auto flex gap-2">
-                  <button type="button" onClick={() => moveToCart(item)} className="flex-1 rounded-full bg-primary py-2.5 text-sm font-semibold text-neutral-dark transition hover:bg-primary-dark">
+                  <button type="button" onClick={() => moveToCart(item)} className="h-11 flex-1 rounded-full bg-neutral-dark text-sm font-semibold text-white transition hover:bg-choco-dark">
                     Pindah ke Keranjang
                   </button>
-                  <button type="button" onClick={() => toggleWishlist(item)} aria-label={`Hapus ${item.name} dari wishlist`} className="grid size-10 place-items-center rounded-full border border-neutral-dark/15 text-neutral-dark/60 transition hover:border-accent-red/40 hover:text-accent-red">
+                  <button type="button" onClick={() => toggleWishlist(item)} aria-label={`Hapus ${item.name} dari wishlist`} className="grid size-11 place-items-center rounded-full border border-neutral-dark/15 text-neutral-dark/60 transition hover:border-accent-red/40 hover:text-accent-red">
                     <Icon name="trash" className="size-5" />
                   </button>
                 </div>
@@ -74,16 +72,19 @@ function WishNotes() {
   const remove = (id) => setNotes(notes.filter((n) => n.id !== id))
 
   return (
-    <section className="mt-16 max-w-2xl">
-      <h2 className="mb-2 font-headline text-3xl text-neutral-dark">Catatan Rasa yang Mau Dicoba</h2>
-      <p className="mb-5 text-neutral-dark/65">Punya ide rasa baru atau donat yang mau kamu coba nanti? Catat di sini.</p>
+    <section className="mt-12 grid gap-6 rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6 sm:p-8 md:grid-cols-[1fr_1.2fr]">
+      <div>
+        <h2 className="mb-2 font-headline text-3xl text-neutral-dark">Catatan Rasa yang Mau Dicoba</h2>
+        <p className="text-sm leading-relaxed text-[#7A6455]">Punya ide rasa baru atau donat yang mau kamu coba nanti? Catat di sini.</p>
+      </div>
+      <div>
       <form onSubmit={add} className="flex gap-2">
         <label htmlFor="wish-note" className="sr-only">Catatan donat</label>
-        <input id="wish-note" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Contoh: Matcha Honey Drizzle" className="min-w-0 flex-1 rounded-full border border-neutral-dark/20 bg-white px-5 py-3 outline-none focus:border-secondary" />
-        <button type="submit" className="rounded-full bg-neutral-dark px-6 py-3 font-semibold text-white transition hover:bg-accent-dark">Tambah</button>
+        <input id="wish-note" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Contoh: Matcha Honey Drizzle" className="min-w-0 flex-1 rounded-full border border-neutral-dark/20 bg-white px-5 py-3 outline-none focus:border-neutral-dark" />
+        <button type="submit" className="rounded-full bg-neutral-dark px-6 py-3 font-semibold text-white transition hover:bg-choco-dark">Tambah</button>
       </form>
       {notes.length > 0 && (
-        <ul className="mt-5 divide-y divide-neutral-dark/10 rounded-[16px] border border-neutral-dark/10 bg-white">
+        <ul className="mt-4 divide-y divide-neutral-dark/10 rounded-[16px] border border-neutral-dark/10 bg-white">
           {notes.map((note) => (
             <li key={note.id} className="flex items-center gap-3 px-5 py-3">
               <input type="checkbox" checked={note.done} onChange={() => toggle(note.id)} aria-label={`Tandai ${note.text} sudah dicoba`} className="size-5 accent-[#C97F0D]" />
@@ -95,6 +96,7 @@ function WishNotes() {
           ))}
         </ul>
       )}
+      </div>
     </section>
   )
 }

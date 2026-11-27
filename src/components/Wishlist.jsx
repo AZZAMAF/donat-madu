@@ -30,7 +30,7 @@ export default function Wishlist() {
           <p className="mt-4 max-w-md leading-relaxed text-neutral-dark/65">
             Catat rasa yang bikin penasaran, lalu centang kalau sudah dicoba. Donat favorit dari menu bisa disimpan dengan ikon hati.
           </p>
-          <Link to="/wishlist" className="mt-6 inline-flex items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-secondary hover:text-secondary">
+          <Link to="/wishlist" className="mt-6 inline-flex items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-secondary hover:text-accent-dark">
             <Icon name="heart" className="size-4" /> Buka wishlist lengkap <span aria-hidden="true">→</span>
           </Link>
         </div>
@@ -45,7 +45,7 @@ export default function Wishlist() {
               placeholder="Contoh: Matcha Honey Drizzle"
               className="h-12 min-w-0 flex-1 rounded-full border border-neutral-dark/20 bg-bg-cream px-5 text-neutral-dark outline-none transition placeholder:text-neutral-dark/40 focus:border-secondary focus:bg-white"
             />
-            <button type="submit" className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-6 font-semibold text-neutral-dark transition hover:bg-primary-dark">
+            <button type="submit" className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-neutral-dark px-6 font-semibold text-white transition hover:bg-choco-dark">
               <Icon name="plus" className="size-5" /> Tambah
             </button>
           </form>

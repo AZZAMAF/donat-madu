@@ -12,7 +12,7 @@ export default function PromoHighlight() {
       <div className="mx-auto max-w-[1280px]">
         <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <SectionHeading eyebrow="Promo Hari Ini" title="Lebih Manis, Lebih Hemat" />
-          <Link to="/promo" className="flex items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-secondary hover:text-secondary">
+          <Link to="/promo" className="flex items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-secondary hover:text-accent-dark">
             Lihat semua promo <span aria-hidden="true">→</span>
           </Link>
         </div>

@@ -154,3 +154,69 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - **Promise** (`Promises.jsx`): heading di tengah, 3 kartu putih rounded dengan ikon dalam lingkaran kuning pucat. Ikon baru `droplet` dan `bread` ditambahkan di `Icon.jsx` (sebelumnya nama ikon `bi-*` tidak terpetakan sehingga ikonnya kosong).
 - **Testimonials** (`Testimonials.jsx`): latar cream, eyebrow "What Our Guests Say", 3 kartu putih rounded, bintang oranye. Teks kutipan disamakan dengan Figma.
 - **CTA banner** (`Footer.jsx`): kartu kuning rounded 28px yang tidak full sampai pinggir layar, aksen lingkaran putih transparan, teks Figma, tombol pill gelap. Banner ini muncul di semua halaman toko.
+
+## Perbaikan hasil kritik desain
+
+- **Bahasa:** semua teks landing (hero, signatures, promise, testimoni, CTA, footer, deskripsi menu di `public/menu.json`) diubah ke bahasa Indonesia. Nama produk tetap. Nama kategori tetap disimpan dalam bahasa Inggris sebagai kunci data, lalu ditampilkan dalam bahasa Indonesia lewat `categoryLabel()` di `utils/format.js` (dipakai di Menu, pencarian, detail produk dan admin).
+- **Kontras:** teks kecil oranye (`text-secondary`, kontras ±3:1) diganti `text-accent-dark` (#805600) supaya lolos standar WCAG 4.5:1. Oranye hanya dipakai untuk ikon dan bintang.
+- **Menu:** heading dan filter kategori di tengah dalam satu baris (di HP bisa digeser ke samping). Harga pindah ke baris bawah kartu bersama tombol "Detail" dan "+", jadi judul tidak terpotong.
+- **Ukuran sentuh:** tombol ikon header, tombol wishlist, filter, link nav dan titik carousel promo sekarang punya area klik minimal 44px.
+- **Hero di HP:** jarak dirapatkan dan gambar donat dibesarkan supaya langsung terlihat di layar pertama.
+- **Detail produk:** "Mungkin Kamu Juga Suka" selalu menampilkan 3 kartu (kategori sama dulu, lalu menu lain).
+
+## Foto menu baru
+
+- Foto `public/images/menu-1.jpg` sampai `menu-9.jpg` diganti foto baru (900×900, dikompres ±130 KB per foto) sehingga tidak ada lagi latar hitam/blur.
+- Deskripsi beberapa menu (Golden Honey Crunch, Choco Honeycomb, Honeycomb Creme Brulee, Passionfruit Honey Burst) disesuaikan dengan isi fotonya.
+- Nama file tetap sama, jadi data produk yang sudah diubah lewat Admin tetap memakai foto baru.
+
+## CTA dan filter menu dibuat lebih polos
+
+- **CTA banner:** tidak kuning lagi. Sekarang kartu cream dengan border tipis, tanpa lingkaran dekorasi, tombol cokelat gelap.
+- **Filter menu:** yang tidak aktif hanya border putih dengan latar transparan (latar putih muncul saat hover). Yang aktif cokelat gelap dengan teks putih.
+
+## Halaman Profil dirapikan
+
+- Kartu identitas dan menu profil digabung jadi satu kartu; menu jadi daftar rapi (yang aktif diberi latar cream), bukan tombol-tombol putih terpisah.
+- Avatar huruf sekarang cokelat gelap dengan huruf putih (berlaku juga di header).
+- Ringkasan (total pesanan, belanja, wishlist, voucher) jadi satu kartu dengan garis pemisah, angka pakai font sans tebal.
+- `EmptyState` dipakai di banyak halaman: kartu polos tanpa garis putus-putus, ikon di lingkaran cream, tombol cokelat gelap.
+- Semua kartu di halaman profil memakai warna `#FFFDF8` dan radius 20px supaya sama dengan landing page.
+
+## Perbaikan hasil review semua halaman
+
+- **Tombol utama** di semua halaman toko (keranjang, checkout, login, promo, wishlist, profil, admin, 404) sekarang cokelat gelap. Kuning hanya dipakai untuk tombol "+" di kartu menu dan tombol hero landing. "Beli Sekarang" di detail produk jadi tombol outline supaya beda dengan "Tambah ke Keranjang".
+- **Header:** link nav yang aktif sekarang sesuai halaman (fungsi `isActiveLink` di `Header.jsx`). Di halaman keranjang/login/dll tidak ada yang aktif; di detail produk yang aktif "Menu".
+- **Banner CTA** hanya tampil di landing, Promo dan detail produk (`CTA_PAGES` di `Footer.jsx`).
+- **Halaman Promo:** kartu Promo Unggulan jadi kartu cream dengan foto di kotak sendiri (tidak menimpa teks di HP). Warna promo tinggal titik kecil di label. Kartu voucher pakai potongan tiket cream yang sama untuk semua voucher. Tombol di banner Flash Voucher jadi putih supaya terlihat di latar gelap.
+- **Wishlist:** kartu disamakan dengan kartu menu, bagian "Catatan Rasa" jadi satu kartu penuh.
+- **Toast** muncul di pojok kanan bawah (di HP tetap di tengah bawah).
+- **Admin:** kartu statistik dan panel memakai gaya kartu cream yang sama dengan halaman lain; label "Admin" tidak kuning lagi.
+- **Foto baru:** foto aneka donat dipakai untuk 12-Box Office Sharing (`menu-9.jpg`) dan panel kiri halaman Login (`donat-semua.jpg`).
+
+## Menu jadi 18 item
+
+- Ditambah 9 rasa baru di `public/menu.json` (id 10–18): Honey Cinnamon Sugar, Honey Butter Milk, Matcha Honey Drizzle, White Choco Honey Almond, Honey Peanut Butter, Honey Tiramisu, Lemon Honey Ginger, Mango Honey Lime, Strawberry Honey Cheesecake. Totalnya 16 rasa + 2 paket box, diurutkan per kategori (paket box di paling bawah).
+- Foto baru `menu-10.jpg` (matcha) dan `menu-11.jpg` (mango lime); rasa lain sementara memakai ulang foto yang mirip.
+- Kartu Signatures "Matcha Honey Drizzle" sekarang tertaut ke produk id 12.
+- Catatan: kalau produk pernah diubah lewat Admin, browser memakai daftar produk tersimpan. Tekan "Reset data awal" di Admin > Produk (atau hapus localStorage `madu_donat_products`) supaya 18 menu baru muncul.
+
+## Pelanggan bisa membatalkan pesanan
+
+- Komponen baru `CancelOrderButton.jsx`: tombol "Batalkan pesanan" dengan konfirmasi dua langkah di halaman ("Ya, batalkan" / "Tidak jadi").
+- Muncul di halaman Pesanan Berhasil dan di Profil > Pesanan Saya, hanya selama status masih **Menunggu Konfirmasi** (`canCancelOrder` di `utils/order.js`). Setelah admin memproses, pesanan tidak bisa dibatalkan pelanggan.
+- Fungsi `cancelOrder(id)` di `ShopContext` mengubah status jadi "Dibatalkan" dan mencatat `cancelledAt`. Pesanan batal tidak dihitung ke total belanja dan pendapatan admin.
+- Halaman Pesanan Berhasil berubah jadi "Pesanan Dibatalkan" (ikon merah, tombol kirim ulang WhatsApp disembunyikan).
+- Nomor WhatsApp toko diganti ke +62 899-9724-4659.
+
+## Animasi (motion)
+
+Tanpa library tambahan, hanya CSS + IntersectionObserver.
+
+- **Muncul saat scroll:** elemen dengan atribut `data-reveal` (judul section, kartu Signatures, Promise, menu, testimoni, kartu promo/voucher, wishlist, banner CTA) muncul pelan dari bawah. Kartu yang bersebelahan muncul bergantian. Logikanya di `components/ScrollReveal.jsx`, gayanya di `input.css` bagian "Motion".
+- **Hero:** judul, deskripsi, tombol dan rating naik bergantian saat halaman dibuka; gambar donat melayang pelan (`animate-float`).
+- **Pindah halaman:** isi halaman masuk dengan fade halus (`animate-page` di `MainLayout`).
+- **Keranjang:** angka di ikon keranjang "loncat" tiap ada item baru (`animate-bump`).
+- **Hover:** kartu menu dan Signatures naik sedikit dengan bayangan lebih dalam.
+- **Aksesibilitas:** kalau perangkat memakai setting "kurangi animasi" (prefers-reduced-motion), semua animasi dimatikan.
+- **Perbaikan:** di mode dev (`npm run dev`) kartu sempat tidak muncul. Penyebabnya React StrictMode menjalankan efek dua kali, sementara penanda "sudah diamati" disimpan sebagai atribut di elemen. Sekarang penanda disimpan di `WeakSet` per efek, plus pengaman: elemen yang sudah terlihat di layar dimunculkan paksa setelah 1,5 detik.

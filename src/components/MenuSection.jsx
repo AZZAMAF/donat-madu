@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { categoryLabel } from '../utils/format'
 import MenuCard from './MenuCard'
 import SectionHeading from './SectionHeading'
 
@@ -11,14 +12,28 @@ export default function MenuSection({ menus, categories, loading, error, onAddTo
   return (
     <section id="menu-list" className="bg-cream-deep px-6 py-24 sm:px-10 lg:px-16">
       <div className="mx-auto max-w-[1280px]">
-        <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeading title="A Golden Bite for Every Mood" />
-          <div role="tablist" aria-label="Filter menu by category" className="flex max-w-full flex-wrap gap-2 pb-1">
-            {categories.map((category) => (
-              <button key={category} type="button" role="tab" aria-selected={activeCategory === category} onClick={() => setActiveCategory(category)} className={`h-10 shrink-0 rounded-full px-5 text-sm font-semibold transition ${activeCategory === category ? 'bg-primary text-neutral-dark shadow-[0_4px_12px_rgba(242,168,29,0.35)]' : 'bg-[#FFFDF8] text-[#7A6455] shadow-[0_2px_6px_rgba(59,42,30,0.08)] hover:bg-white hover:text-neutral-dark'}`}>{category}</button>
-            ))}
-          </div>
+        <SectionHeading eyebrow="Menu Kami" title="Satu Gigitan Manis untuk Setiap Suasana" align="center" />
+
+        {/* Filter di tengah dalam satu baris; di HP bisa digeser ke samping. */}
+        <div
+          role="tablist"
+          aria-label="Filter menu berdasarkan kategori"
+          className="-mx-6 mb-10 mt-8 flex gap-2 overflow-x-auto px-6 pb-2 sm:mx-0 sm:justify-center sm:px-0"
+        >
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              role="tab"
+              aria-selected={activeCategory === category}
+              onClick={() => setActiveCategory(category)}
+              className={`h-11 shrink-0 rounded-full px-5 text-sm font-semibold transition border-2 ${activeCategory === category ? 'border-neutral-dark bg-neutral-dark text-white' : 'border-white bg-transparent text-[#7A6455] hover:bg-white hover:text-neutral-dark'}`}
+            >
+              {categoryLabel(category)}
+            </button>
+          ))}
         </div>
+
         <div className="grid gap-5 md:grid-cols-3">
           {loading && <p>Memuat menu...</p>}
           {error && <p>{error}</p>}
@@ -29,7 +44,7 @@ export default function MenuSection({ menus, categories, loading, error, onAddTo
             <MenuCard key={item.id} item={item} onAddToCart={onAddToCart} />
           ))}
         </div>
-        <Link to="/promo" className="mx-auto mt-10 flex w-fit items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-secondary hover:text-secondary">Lihat Promo & Voucher Hari Ini <span aria-hidden="true">→</span></Link>
+        <Link to="/promo" className="mx-auto mt-10 flex min-h-11 w-fit items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-accent-dark hover:text-accent-dark">Lihat Promo & Voucher Hari Ini <span aria-hidden="true">→</span></Link>
       </div>
     </section>
   )

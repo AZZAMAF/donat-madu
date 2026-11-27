@@ -142,7 +142,7 @@ export default function PromoCarousel({ slides, onCta, ctaLabel = 'Pakai Voucher
         <Icon name="arrowRight" className="size-5" />
       </button>
 
-      <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+      <div className="absolute inset-x-0 bottom-1 flex justify-center">
         {slides.map((slide, i) => (
           <button
             key={slide.code}
@@ -150,8 +150,11 @@ export default function PromoCarousel({ slides, onCta, ctaLabel = 'Pakai Voucher
             onClick={() => goTo(i)}
             aria-label={`Ke promo ${i + 1}`}
             aria-current={active === i}
-            className={`h-2.5 rounded-full transition-all ${active === i ? 'w-8 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/80'}`}
-          />
+            className="group grid h-11 place-items-center px-1.5"
+          >
+            {/* Area klik 44px, titik yang terlihat tetap kecil. */}
+            <span className={`block h-2.5 rounded-full transition-all ${active === i ? 'w-8 bg-white' : 'w-2.5 bg-white/50 group-hover:bg-white/80'}`} />
+          </button>
         ))}
       </div>
     </section>

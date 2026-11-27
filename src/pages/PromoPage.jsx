@@ -52,22 +52,26 @@ export default function PromoPage() {
           return (
             <article
               key={promo.code}
+              data-reveal
               id={promo.code}
-              className={`relative flex min-h-[260px] overflow-hidden rounded-[20px] transition ${highlighted === promo.code ? 'ring-4 ring-primary ring-offset-4 ring-offset-bg-cream' : ''} ${promo.dark ? 'text-neutral-dark' : 'text-white'}`}
-              style={{ backgroundColor: promo.bg }}
+              className={`flex flex-col overflow-hidden rounded-[20px] border bg-[#FFFDF8] transition sm:flex-row ${highlighted === promo.code ? 'border-neutral-dark ring-2 ring-neutral-dark/20' : 'border-neutral-dark/10'}`}
             >
-              <div className="relative z-10 flex flex-1 flex-col p-7 pr-32 sm:pr-44">
-                <p className={`mb-2 text-xs font-bold uppercase tracking-[0.18em] ${promo.dark ? 'text-neutral-dark/70' : 'text-white/80'}`}>{promo.eyebrow}</p>
-                <h3 className="mb-3 font-headline text-2xl leading-tight sm:text-3xl">{promo.title}</h3>
-                <p className={`mb-5 text-sm ${promo.dark ? 'text-neutral-dark/75' : 'text-white/85'}`}>{promo.description}</p>
+              {/* Foto di kotak sendiri, jadi tidak pernah menimpa teks. */}
+              <img src={promo.image} alt="" className="aspect-[16/10] w-full object-cover sm:aspect-auto sm:w-[42%]" />
+              <div className="flex flex-1 flex-col p-6">
+                <p className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-accent-dark">
+                  <span className="size-2 rounded-full" style={{ backgroundColor: promo.bg }} aria-hidden="true" />
+                  {promo.eyebrow}
+                </p>
+                <h3 className="mb-2 font-headline text-2xl leading-tight text-neutral-dark">{promo.title}</h3>
+                <p className="mb-5 text-sm leading-relaxed text-[#7A6455]">{promo.description}</p>
                 <div className="mt-auto flex flex-wrap items-center gap-2">
-                  <span className={`rounded-full border-2 border-dashed px-3 py-1.5 font-mono text-sm font-bold ${promo.dark ? 'border-neutral-dark/40' : 'border-white/60'}`}>{promo.code}</span>
-                  <button type="button" onClick={() => (selected ? setVoucherCode('') : applyCode(promo.code))} className={`rounded-full px-5 py-2 text-sm font-semibold transition ${promo.dark ? 'bg-neutral-dark text-white hover:bg-accent-dark' : 'bg-white text-neutral-dark hover:bg-bg-cream'}`}>
+                  <span className="rounded-full border border-dashed border-neutral-dark/40 px-3 py-1.5 font-mono text-sm font-bold text-neutral-dark">{promo.code}</span>
+                  <button type="button" onClick={() => (selected ? setVoucherCode('') : applyCode(promo.code))} className={`rounded-full px-5 py-2 text-sm font-semibold transition ${selected ? 'bg-[#4E7A3A]/10 text-[#4E7A3A]' : 'bg-neutral-dark text-white hover:bg-choco-dark'}`}>
                     {selected ? '✓ Terpasang' : 'Pakai Voucher'}
                   </button>
                 </div>
               </div>
-              <img src={promo.image} alt="" className="absolute -right-10 top-1/2 size-48 -translate-y-1/2 rounded-full border-8 border-white/25 object-cover shadow-2xl sm:size-56" />
             </article>
           )
         })}
@@ -77,7 +81,7 @@ export default function PromoPage() {
         <h2 className="font-headline text-3xl text-neutral-dark">Semua Voucher</h2>
         <div role="tablist" aria-label="Filter voucher" className="flex flex-wrap gap-2">
           {FILTERS.map((f) => (
-            <button key={f} type="button" role="tab" aria-selected={filter === f} onClick={() => setFilter(f)} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${filter === f ? 'bg-neutral-dark text-white' : 'border border-neutral-dark/20 text-neutral-dark hover:border-neutral-dark/50'}`}>
+            <button key={f} type="button" role="tab" aria-selected={filter === f} onClick={() => setFilter(f)} className={`h-11 rounded-full border-2 px-4 text-sm font-semibold transition ${filter === f ? 'border-neutral-dark bg-neutral-dark text-white' : 'border-white text-[#7A6455] hover:bg-white hover:text-neutral-dark'}`}>
               {f === 'Semua' ? 'Semua' : VOUCHER_TYPE_LABELS[f]}
             </button>
           ))}
@@ -92,12 +96,12 @@ export default function PromoPage() {
       <h2 className="mb-6 mt-16 font-headline text-3xl text-neutral-dark">Program Spesial</h2>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {PROMO_PROGRAMS.map((program) => (
-          <article key={program.title} className="rounded-[16px] border border-neutral-dark/10 bg-white p-6">
-            <span className="mb-4 grid size-12 place-items-center rounded-full bg-primary/20 text-accent-dark">
+          <article key={program.title} data-reveal className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6">
+            <span className="mb-4 grid size-11 place-items-center rounded-full bg-cream-deep text-neutral-dark">
               <Icon name={program.icon} className="size-6" />
             </span>
             <h3 className="mb-2 font-headline text-xl text-neutral-dark">{program.title}</h3>
-            <p className="text-sm leading-relaxed text-neutral-dark/65">{program.description}</p>
+            <p className="text-sm leading-relaxed text-[#7A6455]">{program.description}</p>
           </article>
         ))}
       </div>
@@ -114,7 +118,7 @@ export default function PromoPage() {
         </>
       )}
 
-      <details className="mt-16 rounded-[16px] border border-neutral-dark/10 bg-white p-6">
+      <details className="mt-16 rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6">
         <summary className="cursor-pointer font-headline text-2xl text-neutral-dark">Syarat & Ketentuan</summary>
         <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-neutral-dark/70">
           <li>Satu pesanan hanya bisa memakai satu kode voucher.</li>
@@ -128,7 +132,7 @@ export default function PromoPage() {
       {voucherCode && (
         <div className="sticky bottom-4 z-30 mt-10 flex flex-col items-center justify-between gap-4 rounded-[16px] bg-neutral-dark px-6 py-4 text-white shadow-xl sm:flex-row">
           <p>Voucher <strong className="text-primary">{voucherCode}</strong> sudah dipilih.</p>
-          <button type="button" onClick={() => navigate(cart.length ? '/checkout' : '/#menu-list')} className="rounded-full bg-primary px-6 py-3 font-semibold text-neutral-dark transition hover:bg-primary-dark">
+          <button type="button" onClick={() => navigate(cart.length ? '/checkout' : '/#menu-list')} className="rounded-full bg-white px-6 py-3 font-semibold text-neutral-dark transition hover:bg-bg-cream">
             {cart.length ? 'Lanjut ke Checkout' : 'Pilih Donat Dulu'}
           </button>
         </div>
@@ -139,8 +143,9 @@ export default function PromoPage() {
 
 function VoucherCard({ voucher, selected, onApply, onRemove, onCopy }) {
   return (
-    <article className={`flex overflow-hidden rounded-[16px] border bg-white transition ${selected ? 'border-secondary ring-2 ring-primary/50' : 'border-neutral-dark/10'}`}>
-      <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-2 border-r-2 border-dashed border-white/60 text-white sm:w-28" style={{ backgroundColor: voucher.color }}>
+    <article data-reveal className={`flex overflow-hidden rounded-[20px] border bg-[#FFFDF8] transition ${selected ? 'border-neutral-dark ring-2 ring-neutral-dark/15' : 'border-neutral-dark/10'}`}>
+      {/* Potongan tiket: satu warna netral untuk semua voucher, garis putus-putus sebagai sobekan. */}
+      <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-2 border-r-2 border-dashed border-neutral-dark/15 bg-cream-deep text-neutral-dark sm:w-28">
         <Icon name="tag" className="size-7" />
         <span className="text-center text-xs font-bold leading-tight">
           {voucher.type === 'percent' && `${voucher.value}%`}
@@ -150,7 +155,7 @@ function VoucherCard({ voucher, selected, onApply, onRemove, onCopy }) {
       </div>
       <div className="flex flex-1 flex-col p-5">
         <h3 className="font-headline text-xl leading-tight text-neutral-dark">{voucher.title}</h3>
-        <p className="mb-3 mt-1 text-sm text-neutral-dark/65">{voucher.description}</p>
+        <p className="mb-3 mt-1 text-sm text-[#7A6455]">{voucher.description}</p>
         <p className="mb-4 text-xs text-neutral-dark/50">
           Min. belanja {formatRupiah(voucher.minSpend)} · Berlaku s/d {new Date(voucher.validUntil).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
         </p>
@@ -163,7 +168,7 @@ function VoucherCard({ voucher, selected, onApply, onRemove, onCopy }) {
               <Icon name="check" className="size-4" /> Terpasang · lepas
             </button>
           ) : (
-            <button type="button" onClick={() => onApply(voucher.code)} className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-neutral-dark transition hover:bg-primary-dark">
+            <button type="button" onClick={() => onApply(voucher.code)} className="rounded-full bg-neutral-dark px-4 py-2 text-sm font-semibold text-white transition hover:bg-choco-dark">
               Pakai
             </button>
           )}
@@ -202,7 +207,7 @@ function FlashBanner({ voucher, selected, onApply }) {
             </span>
           ))}
         </div>
-        <button type="button" onClick={() => onApply(voucher.code)} disabled={selected} className="rounded-full bg-primary px-6 py-3 font-semibold text-neutral-dark transition hover:bg-primary-dark disabled:opacity-70">
+        <button type="button" onClick={() => onApply(voucher.code)} disabled={selected} className="rounded-full bg-white px-6 py-3 font-semibold text-neutral-dark transition hover:bg-bg-cream disabled:opacity-70">
           {selected ? `✓ ${voucher.code} terpasang` : `Pakai ${voucher.code}`}
         </button>
       </div>

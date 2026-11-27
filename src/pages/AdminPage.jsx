@@ -7,7 +7,7 @@ import Toast from '../components/Toast'
 import { useShop } from '../context/ShopContext'
 import { BRAND } from '../data/content'
 import { ADMIN_ACCOUNT } from '../data/store'
-import { formatRupiah, formatTanggal } from '../utils/format'
+import { categoryLabel, formatRupiah, formatTanggal } from '../utils/format'
 import { ORDER_STATUSES } from '../utils/order'
 
 const inputClass =
@@ -28,12 +28,12 @@ export default function AdminPage() {
   if (user?.role !== 'admin') return <AdminLogin />
 
   return (
-    <div className="min-h-screen bg-cream-deep">
+    <div className="min-h-screen bg-bg-cream">
       <header className="sticky top-0 z-40 border-b border-white/10 bg-choco-dark px-5 py-4 text-white sm:px-8">
         <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span className="font-headline text-2xl">{BRAND}</span>
-            <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-bold text-neutral-dark">Admin</span>
+            <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-bold text-white">Admin</span>
           </div>
           <div className="flex items-center gap-4 text-sm">
             <Link to="/" className="text-white/70 hover:text-primary">Lihat toko ↗</Link>
@@ -81,14 +81,14 @@ function AdminLogin() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-choco-dark px-5 py-12">
       <form onSubmit={submit} className="w-full max-w-sm rounded-[20px] bg-bg-cream p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-secondary">Area Admin</p>
+        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-accent-dark">Area Admin</p>
         <h1 className="mb-2 font-headline text-3xl text-neutral-dark">Masuk Dashboard</h1>
         {user && <p className="mb-4 text-sm text-accent-red">Kamu masuk sebagai {user.email}, bukan admin.</p>}
         <div className="mt-4 flex flex-col gap-3">
           <label className="text-sm font-semibold text-neutral-dark">Email<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputClass} mt-1`} /></label>
           <label className="text-sm font-semibold text-neutral-dark">Password<div className="mt-1"><PasswordInput value={password} onChange={(e) => setPassword(e.target.value)} className={inputClass} /></div></label>
           {error && <p role="alert" className="text-sm text-accent-red">{error}</p>}
-          <button type="submit" className="mt-2 h-11 rounded-full bg-primary font-semibold text-neutral-dark hover:bg-primary-dark">Masuk</button>
+          <button type="submit" className="mt-2 h-11 rounded-full bg-neutral-dark font-semibold text-white hover:bg-choco-dark">Masuk</button>
         </div>
         <div className="mt-5 rounded-[12px] bg-cream-deep p-3 text-xs text-neutral-dark/75">
           <p className="mb-1 font-bold text-neutral-dark">Akun admin demo (simulasi)</p>
@@ -96,7 +96,7 @@ function AdminLogin() {
           <p className="mb-3">Password: <span className="font-semibold text-neutral-dark">{ADMIN_ACCOUNT.password}</span></p>
           <button type="button" onClick={() => login(ADMIN_ACCOUNT.email, ADMIN_ACCOUNT.password)} className="w-full rounded-full bg-neutral-dark py-2 font-semibold text-white hover:bg-accent-dark">Masuk sebagai Admin</button>
         </div>
-        <Link to="/" className="mt-4 inline-block text-sm font-semibold text-secondary hover:underline">← Kembali ke toko</Link>
+        <Link to="/" className="mt-4 inline-block text-sm font-semibold text-accent-dark hover:underline">← Kembali ke toko</Link>
       </form>
     </div>
   )
@@ -124,7 +124,7 @@ function Overview({ onGoTo }) {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="rounded-[16px] bg-white p-6">
+        <section className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6">
           <h2 className="mb-5 font-headline text-2xl text-neutral-dark">Donat Terlaris</h2>
           {best.length === 0 ? (
             <p className="text-sm text-neutral-dark/60">Belum ada penjualan.</p>
@@ -140,10 +140,10 @@ function Overview({ onGoTo }) {
           )}
         </section>
 
-        <section className="rounded-[16px] bg-white p-6">
+        <section className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6">
           <div className="mb-5 flex items-center justify-between">
             <h2 className="font-headline text-2xl text-neutral-dark">Pesanan Terbaru</h2>
-            <button type="button" onClick={() => onGoTo('pesanan')} className="text-sm font-semibold text-secondary hover:underline">Semua →</button>
+            <button type="button" onClick={() => onGoTo('pesanan')} className="text-sm font-semibold text-accent-dark hover:underline">Semua →</button>
           </div>
           {orders.length === 0 ? (
             <p className="text-sm text-neutral-dark/60">Belum ada pesanan. Coba buat pesanan dari halaman toko.</p>
@@ -165,10 +165,12 @@ function Overview({ onGoTo }) {
 
 function StatCard({ label, value, icon, highlight }) {
   return (
-    <div className={`rounded-[16px] p-5 ${highlight ? 'bg-primary' : 'bg-white'}`}>
-      <Icon name={icon} className="mb-3 size-6 text-accent-dark" />
-      <p className="text-sm text-neutral-dark/65">{label}</p>
-      <p className="font-headline text-3xl text-neutral-dark">{value}</p>
+    <div className={`rounded-[20px] border p-5 ${highlight ? 'border-neutral-dark bg-neutral-dark text-white' : 'border-neutral-dark/10 bg-[#FFFDF8] text-neutral-dark'}`}>
+      <span className={`mb-4 grid size-10 place-items-center rounded-full ${highlight ? 'bg-white/15' : 'bg-cream-deep'}`}>
+        <Icon name={icon} className="size-5" />
+      </span>
+      <p className={`mb-1 text-xs font-semibold uppercase tracking-[0.12em] ${highlight ? 'text-white/60' : 'text-neutral-dark/50'}`}>{label}</p>
+      <p className="text-2xl font-bold">{value}</p>
     </div>
   )
 }
@@ -204,20 +206,20 @@ function ProductManager() {
         <p className="text-neutral-dark/65">{products.length} produk</p>
         <div className="flex gap-2">
           <button type="button" onClick={() => { resetProducts(); showToast('Produk kembali ke data awal') }} className="rounded-full border border-neutral-dark/25 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-dark hover:bg-white/70">Reset data awal</button>
-          <button type="button" onClick={() => openForm(null)} className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-neutral-dark hover:bg-primary-dark">
+          <button type="button" onClick={() => openForm(null)} className="inline-flex items-center gap-2 rounded-full bg-neutral-dark px-5 py-2.5 text-sm font-semibold text-white hover:bg-choco-dark">
             <Icon name="plus" className="size-4" /> Tambah Produk
           </button>
         </div>
       </div>
 
       {editing && (
-        <form onSubmit={submit} className="grid gap-4 rounded-[16px] bg-white p-6 md:grid-cols-2">
+        <form onSubmit={submit} className="grid gap-4 rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6 md:grid-cols-2">
           <h2 className="font-headline text-2xl text-neutral-dark md:col-span-2">{editing.id ? `Edit: ${editing.name}` : 'Produk Baru'}</h2>
           <label className="text-sm font-semibold text-neutral-dark">Nama<input value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} className={`${inputClass} mt-1`} /></label>
           <label className="text-sm font-semibold text-neutral-dark">Harga (Rp)<input type="number" min="1000" step="500" value={editing.price} onChange={(e) => setEditing({ ...editing, price: e.target.value })} className={`${inputClass} mt-1`} /></label>
           <label className="text-sm font-semibold text-neutral-dark">Kategori
             <select value={editing.category} onChange={(e) => setEditing({ ...editing, category: e.target.value })} className={`${inputClass} mt-1`}>
-              {categoryOptions.map((c) => <option key={c}>{c}</option>)}
+              {categoryOptions.map((c) => <option key={c} value={c}>{categoryLabel(c)}</option>)}
             </select>
           </label>
           <label className="text-sm font-semibold text-neutral-dark">Gambar
@@ -237,7 +239,7 @@ function ProductManager() {
         </form>
       )}
 
-      <div className="overflow-x-auto rounded-[16px] bg-white">
+      <div className="overflow-x-auto rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8]">
         <table className="w-full min-w-[640px] text-left text-sm">
           <thead className="border-b border-neutral-dark/10 text-xs uppercase tracking-wider text-neutral-dark/55">
             <tr><th className="p-4">Produk</th><th className="p-4">Kategori</th><th className="p-4">Harga</th><th className="p-4 text-right">Aksi</th></tr>
@@ -251,8 +253,8 @@ function ProductManager() {
                     <span className="font-semibold text-neutral-dark">{p.name}</span>
                   </div>
                 </td>
-                <td className="p-4 text-neutral-dark/70">{p.category}</td>
-                <td className="p-4 font-semibold text-secondary">{formatRupiah(p.price)}</td>
+                <td className="p-4 text-neutral-dark/70">{categoryLabel(p.category)}</td>
+                <td className="p-4 font-semibold text-accent-dark">{formatRupiah(p.price)}</td>
                 <td className="p-4">
                   <div className="flex justify-end gap-2">
                     {confirmDelete === p.id ? (
@@ -294,17 +296,17 @@ function OrderManager() {
       </div>
 
       {shown.length === 0 ? (
-        <p className="rounded-[16px] bg-white p-10 text-center text-neutral-dark/60">Tidak ada pesanan.</p>
+        <p className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-10 text-center text-neutral-dark/60">Tidak ada pesanan.</p>
       ) : (
         <ul className="flex flex-col gap-3">
           {shown.map((o) => (
-            <li key={o.id} className="rounded-[16px] bg-white">
+            <li key={o.id} className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8]">
               <div className="flex flex-wrap items-center gap-4 p-5">
                 <button type="button" onClick={() => setOpen(open === o.id ? null : o.id)} aria-expanded={open === o.id} className="min-w-0 flex-1 text-left">
                   <p className="font-semibold text-neutral-dark">{o.id} · {o.customer.name}</p>
                   <p className="text-xs text-neutral-dark/55">{formatTanggal(o.createdAt)} · {o.items.length} jenis donat · {o.delivery === 'antar' ? 'Diantar' : 'Ambil di toko'}</p>
                 </button>
-                <strong className="text-secondary">{formatRupiah(o.total)}</strong>
+                <strong className="text-accent-dark">{formatRupiah(o.total)}</strong>
                 <label className="sr-only" htmlFor={`status-${o.id}`}>Status {o.id}</label>
                 <select id={`status-${o.id}`} value={o.status} onChange={(e) => { updateOrderStatus(o.id, e.target.value); showToast(`${o.id}: ${e.target.value}`) }} className="rounded-full border border-neutral-dark/20 bg-cream-deep px-3 py-2 text-xs font-semibold text-neutral-dark">
                   {ORDER_STATUSES.map((s) => <option key={s}>{s}</option>)}

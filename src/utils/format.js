@@ -13,3 +13,17 @@ export function formatTanggal(isoString) {
     minute: '2-digit',
   })
 }
+
+// Nama kategori disimpan dalam bahasa Inggris (dipakai sebagai kunci data),
+// tapi ditampilkan dalam bahasa Indonesia.
+const CATEGORY_LABELS = {
+  All: 'Semua',
+  'Classic Glazed': 'Glaze Klasik',
+  'Chocolate & Honey': 'Cokelat & Madu',
+  'Fruity Infusions': 'Rasa Buah',
+  'Box Sets & Bundles': 'Paket Box',
+}
+
+export function categoryLabel(category) {
+  return CATEGORY_LABELS[category] ?? category
+}

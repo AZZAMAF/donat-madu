@@ -2,103 +2,103 @@
 // Rubah teks di sini, bukan di dalam komponen.
 
 export const NAV_LINKS = [
-  { label: 'Home', href: '#top' },
+  { label: 'Beranda', href: '#top' },
   { label: 'Menu', href: '#menu-list' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Tentang', href: '#about' },
+  { label: 'Kontak', href: '#contact' },
 ]
 
 export const BRAND = 'Madu Donut'
 
 export const HERO = {
-  headline: ['Donat Madu Fresh Baked,', 'Setiap Hari.'],
+  headline: ['Donat Madu Hangat,', 'Dipanggang Setiap Hari.'],
   subheadline:
     'Kualitas premium dengan sentuhan kelezatan madu murni. Tanpa pemanis buatan, disajikan hangat langsung dari oven.',
-  primaryCta: { label: 'Order Now', href: '#menu-list' },
-  secondaryCta: { label: 'See Menu', href: '#menu-list' },
-  rating: '4.9/5 from 2,300+ honey lovers',
-  deliveryNote: 'Same-day warm delivery',
+  primaryCta: { label: 'Pesan Sekarang', href: '#menu-list' },
+  secondaryCta: { label: 'Lihat Menu', href: '#menu-list' },
+  rating: '4.9/5 dari 2.300+ pencinta madu',
+  deliveryNote: 'Antar hangat di hari yang sama',
 }
 
 export const SIGNATURES = {
-  eyebrow: 'Our Signatures',
-  title: 'Crafted to Sweet Perfection',
+  eyebrow: 'Andalan Kami',
+  title: 'Dibuat untuk Manis yang Sempurna',
   description:
-    'Explore our most cherished honey glazed creations, proofed overnight and finished with authentic artisanal nectars.',
+    'Jelajahi kreasi donat glaze madu favorit kami, adonannya difermentasi semalaman dan diselesaikan dengan madu murni pilihan.',
   // Warna kartu dan susunan mengikuti desain Figma (Section 2: Best Sellers).
   items: [
-    { number: '01', title: 'Berry Honey Glaze', description: 'Mixed berry glaze with rainbow sprinkles and a light wildflower honey finish.', accent: '#D42F32', dark: false, productId: 6 },
-    { number: '02', title: 'Golden Crunch Honey', description: 'Bright honey-lemon glaze topped with crunchy chocolate sprinkles.', accent: '#FFD93D', dark: true, productId: 2 },
-    { number: '03', title: 'Matcha Honey Drizzle', description: 'Toasted almond flakes under a silky matcha and raw honey drizzle.', accent: '#CFCB74', dark: true },
-    { number: '04', title: 'Choco Honeycomb', description: 'Almond flakes, blueberry glaze and dark chocolate honeycomb lines.', accent: '#609CD6', dark: true, productId: 4 },
+    { number: '01', title: 'Berry Honey Glaze', description: 'Glaze campuran beri dengan taburan pelangi dan sentuhan madu bunga liar.', accent: '#D42F32', dark: false, productId: 6 },
+    { number: '02', title: 'Golden Crunch Honey', description: 'Glaze madu lemon yang segar dengan taburan cokelat renyah.', accent: '#FFD93D', dark: true, productId: 2 },
+    { number: '03', title: 'Matcha Honey Drizzle', description: 'Irisan almond panggang di bawah siraman matcha lembut dan madu murni.', accent: '#CFCB74', dark: true, productId: 12 },
+    { number: '04', title: 'Choco Honeycomb', description: 'Irisan almond, glaze blueberry dan garis honeycomb cokelat hitam.', accent: '#609CD6', dark: true, productId: 4 },
   ],
 }
 
 export const PROMISES = {
-  eyebrow: 'The Madu Promise',
-  title: 'Naturally Better, From Hive to Bite',
+  eyebrow: 'Janji Madu Donut',
+  title: 'Alami dari Sarang Lebah sampai Gigitan',
   items: [
     {
       icon: 'droplet',
-      title: 'Real Raw Honey',
+      title: 'Madu Murni Asli',
       description:
-        'Sourced sustainably from local organic beekeepers across Java and Flores. No corn syrup or artificial sweeteners ever.',
+        'Diambil langsung dari peternak lebah organik di Jawa dan Flores. Tanpa sirup jagung atau pemanis buatan.',
     },
     {
       icon: 'bread',
-      title: 'Baked Fresh Daily',
+      title: 'Dipanggang Segar Setiap Hari',
       description:
-        'Crafted in small batches every morning at 5 AM with French butter and a 24-hour slow-fermented brioche dough.',
+        'Dibuat dalam jumlah kecil setiap pagi jam 5 dengan mentega Prancis dan adonan brioche yang difermentasi 24 jam.',
     },
     {
       icon: 'truck',
-      title: 'Fast Warm Delivery',
+      title: 'Antar Cepat, Tetap Hangat',
       description:
-        'Delivered in temperature-controlled insulated eco-boxes so every bite arrives delightfully warm and fluffy.',
+        'Dikirim dalam kotak ramah lingkungan berinsulasi supaya donat sampai tetap hangat dan empuk.',
     },
   ],
 }
 
 export const TESTIMONIALS = {
-  eyebrow: 'What Our Guests Say',
-  title: 'Love at First Drizzle',
+  eyebrow: 'Kata Pelanggan Kami',
+  title: 'Jatuh Cinta di Gigitan Pertama',
   items: [
     {
       quote:
-        'The brioche is unbelievably light, and the raw honey glaze actually tastes like real honey instead of pure sugar. Easily the best donut in Jakarta!',
+        'Brioche-nya ringan banget, dan glaze madunya beneran terasa madu, bukan cuma gula. Donat terenak di Jakarta!',
       author: 'Anindya Putri',
-      role: 'Verified Order · 12 Boxes',
+      role: 'Pembeli Terverifikasi · 12 Kotak',
     },
     {
       quote:
-        'The Honey Butter Sea Salt donut changed my life. Sweet, savory, fluffy perfection. Arrived warm within 35 minutes.',
+        'Donat Honey Butter Sea Salt-nya juara. Manis, gurih, empuk sempurna. Sampai masih hangat dalam 35 menit.',
       author: 'Reza Pratama',
-      role: 'Food Reviewer',
+      role: 'Pengulas Kuliner',
     },
     {
       quote:
-        'Ordered the 12-donut sharing box for our office meeting. Everyone was asking about the toasted almond flavor. Stunning packaging too.',
+        'Pesan kotak isi 12 buat rapat kantor. Semua orang nanyain rasa almond panggangnya. Kemasannya juga cantik.',
       author: 'Clarissa Salim',
-      role: 'Corporate Client',
+      role: 'Klien Korporat',
     },
   ],
 }
 
 export const CTA_BANNER = {
-  title: 'Taste the Golden Difference Today.',
+  title: 'Rasakan Bedanya Hari Ini.',
   description:
-    'First-time order? Enjoy complimentary warm delivery and a free signature mini donut box on orders over Rp 100.000.',
-  buttonText: 'Order Fresh Donuts Now',
+    'Pertama kali pesan? Nikmati gratis ongkir dan bonus kotak donat mini untuk belanja di atas Rp 100.000.',
+  buttonText: 'Pesan Donat Sekarang',
 }
 
 export const FOOTER = {
   tagline:
-    'Artisanal honey-glazed brioche donuts, freshly baked every morning with 100% pure wildflower raw honey.',
-  quickLinks: ['Home', 'Menu', 'About', 'Contact', 'Delivery'],
+    'Donat brioche glaze madu buatan tangan, dipanggang segar setiap pagi dengan 100% madu bunga liar murni.',
+  quickLinks: ['Beranda', 'Menu', 'Tentang', 'Kontak'],
   contact: {
     address: 'Jl. Senopati No. 45, Jakarta',
-    phone: '+62 812-3456-7890',
-    hours: 'Mon - Sun: 07:00 - 21:00',
+    phone: '+62 899-9724-4659',
+    hours: 'Senin - Minggu: 07.00 - 21.00',
   },
-  copyright: '© 2026 Madu Donut. All rights reserved.',
+  copyright: '© 2026 Madu Donut. Hak cipta dilindungi.',
 }

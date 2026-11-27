@@ -4,7 +4,7 @@ export default function Avatar({ user, className = 'size-10 text-lg' }) {
     return <img src={user.picture} alt="" referrerPolicy="no-referrer" className={`${className} shrink-0 rounded-full object-cover`} />
   }
   return (
-    <span className={`${className} grid shrink-0 place-items-center rounded-full bg-primary font-headline text-neutral-dark`}>
+    <span className={`${className} grid shrink-0 place-items-center rounded-full bg-neutral-dark font-headline text-white`}>
       {user?.name?.charAt(0).toUpperCase() ?? '?'}
     </span>
   )
