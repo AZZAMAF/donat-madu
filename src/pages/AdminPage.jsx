@@ -7,7 +7,7 @@ import Toast from '../components/Toast'
 import { useShop } from '../context/ShopContext'
 import { BRAND } from '../data/content'
 import { ADMIN_ACCOUNT } from '../data/store'
-import { formatRupiah, formatTanggal } from '../utils/format'
+import { categoryLabel, formatRupiah, formatTanggal } from '../utils/format'
 import { ORDER_STATUSES } from '../utils/order'
 
 const inputClass =
@@ -81,7 +81,7 @@ function AdminLogin() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-choco-dark px-5 py-12">
       <form onSubmit={submit} className="w-full max-w-sm rounded-[20px] bg-bg-cream p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-secondary">Area Admin</p>
+        <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-accent-dark">Area Admin</p>
         <h1 className="mb-2 font-headline text-3xl text-neutral-dark">Masuk Dashboard</h1>
         {user && <p className="mb-4 text-sm text-accent-red">Kamu masuk sebagai {user.email}, bukan admin.</p>}
         <div className="mt-4 flex flex-col gap-3">
@@ -96,7 +96,7 @@ function AdminLogin() {
           <p className="mb-3">Password: <span className="font-semibold text-neutral-dark">{ADMIN_ACCOUNT.password}</span></p>
           <button type="button" onClick={() => login(ADMIN_ACCOUNT.email, ADMIN_ACCOUNT.password)} className="w-full rounded-full bg-neutral-dark py-2 font-semibold text-white hover:bg-accent-dark">Masuk sebagai Admin</button>
         </div>
-        <Link to="/" className="mt-4 inline-block text-sm font-semibold text-secondary hover:underline">← Kembali ke toko</Link>
+        <Link to="/" className="mt-4 inline-block text-sm font-semibold text-accent-dark hover:underline">← Kembali ke toko</Link>
       </form>
     </div>
   )
@@ -143,7 +143,7 @@ function Overview({ onGoTo }) {
         <section className="rounded-[16px] bg-white p-6">
           <div className="mb-5 flex items-center justify-between">
             <h2 className="font-headline text-2xl text-neutral-dark">Pesanan Terbaru</h2>
-            <button type="button" onClick={() => onGoTo('pesanan')} className="text-sm font-semibold text-secondary hover:underline">Semua →</button>
+            <button type="button" onClick={() => onGoTo('pesanan')} className="text-sm font-semibold text-accent-dark hover:underline">Semua →</button>
           </div>
           {orders.length === 0 ? (
             <p className="text-sm text-neutral-dark/60">Belum ada pesanan. Coba buat pesanan dari halaman toko.</p>
@@ -217,7 +217,7 @@ function ProductManager() {
           <label className="text-sm font-semibold text-neutral-dark">Harga (Rp)<input type="number" min="1000" step="500" value={editing.price} onChange={(e) => setEditing({ ...editing, price: e.target.value })} className={`${inputClass} mt-1`} /></label>
           <label className="text-sm font-semibold text-neutral-dark">Kategori
             <select value={editing.category} onChange={(e) => setEditing({ ...editing, category: e.target.value })} className={`${inputClass} mt-1`}>
-              {categoryOptions.map((c) => <option key={c}>{c}</option>)}
+              {categoryOptions.map((c) => <option key={c} value={c}>{categoryLabel(c)}</option>)}
             </select>
           </label>
           <label className="text-sm font-semibold text-neutral-dark">Gambar
@@ -251,8 +251,8 @@ function ProductManager() {
                     <span className="font-semibold text-neutral-dark">{p.name}</span>
                   </div>
                 </td>
-                <td className="p-4 text-neutral-dark/70">{p.category}</td>
-                <td className="p-4 font-semibold text-secondary">{formatRupiah(p.price)}</td>
+                <td className="p-4 text-neutral-dark/70">{categoryLabel(p.category)}</td>
+                <td className="p-4 font-semibold text-accent-dark">{formatRupiah(p.price)}</td>
                 <td className="p-4">
                   <div className="flex justify-end gap-2">
                     {confirmDelete === p.id ? (
@@ -304,7 +304,7 @@ function OrderManager() {
                   <p className="font-semibold text-neutral-dark">{o.id} · {o.customer.name}</p>
                   <p className="text-xs text-neutral-dark/55">{formatTanggal(o.createdAt)} · {o.items.length} jenis donat · {o.delivery === 'antar' ? 'Diantar' : 'Ambil di toko'}</p>
                 </button>
-                <strong className="text-secondary">{formatRupiah(o.total)}</strong>
+                <strong className="text-accent-dark">{formatRupiah(o.total)}</strong>
                 <label className="sr-only" htmlFor={`status-${o.id}`}>Status {o.id}</label>
                 <select id={`status-${o.id}`} value={o.status} onChange={(e) => { updateOrderStatus(o.id, e.target.value); showToast(`${o.id}: ${e.target.value}`) }} className="rounded-full border border-neutral-dark/20 bg-cream-deep px-3 py-2 text-xs font-semibold text-neutral-dark">
                   {ORDER_STATUSES.map((s) => <option key={s}>{s}</option>)}

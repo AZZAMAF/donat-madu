@@ -122,7 +122,7 @@ export default function CheckoutPage() {
                       {a.label}{a.isDefault ? ' (utama)' : ''}
                     </button>
                   ))}
-                  <Link to="/profil#alamat" className="rounded-full px-3 py-2 text-sm font-semibold text-secondary hover:underline">Kelola alamat</Link>
+                  <Link to="/profil#alamat" className="rounded-full px-3 py-2 text-sm font-semibold text-accent-dark hover:underline">Kelola alamat</Link>
                 </div>
               </div>
             )}

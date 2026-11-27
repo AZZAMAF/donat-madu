@@ -22,7 +22,7 @@ export default function OrderSummary({ totals, children }) {
       {children}
       <div className="mt-1 flex items-center justify-between border-t border-neutral-dark/10 pt-4">
         <dt className="font-semibold text-neutral-dark">Total</dt>
-        <dd className="font-headline text-2xl text-secondary">{formatRupiah(total)}</dd>
+        <dd className="font-headline text-2xl text-accent-dark">{formatRupiah(total)}</dd>
       </div>
     </dl>
   )

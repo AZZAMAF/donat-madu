@@ -34,8 +34,8 @@ export default function Footer() {
             <p className="max-w-sm leading-relaxed text-white/60">{FOOTER.tagline}</p>
           </div>
 
-          <nav aria-label="Quick links">
-            <h2 className="mb-4 font-semibold">Quick links</h2>
+          <nav aria-label="Tautan cepat">
+            <h2 className="mb-4 font-semibold">Tautan cepat</h2>
             <ul className="flex flex-col gap-2 text-white/65">
               {FOOTER.quickLinks.map((label) => {
                 const href = QUICK_LINK_MAP[label.toLowerCase()] ?? '#top'
@@ -51,7 +51,7 @@ export default function Footer() {
           </nav>
 
           <div>
-            <h2 className="mb-4 font-semibold">Visit us</h2>
+            <h2 className="mb-4 font-semibold">Kunjungi kami</h2>
             <address className="not-italic leading-7 text-white/65">
               {FOOTER.contact.address}
               <br />

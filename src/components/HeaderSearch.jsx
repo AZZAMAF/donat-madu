@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useShop } from '../context/ShopContext'
-import { formatRupiah } from '../utils/format'
+import { categoryLabel, formatRupiah } from '../utils/format'
 import Icon from './Icon'
 
 // Ikon search di header: klik untuk membuka kotak pencarian donat.
@@ -17,7 +17,7 @@ export default function HeaderSearch() {
 
   const keyword = query.trim().toLowerCase()
   const results = keyword
-    ? products.filter((p) => `${p.name} ${p.category} ${p.description}`.toLowerCase().includes(keyword)).slice(0, 6)
+    ? products.filter((p) => `${p.name} ${p.category} ${categoryLabel(p.category)} ${p.description}`.toLowerCase().includes(keyword)).slice(0, 6)
     : products.slice(0, 4)
 
   // Tutup saat klik di luar kotak pencarian.
@@ -49,7 +49,7 @@ export default function HeaderSearch() {
         aria-label="Cari donat"
         aria-expanded={open}
         onClick={() => setOpen(!open)}
-        className="relative grid size-10 place-items-center rounded-full text-neutral-dark transition hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
+        className="relative grid size-11 place-items-center rounded-full text-neutral-dark transition hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
       >
         <Icon name="search" className="size-[22px]" />
       </button>
@@ -85,9 +85,9 @@ export default function HeaderSearch() {
                       <img src={item.image} alt="" className="size-12 shrink-0 rounded-[10px] bg-gold-pale object-cover" />
                       <span className="min-w-0 flex-1">
                         <span className="block truncate font-semibold text-neutral-dark">{item.name}</span>
-                        <span className="block truncate text-xs text-neutral-dark/55">{item.category}</span>
+                        <span className="block truncate text-xs text-neutral-dark/55">{categoryLabel(item.category)}</span>
                       </span>
-                      <span className="shrink-0 text-sm font-semibold text-secondary">{formatRupiah(item.price)}</span>
+                      <span className="shrink-0 text-sm font-semibold text-accent-dark">{formatRupiah(item.price)}</span>
                     </Link>
                   </li>
                 ))}

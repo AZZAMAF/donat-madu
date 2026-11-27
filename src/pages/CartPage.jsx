@@ -28,14 +28,14 @@ export default function CartPage() {
                   </Link>
                   <div className="flex min-w-0 flex-1 flex-col justify-between gap-3 sm:flex-row sm:items-center">
                     <div className="min-w-0">
-                      <Link to={`/menu/${item.id}`} className="font-headline text-xl leading-tight text-neutral-dark hover:text-secondary">
+                      <Link to={`/menu/${item.id}`} className="font-headline text-xl leading-tight text-neutral-dark hover:text-accent-dark">
                         {item.name}
                       </Link>
                       <p className="text-sm text-neutral-dark/60">{formatRupiah(item.price)} / pcs</p>
                     </div>
                     <div className="flex items-center justify-between gap-4 sm:justify-end">
                       <QuantityCounter value={item.qty} name={item.name} onChange={(qty) => changeQty(item.id, qty)} />
-                      <strong className="w-28 text-right text-secondary">{formatRupiah(item.price * item.qty)}</strong>
+                      <strong className="w-28 text-right text-accent-dark">{formatRupiah(item.price * item.qty)}</strong>
                       <button
                         type="button"
                         onClick={() => removeFromCart(item.id)}
@@ -50,7 +50,7 @@ export default function CartPage() {
               ))}
             </ul>
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-neutral-dark/10 p-5">
-              <Link to="/#menu-list" className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-dark hover:text-secondary">
+              <Link to="/#menu-list" className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-dark hover:text-accent-dark">
                 <Icon name="arrowLeft" className="size-4" /> Lanjut belanja
               </Link>
               <button type="button" onClick={clearCart} className="text-sm font-semibold text-neutral-dark/60 hover:text-accent-red">

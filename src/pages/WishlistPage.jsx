@@ -37,8 +37,8 @@ export default function WishlistPage() {
               </Link>
               <div className="flex flex-1 flex-col p-5">
                 <div className="mb-4 flex items-start justify-between gap-3">
-                  <Link to={`/menu/${item.id}`} className="font-headline text-xl leading-tight text-neutral-dark hover:text-secondary">{item.name}</Link>
-                  <strong className="shrink-0 text-secondary">{formatRupiah(item.price)}</strong>
+                  <Link to={`/menu/${item.id}`} className="font-headline text-xl leading-tight text-neutral-dark hover:text-accent-dark">{item.name}</Link>
+                  <strong className="shrink-0 text-accent-dark">{formatRupiah(item.price)}</strong>
                 </div>
                 <div className="mt-auto flex gap-2">
                   <button type="button" onClick={() => moveToCart(item)} className="flex-1 rounded-full bg-primary py-2.5 text-sm font-semibold text-neutral-dark transition hover:bg-primary-dark">

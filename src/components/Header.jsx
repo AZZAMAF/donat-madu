@@ -20,8 +20,8 @@ export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQt
             to={`/${link.href}`}
             className={
               index === 0
-                ? 'font-semibold text-secondary'
-                : 'font-medium text-neutral-dark transition hover:text-secondary'
+                ? 'py-2.5 font-semibold text-accent-dark'
+                : 'py-2.5 font-medium text-neutral-dark transition hover:text-accent-dark'
             }
           >
             {link.label}
@@ -47,7 +47,7 @@ export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQt
             aria-label={`Shopping bag, ${totalQty} items`}
             aria-expanded={isCartOpen}
             onClick={() => setIsCartOpen(!isCartOpen)}
-            className="relative grid size-10 place-items-center rounded-full text-neutral-dark transition hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
+            className="relative grid size-11 place-items-center rounded-full text-neutral-dark transition hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
           >
             <Icon name="bag" className="size-[22px]" />
             <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-accent-red text-[10px] font-bold text-white">

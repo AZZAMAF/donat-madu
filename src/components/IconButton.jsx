@@ -8,7 +8,7 @@ export default function IconButton({ label, icon, badge, to }) {
     <Tag
       {...(to ? { to } : { type: 'button' })}
       aria-label={label}
-      className="relative grid size-10 place-items-center rounded-full text-neutral-dark transition hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
+      className="relative grid size-11 place-items-center rounded-full text-neutral-dark transition hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
     >
       <Icon name={icon} className="size-[22px]" />
       {badge && (

@@ -10,7 +10,7 @@
     {
       "id": 1,
       "name": "Smoked Honey & Sea Salt",
-      "description": "Wildflower honey glaze topped with smoked sea salt flakes and brown butter drizzle.",
+      "description": "Glaze madu bunga liar dengan taburan garam laut asap dan siraman brown butter.",
       "price": 25000,
       "category": "Classic Glazed",
       "image": "/images/menu-1.jpg"
@@ -18,7 +18,7 @@
     {
       "id": 2,
       "name": "Golden Honey Crunch",
-      "description": "Crunchy caramelized honeycomb shards over our signature warm honey-milk glaze.",
+      "description": "Kepingan honeycomb karamel renyah di atas glaze madu susu andalan kami.",
       "price": 26000,
       "category": "Classic Glazed",
       "image": "/images/menu-2.jpg"
@@ -26,7 +26,7 @@
     {
       "id": 3,
       "name": "Classic Wildflower Glaze",
-      "description": "Our original soft wildflower honey glaze on warm slow-fermented brioche, finished with a light sea salt sprinkle.",
+      "description": "Glaze madu bunga liar lembut di atas brioche hangat, ditutup taburan garam laut tipis.",
       "price": 22000,
       "category": "Classic Glazed",
       "image": "/images/menu-3.jpg"
@@ -34,7 +34,7 @@
     {
       "id": 4,
       "name": "Choco Honeycomb",
-      "description": "Dark chocolate glaze layered with crushed caramelized honeycomb and a raw honey drizzle.",
+      "description": "Glaze cokelat hitam berlapis honeycomb karamel dan siraman madu murni.",
       "price": 28000,
       "category": "Chocolate & Honey",
       "image": "/images/menu-4.jpg"
@@ -42,7 +42,7 @@
     {
       "id": 5,
       "name": "Honeycomb Creme Brulee",
-      "description": "Vanilla bean pastry cream piped inside with a torched raw honey sugar crust.",
+      "description": "Isian vla vanila dengan lapisan gula madu yang dibakar sampai renyah.",
       "price": 30000,
       "category": "Chocolate & Honey",
       "image": "/images/menu-5.jpg"
@@ -50,7 +50,7 @@
     {
       "id": 6,
       "name": "Berry Honey Glaze",
-      "description": "Mixed berry compote folded into a light honey glaze, dusted with freeze-dried raspberry.",
+      "description": "Selai campuran beri dalam glaze madu ringan, ditabur raspberry kering.",
       "price": 27000,
       "category": "Fruity Infusions",
       "image": "/images/menu-6.jpg"
@@ -58,7 +58,7 @@
     {
       "id": 7,
       "name": "Passionfruit Honey Burst",
-      "description": "Tangy passionfruit curd center sealed under a glossy wildflower honey shell.",
+      "description": "Isian selai markisa yang segar di bawah lapisan madu yang mengilap.",
       "price": 29000,
       "category": "Fruity Infusions",
       "image": "/images/menu-7.jpg"
@@ -66,7 +66,7 @@
     {
       "id": 8,
       "name": "6-Box Honey Assortment",
-      "description": "Six-piece mix of our best-selling honey-glazed flavors, boxed and ready for sharing.",
+      "description": "Isi 6 donat glaze madu terlaris, sudah dikemas dan siap dibagi.",
       "price": 145000,
       "category": "Box Sets & Bundles",
       "image": "/images/menu-8.jpg"
@@ -74,7 +74,7 @@
     {
       "id": 9,
       "name": "12-Box Office Sharing",
-      "description": "Twelve-piece bundle with assorted glazes, perfect for meetings, events, and gatherings.",
+      "description": "Isi 12 donat dengan glaze beragam, pas untuk rapat, acara dan kumpul-kumpul.",
       "price": 270000,
       "category": "Box Sets & Bundles",
       "image": "/images/menu-9.jpg"

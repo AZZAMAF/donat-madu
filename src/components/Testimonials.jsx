@@ -15,7 +15,7 @@ export default function Testimonials() {
               key={item.author}
               className="flex flex-col rounded-[20px] bg-[#FFFDF8] p-7 shadow-[0_4px_16px_rgba(59,42,30,0.06)]"
             >
-              <div className="mb-4 flex gap-0.5 text-secondary" aria-label="Rated 5 out of 5 stars">
+              <div className="mb-4 flex gap-0.5 text-secondary" aria-label="Rating 5 dari 5 bintang">
                 {Array.from({ length: 5 }, (_, i) => (
                   <Icon key={i} name="star" className="size-4 fill-current" />
                 ))}

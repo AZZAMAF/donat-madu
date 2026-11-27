@@ -154,3 +154,12 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - **Promise** (`Promises.jsx`): heading di tengah, 3 kartu putih rounded dengan ikon dalam lingkaran kuning pucat. Ikon baru `droplet` dan `bread` ditambahkan di `Icon.jsx` (sebelumnya nama ikon `bi-*` tidak terpetakan sehingga ikonnya kosong).
 - **Testimonials** (`Testimonials.jsx`): latar cream, eyebrow "What Our Guests Say", 3 kartu putih rounded, bintang oranye. Teks kutipan disamakan dengan Figma.
 - **CTA banner** (`Footer.jsx`): kartu kuning rounded 28px yang tidak full sampai pinggir layar, aksen lingkaran putih transparan, teks Figma, tombol pill gelap. Banner ini muncul di semua halaman toko.
+
+## Perbaikan hasil kritik desain
+
+- **Bahasa:** semua teks landing (hero, signatures, promise, testimoni, CTA, footer, deskripsi menu di `public/menu.json`) diubah ke bahasa Indonesia. Nama produk tetap. Nama kategori tetap disimpan dalam bahasa Inggris sebagai kunci data, lalu ditampilkan dalam bahasa Indonesia lewat `categoryLabel()` di `utils/format.js` (dipakai di Menu, pencarian, detail produk dan admin).
+- **Kontras:** teks kecil oranye (`text-secondary`, kontras ±3:1) diganti `text-accent-dark` (#805600) supaya lolos standar WCAG 4.5:1. Oranye hanya dipakai untuk ikon dan bintang.
+- **Menu:** heading dan filter kategori di tengah dalam satu baris (di HP bisa digeser ke samping). Harga pindah ke baris bawah kartu bersama tombol "Detail" dan "+", jadi judul tidak terpotong.
+- **Ukuran sentuh:** tombol ikon header, tombol wishlist, filter, link nav dan titik carousel promo sekarang punya area klik minimal 44px.
+- **Hero di HP:** jarak dirapatkan dan gambar donat dibesarkan supaya langsung terlihat di layar pertama.
+- **Detail produk:** "Mungkin Kamu Juga Suka" selalu menampilkan 3 kartu (kategori sama dulu, lalu menu lain).

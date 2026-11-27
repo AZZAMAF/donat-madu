@@ -75,7 +75,7 @@ function Info({ label, value, strong }) {
   return (
     <div>
       <p className="text-xs uppercase tracking-wider text-neutral-dark/50">{label}</p>
-      <p className={strong ? 'font-headline text-xl text-secondary' : 'font-semibold text-neutral-dark'}>{value}</p>
+      <p className={strong ? 'font-headline text-xl text-accent-dark' : 'font-semibold text-neutral-dark'}>{value}</p>
     </div>
   )
 }

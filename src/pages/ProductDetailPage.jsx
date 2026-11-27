@@ -5,7 +5,7 @@ import MenuCard from '../components/MenuCard'
 import PageShell from '../components/PageShell'
 import QuantityCounter from '../components/QuantityCounter'
 import { useShop } from '../context/ShopContext'
-import { formatRupiah } from '../utils/format'
+import { categoryLabel, formatRupiah } from '../utils/format'
 import NotFoundPage from './NotFoundPage'
 
 // key={id} membuat state (misal jumlah) mulai dari awal saat pindah ke produk lain.
@@ -27,7 +27,12 @@ function ProductDetail({ id }) {
   if (!product) return <NotFoundPage message="Donat yang kamu cari tidak ada atau sudah tidak dijual." />
 
   const liked = isWishlisted(product.id)
-  const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3)
+  // Utamakan kategori yang sama, lalu lengkapi dengan menu lain supaya selalu 3 kartu.
+  const others = products.filter((p) => p.id !== product.id)
+  const related = [
+    ...others.filter((p) => p.category === product.category),
+    ...others.filter((p) => p.category !== product.category),
+  ].slice(0, 3)
 
   const buyNow = () => {
     addToCart(product, qty)
@@ -37,7 +42,7 @@ function ProductDetail({ id }) {
   return (
     <PageShell
       title={product.name}
-      eyebrow={product.category}
+      eyebrow={categoryLabel(product.category)}
       breadcrumb={[{ label: 'Menu', to: '/#menu-list' }, { label: product.name }]}
     >
       <div className="grid gap-10 lg:grid-cols-2">
@@ -46,7 +51,7 @@ function ProductDetail({ id }) {
         </div>
 
         <div className="flex flex-col">
-          <p className="mb-2 font-headline text-4xl text-secondary">{formatRupiah(product.price)}</p>
+          <p className="mb-2 font-headline text-4xl text-accent-dark">{formatRupiah(product.price)}</p>
           <div className="mb-6 flex items-center gap-2 text-sm text-neutral-dark/60">
             <span className="flex gap-0.5 text-primary" aria-hidden="true">
               {Array.from({ length: 5 }, (_, i) => <Icon key={i} name="star" className="size-4 fill-current" />)}

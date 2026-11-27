@@ -94,14 +94,14 @@ export default function ProfilePage() {
             <section className="rounded-[16px] border border-neutral-dark/10 bg-white p-6">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="font-headline text-2xl text-neutral-dark">Dari Wishlist-mu</h2>
-                <Link to="/wishlist" className="text-sm font-semibold text-secondary hover:underline">Lihat semua →</Link>
+                <Link to="/wishlist" className="text-sm font-semibold text-accent-dark hover:underline">Lihat semua →</Link>
               </div>
               <div className="flex gap-4 overflow-x-auto pb-1">
                 {savedProducts.slice(0, 6).map((p) => (
                   <Link key={p.id} to={`/menu/${p.id}`} className="w-32 shrink-0">
                     <img src={p.image} alt="" className="mb-2 aspect-square w-full rounded-[12px] object-cover" />
                     <p className="truncate text-sm font-semibold text-neutral-dark">{p.name}</p>
-                    <p className="text-xs text-secondary">{formatRupiah(p.price)}</p>
+                    <p className="text-xs text-accent-dark">{formatRupiah(p.price)}</p>
                   </Link>
                 ))}
               </div>
@@ -155,7 +155,7 @@ function OrdersTab({ orders }) {
                 </div>
                 <div className="flex items-center gap-4">
                   <StatusBadge status={order.status} />
-                  <strong className="text-secondary">{formatRupiah(order.total)}</strong>
+                  <strong className="text-accent-dark">{formatRupiah(order.total)}</strong>
                   <span className={`text-neutral-dark/50 transition ${open ? 'rotate-90' : ''}`} aria-hidden="true">›</span>
                 </div>
               </button>
@@ -264,7 +264,7 @@ function AddressTab() {
               <p className="font-semibold text-neutral-dark">{a.recipient} · {a.phone || '-'}</p>
               <p className="mb-4 text-sm text-neutral-dark/65">{a.address}</p>
               <div className="mt-auto flex flex-wrap gap-3 text-sm font-semibold">
-                <button type="button" onClick={() => open(a)} className="text-secondary hover:underline">Ubah</button>
+                <button type="button" onClick={() => open(a)} className="text-accent-dark hover:underline">Ubah</button>
                 {!a.isDefault && <button type="button" onClick={() => setDefaultAddress(a.id)} className="text-neutral-dark/70 hover:underline">Jadikan utama</button>}
                 <button type="button" onClick={() => deleteAddress(a.id)} className="text-accent-red hover:underline">Hapus</button>
               </div>
@@ -311,7 +311,7 @@ function VoucherTab() {
     <section>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="font-headline text-3xl text-neutral-dark">Voucher Saya</h2>
-        <Link to="/promo" className="text-sm font-semibold text-secondary hover:underline">Semua promo →</Link>
+        <Link to="/promo" className="text-sm font-semibold text-accent-dark hover:underline">Semua promo →</Link>
       </div>
       <ul className="grid gap-4 md:grid-cols-2">
         {VOUCHERS.map((v) => {

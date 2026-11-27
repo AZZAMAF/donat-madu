@@ -5,12 +5,12 @@ import { HERO } from '../data/content'
 export default function Hero() {
   return (
     <>
-      <section id="top" className="relative isolate flex min-h-[620px] flex-col items-center overflow-hidden bg-bg-cream px-6 pt-14 text-center max-[700px]:min-h-[590px] max-[420px]:px-4 max-[420px]:pt-8">
+      <section id="top" className="relative isolate flex min-h-[620px] flex-col items-center overflow-hidden bg-bg-cream px-6 pt-14 text-center max-[700px]:min-h-[540px] max-[420px]:px-4 max-[420px]:pt-6">
         <div className="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center pb-[18rem] max-[700px]:pb-44">
           <h1 className="mb-5 max-w-[860px] font-headline text-4xl font-normal leading-[1.02] -tracking-[0.03em] text-neutral-dark sm:text-5xl md:text-6xl">
             {HERO.headline[0]}<br className="hidden sm:block" /> {HERO.headline[1]}
           </h1>
-          <p className="mb-7 max-w-[34rem] text-base leading-relaxed text-neutral-dark/70 sm:text-lg">
+          <p className="mb-6 max-w-[34rem] text-base leading-relaxed text-neutral-dark/70 sm:text-lg">
             {HERO.subheadline}
           </p>
           <div className="mb-7 flex flex-wrap items-center justify-center gap-3">
@@ -26,7 +26,7 @@ export default function Hero() {
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-auto aspect-[1280/560] w-[min(100%,1280px)]">
           <img src={curve} alt="" aria-hidden="true" className="absolute bottom-[-28vw] left-[55%] z-0 h-auto w-[110vw] max-w-none -translate-x-1/2 rotate-[-4deg] select-none" />
-          <img src={donatHero} alt="Assorted honey donuts on a red gingham tablecloth" className="absolute bottom-0 left-1/2 h-auto w-[44%] -translate-x-1/2 select-none max-[700px]:w-[72%]" />
+          <img src={donatHero} alt="Aneka donat madu di atas taplak kotak-kotak merah" className="absolute bottom-0 left-1/2 h-auto w-[44%] -translate-x-1/2 select-none max-[700px]:w-[90%]" />
         </div>
       </section>
       <div aria-hidden="true" className="h-[174px] w-full bg-[url('../assets/checker-tile.svg')] bg-[length:230px_174px] bg-center bg-repeat-x max-[700px]:h-[130px] max-[700px]:bg-[length:172px_130px]" />

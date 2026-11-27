@@ -30,7 +30,7 @@ export default function Wishlist() {
           <p className="mt-4 max-w-md leading-relaxed text-neutral-dark/65">
             Catat rasa yang bikin penasaran, lalu centang kalau sudah dicoba. Donat favorit dari menu bisa disimpan dengan ikon hati.
           </p>
-          <Link to="/wishlist" className="mt-6 inline-flex items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-secondary hover:text-secondary">
+          <Link to="/wishlist" className="mt-6 inline-flex items-center gap-2 border-b border-neutral-dark pb-1 font-semibold text-neutral-dark transition hover:border-secondary hover:text-accent-dark">
             <Icon name="heart" className="size-4" /> Buka wishlist lengkap <span aria-hidden="true">→</span>
           </Link>
         </div>
