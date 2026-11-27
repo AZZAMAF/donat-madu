@@ -36,9 +36,14 @@ export default function ScrollReveal() {
       { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
     )
 
+    // Penanda disimpan per efek (WeakSet), bukan sebagai atribut di DOM. Kalau pakai atribut,
+    // React StrictMode di mode dev menjalankan efek dua kali → elemen sudah "ditandai" oleh
+    // efek pertama yang sudah dibersihkan, sehingga tidak pernah diamati dan kartu hilang.
+    const watched = new WeakSet()
     const watch = (root) => {
-      root.querySelectorAll('[data-reveal]:not([data-reveal-watched])').forEach((el) => {
-        el.setAttribute('data-reveal-watched', '')
+      root.querySelectorAll('[data-reveal]').forEach((el) => {
+        if (watched.has(el)) return
+        watched.add(el)
         // Urutan di antara saudara yang juga punya data-reveal → jeda bergantian (maks 4 langkah).
         const siblings = el.parentElement ? [...el.parentElement.children].filter((c) => c.hasAttribute('data-reveal')) : [el]
         const index = Math.max(0, siblings.indexOf(el))
@@ -51,7 +56,16 @@ export default function ScrollReveal() {
     const mo = new MutationObserver(() => watch(document))
     mo.observe(document.body, { childList: true, subtree: true })
 
+    // Pengaman: apa pun yang terjadi, jangan biarkan konten tersembunyi selamanya.
+    const safety = setTimeout(() => {
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        const r = el.getBoundingClientRect()
+        if (r.top < window.innerHeight && r.bottom > 0) show(el)
+      })
+    }, 1500)
+
     return () => {
+      clearTimeout(safety)
       io.disconnect()
       mo.disconnect()
     }

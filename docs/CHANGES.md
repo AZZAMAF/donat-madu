@@ -219,3 +219,4 @@ Tanpa library tambahan, hanya CSS + IntersectionObserver.
 - **Keranjang:** angka di ikon keranjang "loncat" tiap ada item baru (`animate-bump`).
 - **Hover:** kartu menu dan Signatures naik sedikit dengan bayangan lebih dalam.
 - **Aksesibilitas:** kalau perangkat memakai setting "kurangi animasi" (prefers-reduced-motion), semua animasi dimatikan.
+- **Perbaikan:** di mode dev (`npm run dev`) kartu sempat tidak muncul. Penyebabnya React StrictMode menjalankan efek dua kali, sementara penanda "sudah diamati" disimpan sebagai atribut di elemen. Sekarang penanda disimpan di `WeakSet` per efek, plus pengaman: elemen yang sudah terlihat di layar dimunculkan paksa setelah 1,5 detik.
