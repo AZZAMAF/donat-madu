@@ -193,3 +193,10 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - **Toast** muncul di pojok kanan bawah (di HP tetap di tengah bawah).
 - **Admin:** kartu statistik dan panel memakai gaya kartu cream yang sama dengan halaman lain; label "Admin" tidak kuning lagi.
 - **Foto baru:** foto aneka donat dipakai untuk 12-Box Office Sharing (`menu-9.jpg`) dan panel kiri halaman Login (`donat-semua.jpg`).
+
+## Menu jadi 18 item
+
+- Ditambah 9 rasa baru di `public/menu.json` (id 10–18): Honey Cinnamon Sugar, Honey Butter Milk, Matcha Honey Drizzle, White Choco Honey Almond, Honey Peanut Butter, Honey Tiramisu, Lemon Honey Ginger, Mango Honey Lime, Strawberry Honey Cheesecake. Totalnya 16 rasa + 2 paket box, diurutkan per kategori (paket box di paling bawah).
+- Foto baru `menu-10.jpg` (matcha) dan `menu-11.jpg` (mango lime); rasa lain sementara memakai ulang foto yang mirip.
+- Kartu Signatures "Matcha Honey Drizzle" sekarang tertaut ke produk id 12.
+- Catatan: kalau produk pernah diubah lewat Admin, browser memakai daftar produk tersimpan. Tekan "Reset produk" di Admin (atau hapus localStorage `madu_donat_products`) supaya 18 menu baru muncul.

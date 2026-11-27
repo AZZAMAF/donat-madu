@@ -29,7 +29,7 @@ export const SIGNATURES = {
   items: [
     { number: '01', title: 'Berry Honey Glaze', description: 'Glaze campuran beri dengan taburan pelangi dan sentuhan madu bunga liar.', accent: '#D42F32', dark: false, productId: 6 },
     { number: '02', title: 'Golden Crunch Honey', description: 'Glaze madu lemon yang segar dengan taburan cokelat renyah.', accent: '#FFD93D', dark: true, productId: 2 },
-    { number: '03', title: 'Matcha Honey Drizzle', description: 'Irisan almond panggang di bawah siraman matcha lembut dan madu murni.', accent: '#CFCB74', dark: true },
+    { number: '03', title: 'Matcha Honey Drizzle', description: 'Irisan almond panggang di bawah siraman matcha lembut dan madu murni.', accent: '#CFCB74', dark: true, productId: 12 },
     { number: '04', title: 'Choco Honeycomb', description: 'Irisan almond, glaze blueberry dan garis honeycomb cokelat hitam.', accent: '#609CD6', dark: true, productId: 4 },
   ],
 }

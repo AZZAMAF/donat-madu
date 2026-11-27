@@ -32,6 +32,22 @@
       "image": "/images/menu-3.jpg"
     },
     {
+      "id": 10,
+      "name": "Honey Cinnamon Sugar",
+      "description": "Brioche hangat digulung gula kayu manis, lalu disiram madu murni tipis.",
+      "price": 23000,
+      "category": "Classic Glazed",
+      "image": "/images/menu-1.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Honey Butter Milk",
+      "description": "Glaze susu mentega yang lembut dengan sentuhan madu dan taburan gula halus.",
+      "price": 24000,
+      "category": "Classic Glazed",
+      "image": "/images/menu-5.jpg"
+    },
+    {
       "id": 4,
       "name": "Choco Honeycomb",
       "description": "Glaze krim lembut bertabur bubuk kakao, dengan sentuhan madu murni.",
@@ -48,6 +64,38 @@
       "image": "/images/menu-5.jpg"
     },
     {
+      "id": 12,
+      "name": "Matcha Honey Drizzle",
+      "description": "Glaze matcha lembut dengan siraman madu murni dan taburan bubuk matcha.",
+      "price": 28000,
+      "category": "Chocolate & Honey",
+      "image": "/images/menu-10.jpg"
+    },
+    {
+      "id": 13,
+      "name": "White Choco Honey Almond",
+      "description": "Glaze cokelat putih dengan irisan almond panggang dan siraman madu.",
+      "price": 29000,
+      "category": "Chocolate & Honey",
+      "image": "/images/menu-8.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Honey Peanut Butter",
+      "description": "Glaze selai kacang madu dengan taburan kacang panggang yang renyah.",
+      "price": 27000,
+      "category": "Chocolate & Honey",
+      "image": "/images/menu-2.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Honey Tiramisu",
+      "description": "Krim mascarpone madu bertabur bubuk kakao, rasa tiramisu dalam satu donat.",
+      "price": 30000,
+      "category": "Chocolate & Honey",
+      "image": "/images/menu-4.jpg"
+    },
+    {
       "id": 6,
       "name": "Berry Honey Glaze",
       "description": "Selai campuran beri dalam glaze madu ringan, ditabur raspberry kering.",
@@ -62,6 +110,30 @@
       "price": 29000,
       "category": "Fruity Infusions",
       "image": "/images/menu-7.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Lemon Honey Ginger",
+      "description": "Glaze madu lemon segar dengan parutan kulit lemon dan sedikit jahe.",
+      "price": 27000,
+      "category": "Fruity Infusions",
+      "image": "/images/menu-7.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Mango Honey Lime",
+      "description": "Glaze mangga madu dengan parutan kulit jeruk nipis yang segar.",
+      "price": 28000,
+      "category": "Fruity Infusions",
+      "image": "/images/menu-11.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Strawberry Honey Cheesecake",
+      "description": "Glaze stroberi madu dengan remah biskuit cheesecake dan stroberi kering.",
+      "price": 29000,
+      "category": "Fruity Infusions",
+      "image": "/images/menu-6.jpg"
     },
     {
       "id": 8,
