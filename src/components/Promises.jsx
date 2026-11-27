@@ -15,6 +15,7 @@ export default function Promises() {
           {PROMISES.items.map((item) => (
             <article
               key={item.title}
+              data-reveal
               className="rounded-[20px] bg-[#FFFDF8] p-7 shadow-[0_4px_16px_rgba(59,42,30,0.06)] transition hover:-translate-y-1 hover:shadow-[0_10px_24px_rgba(59,42,30,0.1)]"
             >
               <span className="mb-5 grid size-11 place-items-center rounded-full bg-primary/25 text-neutral-dark">

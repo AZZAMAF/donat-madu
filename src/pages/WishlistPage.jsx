@@ -31,7 +31,7 @@ export default function WishlistPage() {
       ) : (
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
           {saved.map((item) => (
-            <article key={item.id} className="flex flex-col overflow-hidden rounded-[20px] bg-[#FFFDF8] shadow-[0_4px_8px_rgba(59,42,30,0.06)]">
+            <article key={item.id} data-reveal className="flex flex-col overflow-hidden rounded-[20px] bg-[#FFFDF8] shadow-[0_4px_8px_rgba(59,42,30,0.06)]">
               <Link to={`/menu/${item.id}`} className="h-[260px] overflow-hidden bg-gold-pale">
                 <img src={item.image} alt={item.name} className="h-full w-full object-cover transition duration-500 hover:scale-105" />
               </Link>

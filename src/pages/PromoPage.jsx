@@ -52,6 +52,7 @@ export default function PromoPage() {
           return (
             <article
               key={promo.code}
+              data-reveal
               id={promo.code}
               className={`flex flex-col overflow-hidden rounded-[20px] border bg-[#FFFDF8] transition sm:flex-row ${highlighted === promo.code ? 'border-neutral-dark ring-2 ring-neutral-dark/20' : 'border-neutral-dark/10'}`}
             >
@@ -95,7 +96,7 @@ export default function PromoPage() {
       <h2 className="mb-6 mt-16 font-headline text-3xl text-neutral-dark">Program Spesial</h2>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {PROMO_PROGRAMS.map((program) => (
-          <article key={program.title} className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6">
+          <article key={program.title} data-reveal className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6">
             <span className="mb-4 grid size-11 place-items-center rounded-full bg-cream-deep text-neutral-dark">
               <Icon name={program.icon} className="size-6" />
             </span>
@@ -142,7 +143,7 @@ export default function PromoPage() {
 
 function VoucherCard({ voucher, selected, onApply, onRemove, onCopy }) {
   return (
-    <article className={`flex overflow-hidden rounded-[20px] border bg-[#FFFDF8] transition ${selected ? 'border-neutral-dark ring-2 ring-neutral-dark/15' : 'border-neutral-dark/10'}`}>
+    <article data-reveal className={`flex overflow-hidden rounded-[20px] border bg-[#FFFDF8] transition ${selected ? 'border-neutral-dark ring-2 ring-neutral-dark/15' : 'border-neutral-dark/10'}`}>
       {/* Potongan tiket: satu warna netral untuk semua voucher, garis putus-putus sebagai sobekan. */}
       <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-2 border-r-2 border-dashed border-neutral-dark/15 bg-cream-deep text-neutral-dark sm:w-28">
         <Icon name="tag" className="size-7" />

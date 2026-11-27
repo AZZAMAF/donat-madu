@@ -1,6 +1,6 @@
 export default function SectionHeading({ eyebrow, title, align = 'left', light = false }) {
   return (
-    <div className={align === 'center' ? 'text-center' : ''}>
+    <div data-reveal className={align === 'center' ? 'text-center' : ''}>
       {eyebrow && (
         <p className={`mb-3 text-xs font-bold uppercase tracking-[0.18em] ${light ? 'text-primary' : 'text-accent-dark'}`}>
           {eyebrow}

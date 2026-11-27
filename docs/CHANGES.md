@@ -208,3 +208,14 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - Fungsi `cancelOrder(id)` di `ShopContext` mengubah status jadi "Dibatalkan" dan mencatat `cancelledAt`. Pesanan batal tidak dihitung ke total belanja dan pendapatan admin.
 - Halaman Pesanan Berhasil berubah jadi "Pesanan Dibatalkan" (ikon merah, tombol kirim ulang WhatsApp disembunyikan).
 - Nomor WhatsApp toko diganti ke +62 899-9724-4659.
+
+## Animasi (motion)
+
+Tanpa library tambahan, hanya CSS + IntersectionObserver.
+
+- **Muncul saat scroll:** elemen dengan atribut `data-reveal` (judul section, kartu Signatures, Promise, menu, testimoni, kartu promo/voucher, wishlist, banner CTA) muncul pelan dari bawah. Kartu yang bersebelahan muncul bergantian. Logikanya di `components/ScrollReveal.jsx`, gayanya di `input.css` bagian "Motion".
+- **Hero:** judul, deskripsi, tombol dan rating naik bergantian saat halaman dibuka; gambar donat melayang pelan (`animate-float`).
+- **Pindah halaman:** isi halaman masuk dengan fade halus (`animate-page` di `MainLayout`).
+- **Keranjang:** angka di ikon keranjang "loncat" tiap ada item baru (`animate-bump`).
+- **Hover:** kartu menu dan Signatures naik sedikit dengan bayangan lebih dalam.
+- **Aksesibilitas:** kalau perangkat memakai setting "kurangi animasi" (prefers-reduced-motion), semua animasi dimatikan.

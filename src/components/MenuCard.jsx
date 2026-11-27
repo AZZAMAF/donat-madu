@@ -8,7 +8,7 @@ export default function MenuCard({ item, onAddToCart }) {
   const liked = isWishlisted(item.id)
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-[20px] bg-[#FFFDF8] shadow-[0_4px_8px_rgba(59,42,30,0.06)] transition hover:shadow-[0_12px_28px_rgba(59,42,30,0.12)]">
+    <article data-reveal className="group flex flex-col overflow-hidden rounded-[20px] bg-[#FFFDF8] shadow-[0_4px_8px_rgba(59,42,30,0.06)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_32px_rgba(59,42,30,0.14)]">
       <div className="relative h-[260px] overflow-hidden bg-gold-pale">
         <Link to={`/menu/${item.id}`} aria-label={`Lihat detail ${item.name}`}>
           <img src={item.image} alt={item.name} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />

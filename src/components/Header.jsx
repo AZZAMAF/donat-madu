@@ -59,7 +59,7 @@ export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQt
             className="relative grid size-11 place-items-center rounded-full text-neutral-dark transition hover:bg-neutral-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-dark"
           >
             <Icon name="bag" className="size-[22px]" />
-            <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-accent-red text-[10px] font-bold text-white">
+            <span key={totalQty} className="animate-bump absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-accent-red text-[10px] font-bold text-white">
               {totalQty}
             </span>
           </button>

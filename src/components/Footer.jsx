@@ -17,7 +17,7 @@ export default function Footer() {
       {/* CTA banner: kartu cream polos dengan border tipis, tanpa ornamen. */}
       {showCta && (
         <section className="bg-bg-cream px-6 pb-20 pt-4 sm:px-10 lg:px-16">
-          <div className="relative mx-auto flex max-w-[1100px] flex-col items-start justify-between gap-8 overflow-hidden rounded-[28px] border border-neutral-dark/10 bg-[#FFFDF8] px-8 py-12 shadow-[0_4px_16px_rgba(59,42,30,0.06)] sm:px-12 md:flex-row md:items-center">
+          <div data-reveal className="relative mx-auto flex max-w-[1100px] flex-col items-start justify-between gap-8 overflow-hidden rounded-[28px] border border-neutral-dark/10 bg-[#FFFDF8] px-8 py-12 shadow-[0_4px_16px_rgba(59,42,30,0.06)] sm:px-12 md:flex-row md:items-center">
             <div className="relative">
               <h2 className="mb-3 font-headline text-3xl leading-tight -tracking-[0.02em] text-neutral-dark sm:text-[40px]">
                 {CTA_BANNER.title}

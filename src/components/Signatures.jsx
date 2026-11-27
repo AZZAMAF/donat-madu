@@ -27,9 +27,10 @@ export default function Signatures() {
             return (
               <Link
                 key={item.number}
+                data-reveal
                 to={to}
                 aria-label={`${item.title}, lihat donat`}
-                className="group relative isolate flex min-h-[457px] flex-col overflow-hidden rounded-[30px] p-6 shadow-[0_8px_12px_-2px_rgba(0,0,0,0.1),0_3px_5px_-3px_rgba(0,0,0,0.1)] transition hover:-translate-y-1 hover:shadow-xl"
+                className="group relative isolate flex min-h-[457px] flex-col overflow-hidden rounded-[30px] p-6 shadow-[0_8px_12px_-2px_rgba(0,0,0,0.1),0_3px_5px_-3px_rgba(0,0,0,0.1)] transition duration-300 hover:-translate-y-2 hover:shadow-xl"
                 style={{ backgroundColor: item.accent }}
               >
                 <img
