@@ -1,6 +1,6 @@
 # Dokumentasi Perubahan: 10 Halaman E-commerce Madu Donut
 
-Dokumen ini menjelaskan perubahan di branch `claude/project-thread-drnthg` (PR #1),
+Dokumen ini menjelaskan perubahan di branch `feature/halaman-ecommerce`,
 supaya developer atau AI agent lain bisa langsung paham struktur dan alurnya.
 
 ## Daftar commit
