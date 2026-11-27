@@ -6,7 +6,8 @@ const DURATION = 1400 // lama animasi geser, sengaja pelan (ms)
 
 // Carousel bergeser dari kanan ke kiri. Slide pertama digandakan di ujung
 // supaya setelah slide terakhir tetap masuk dari kanan, bukan mundur ke kiri.
-export default function PromoCarousel({ slides, onApplyCode }) {
+// onCta dipanggil saat tombol slide (atau gambarnya) diklik; ctaLabel mengatur teks tombol.
+export default function PromoCarousel({ slides, onCta, ctaLabel = 'Pakai Voucher' }) {
   const [index, setIndex] = useState(0)
   const [animate, setAnimate] = useState(true)
   const [paused, setPaused] = useState(false)
@@ -120,16 +121,16 @@ export default function PromoCarousel({ slides, onApplyCode }) {
                 <button
                   type="button"
                   tabIndex={i === index ? 0 : -1}
-                  onClick={() => onApplyCode(slide.code)}
+                  onClick={() => onCta(slide)}
                   className={`rounded-full px-6 py-2.5 font-semibold transition ${slide.dark ? 'bg-neutral-dark text-white hover:bg-accent-dark' : 'bg-white text-neutral-dark hover:bg-bg-cream'}`}
                 >
-                  Pakai Voucher
+                  {ctaLabel}
                 </button>
               </div>
             </div>
-            <div className="hidden justify-center md:flex">
-              <img src={slide.image} alt="" className="size-64 rounded-full border-8 border-white/30 object-cover shadow-2xl lg:size-72" />
-            </div>
+            <button type="button" tabIndex={-1} aria-hidden="true" onClick={() => onCta(slide)} className="hidden cursor-pointer justify-center md:flex">
+              <img src={slide.image} alt="" className="size-64 rounded-full border-8 border-white/30 object-cover shadow-2xl transition duration-500 hover:scale-105 lg:size-72" />
+            </button>
           </article>
         ))}
       </div>

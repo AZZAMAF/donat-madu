@@ -15,7 +15,7 @@ export default function MenuSection({ menus, categories, loading, error, onAddTo
           <SectionHeading title="A Golden Bite for Every Mood" />
           <div role="tablist" aria-label="Filter menu by category" className="flex max-w-full flex-wrap gap-2 pb-1">
             {categories.map((category) => (
-              <button key={category} type="button" role="tab" aria-selected={activeCategory === category} onClick={() => setActiveCategory(category)} className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition ${activeCategory === category ? 'bg-neutral-dark text-white' : 'border border-neutral-dark/20 text-neutral-dark hover:border-neutral-dark/50'}`}>{category}</button>
+              <button key={category} type="button" role="tab" aria-selected={activeCategory === category} onClick={() => setActiveCategory(category)} className={`h-10 shrink-0 rounded-full px-5 text-sm font-semibold transition ${activeCategory === category ? 'bg-primary text-neutral-dark shadow-[0_4px_12px_rgba(242,168,29,0.35)]' : 'bg-[#FFFDF8] text-[#7A6455] shadow-[0_2px_6px_rgba(59,42,30,0.08)] hover:bg-white hover:text-neutral-dark'}`}>{category}</button>
             ))}
           </div>
         </div>

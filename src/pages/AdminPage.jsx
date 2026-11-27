@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon'
+import PasswordInput from '../components/PasswordInput'
 import StatusBadge from '../components/StatusBadge'
 import Toast from '../components/Toast'
 import { useShop } from '../context/ShopContext'
@@ -73,7 +74,8 @@ function AdminLogin() {
   const submit = (event) => {
     event.preventDefault()
     const result = login(email, password)
-    if (!result.ok || result.role !== 'admin') setError('Akun ini bukan akun admin.')
+    if (!result.ok) setError(result.message)
+    else if (result.role !== 'admin') setError('Akun ini bukan akun admin.')
   }
 
   return (
@@ -84,11 +86,16 @@ function AdminLogin() {
         {user && <p className="mb-4 text-sm text-accent-red">Kamu masuk sebagai {user.email}, bukan admin.</p>}
         <div className="mt-4 flex flex-col gap-3">
           <label className="text-sm font-semibold text-neutral-dark">Email<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputClass} mt-1`} /></label>
-          <label className="text-sm font-semibold text-neutral-dark">Password<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={`${inputClass} mt-1`} /></label>
+          <label className="text-sm font-semibold text-neutral-dark">Password<div className="mt-1"><PasswordInput value={password} onChange={(e) => setPassword(e.target.value)} className={inputClass} /></div></label>
           {error && <p role="alert" className="text-sm text-accent-red">{error}</p>}
           <button type="submit" className="mt-2 h-11 rounded-full bg-primary font-semibold text-neutral-dark hover:bg-primary-dark">Masuk</button>
         </div>
-        <p className="mt-5 text-xs text-neutral-dark/60">Simulasi. Akun demo: {ADMIN_ACCOUNT.email} / {ADMIN_ACCOUNT.password}</p>
+        <div className="mt-5 rounded-[12px] bg-cream-deep p-3 text-xs text-neutral-dark/75">
+          <p className="mb-1 font-bold text-neutral-dark">Akun admin demo (simulasi)</p>
+          <p>Email: <span className="font-semibold text-neutral-dark">{ADMIN_ACCOUNT.email}</span></p>
+          <p className="mb-3">Password: <span className="font-semibold text-neutral-dark">{ADMIN_ACCOUNT.password}</span></p>
+          <button type="button" onClick={() => login(ADMIN_ACCOUNT.email, ADMIN_ACCOUNT.password)} className="w-full rounded-full bg-neutral-dark py-2 font-semibold text-white hover:bg-accent-dark">Masuk sebagai Admin</button>
+        </div>
         <Link to="/" className="mt-4 inline-block text-sm font-semibold text-secondary hover:underline">← Kembali ke toko</Link>
       </form>
     </div>

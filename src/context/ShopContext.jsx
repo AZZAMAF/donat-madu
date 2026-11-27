@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
-import { ADMIN_ACCOUNT, STORAGE_KEYS } from '../data/store'
+import { ADMIN_ACCOUNT, DEMO_CUSTOMER, STORAGE_KEYS } from '../data/store'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { generateOrderId } from '../utils/order'
 
@@ -93,29 +93,74 @@ export function ShopProvider({ children }) {
 
   // --- AKUN (SIMULASI, tersimpan di localStorage) ---
   const [users, setUsers] = useLocalStorage(STORAGE_KEYS.users, [])
+  // "Ingat saya" dimatikan: sesi hanya bertahan selama tab browser masih terbuka
+  // (sessionStorage hilang saat tab ditutup). Dicek sekali sebelum sesi dibaca.
+  useState(() => {
+    try {
+      if (localStorage.getItem(STORAGE_KEYS.remember) === 'false' && !sessionStorage.getItem(STORAGE_KEYS.remember)) {
+        localStorage.removeItem(STORAGE_KEYS.session)
+      }
+    } catch {
+      // localStorage tidak tersedia, abaikan
+    }
+  })
   const [user, setUser] = useLocalStorage(STORAGE_KEYS.session, null)
+  const [lastEmail, setLastEmail] = useLocalStorage(STORAGE_KEYS.lastEmail, '')
+
+  const startSession = (account, remember = true) => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.remember, String(remember))
+      sessionStorage.setItem(STORAGE_KEYS.remember, '1')
+    } catch {
+      // abaikan
+    }
+    setLastEmail(account.email)
+    setUser(withoutPassword(account))
+  }
 
   const register = ({ name, email, phone, password }) => {
     const cleanEmail = email.trim().toLowerCase()
     if (cleanEmail === ADMIN_ACCOUNT.email || users.some((u) => u.email === cleanEmail)) {
       return { ok: false, message: 'Email sudah terdaftar. Silakan masuk.' }
     }
-    const newUser = { name: name.trim(), email: cleanEmail, phone: phone.trim(), password, address: '', role: 'customer' }
+    const newUser = { name: name.trim(), email: cleanEmail, phone: phone.trim(), password, address: '', role: 'customer', provider: 'email', addresses: [] }
     setUsers([...users, newUser])
-    setUser(withoutPassword(newUser))
+    startSession(newUser)
     return { ok: true }
   }
 
-  const login = (email, password) => {
+  const login = (email, password, remember = true) => {
     const cleanEmail = email.trim().toLowerCase()
     if (cleanEmail === ADMIN_ACCOUNT.email && password === ADMIN_ACCOUNT.password) {
-      setUser(withoutPassword(ADMIN_ACCOUNT))
+      startSession(ADMIN_ACCOUNT, remember)
       return { ok: true, role: 'admin' }
     }
-    const found = users.find((u) => u.email === cleanEmail && u.password === password)
-    if (!found) return { ok: false, message: 'Email atau password salah.' }
-    setUser(withoutPassword(found))
+    // Akun pelanggan demo dibuat otomatis saat pertama kali dipakai.
+    let list = users
+    if (cleanEmail === DEMO_CUSTOMER.email && !users.some((u) => u.email === DEMO_CUSTOMER.email)) {
+      list = [...users, DEMO_CUSTOMER]
+      setUsers(list)
+    }
+    const found = list.find((u) => u.email === cleanEmail && u.password === password)
+    if (!found) {
+      const known = cleanEmail === ADMIN_ACCOUNT.email || list.some((u) => u.email === cleanEmail)
+      return { ok: false, message: known ? 'Password salah. Coba lagi.' : 'Email tidak terdaftar. Cek lagi ejaannya atau daftar akun baru.' }
+    }
+    startSession(found, remember)
     return { ok: true, role: found.role }
+  }
+
+  // Login Google: data profil (nama, email, foto) datang dari Google atau dari mode demo.
+  // Kalau email belum pernah terdaftar, akun baru dibuat otomatis.
+  const loginWithGoogle = ({ name, email, picture }) => {
+    const cleanEmail = email.trim().toLowerCase()
+    const existing = users.find((u) => u.email === cleanEmail)
+    const account = existing
+      ? { ...existing, picture: picture || existing.picture, provider: 'google' }
+      : { name, email: cleanEmail, phone: '', address: '', picture, role: 'customer', provider: 'google', addresses: [] }
+    setUsers(existing ? users.map((u) => (u.email === cleanEmail ? account : u)) : [...users, account])
+    startSession(account)
+    return { ok: true, role: account.role }
   }
 
   const logout = () => setUser(null)
@@ -124,6 +169,25 @@ export function ShopProvider({ children }) {
     const updated = { ...user, ...changes }
     setUser(updated)
     setUsers(users.map((u) => (u.email === user.email ? { ...u, ...changes } : u)))
+  }
+
+  // --- ALAMAT TERSIMPAN (milik user yang sedang masuk) ---
+  const saveAddress = (address) => {
+    const list = user.addresses ?? []
+    const saved = address.id ? address : { ...address, id: Date.now(), isDefault: address.isDefault || list.length === 0 }
+    let next = address.id ? list.map((a) => (a.id === saved.id ? saved : a)) : [...list, saved]
+    if (saved.isDefault) next = next.map((a) => ({ ...a, isDefault: a.id === saved.id }))
+    const main = next.find((a) => a.isDefault)
+    updateProfile({ addresses: next, address: main?.address ?? user.address })
+  }
+  const deleteAddress = (id) => {
+    let next = (user.addresses ?? []).filter((a) => a.id !== id)
+    if (next.length && !next.some((a) => a.isDefault)) next = next.map((a, i) => ({ ...a, isDefault: i === 0 }))
+    updateProfile({ addresses: next, address: next.find((a) => a.isDefault)?.address ?? '' })
+  }
+  const setDefaultAddress = (id) => {
+    const next = (user.addresses ?? []).map((a) => ({ ...a, isDefault: a.id === id }))
+    updateProfile({ addresses: next, address: next.find((a) => a.isDefault)?.address ?? '' })
   }
 
   // --- PESANAN ---
@@ -151,7 +215,7 @@ export function ShopProvider({ children }) {
     cart, isCartOpen, setIsCartOpen, addToCart, removeFromCart, changeQty, clearCart, totalQty,
     voucherCode, setVoucherCode,
     wishlist, isWishlisted, toggleWishlist,
-    user, register, login, logout, updateProfile,
+    user, lastEmail, register, login, loginWithGoogle, logout, updateProfile, saveAddress, deleteAddress, setDefaultAddress,
     orders, placeOrder, updateOrderStatus, getOrder,
     toast, showToast,
   }

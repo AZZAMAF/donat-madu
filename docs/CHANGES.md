@@ -8,7 +8,9 @@ supaya developer atau AI agent lain bisa langsung paham struktur dan alurnya.
 | Commit | Isi |
 |--------|-----|
 | `9b58f6a` feat: tambah 9 halaman e-commerce dengan React Router dan ShopContext | Semua halaman baru, router, context bersama, util harga/voucher, dan penyesuaian kecil di landing page. |
-| (commit ini) docs: dokumentasi perubahan | File ini. |
+| docs: dokumentasi perubahan | File ini. |
+| feat: login Google, menu akun, profil pelanggan, login demo | Tombol Google (asli/demo), menu akun di header, profil dengan tab, alamat tersimpan, tombol akun demo, lihat password, "Ingat saya". |
+| feat: carousel promo di landing, search bar, dan wishlist landing | Revisi: carousel pindah ke landing (`PromoHighlight`), halaman Promo diperkaya, search di header jalan, section Wishlist di landing didesain ulang. |
 
 Sebelum branch ini, `main` berisi landing page satu halaman (commit terakhir `46efd0c`).
 
@@ -77,6 +79,8 @@ src/
 | `madu_donat_orders` | semua pesanan |
 | `madu_donat_products` | produk hasil edit admin (`null` = pakai menu.json) |
 | `madu_donat_voucher` | kode voucher yang dipilih |
+| `madu_donat_remember` | pilihan "Ingat saya" (`false` = sesi hilang saat tab ditutup) |
+| `madu_donat_last_email` | email terakhir yang dipakai masuk (diisi otomatis di form) |
 
 ## Aturan harga
 
@@ -95,9 +99,18 @@ Tampilan landing tetap sama, kecuali bagian menu.
 - `Header.jsx`: ikon Search ke `/#menu-list`, ikon Profil ke `/profil`, link nav jadi `/#anchor` supaya jalan dari halaman lain.
 - `Footer.jsx`: link jadi `/#anchor` (alasannya sama).
 - `IconButton.jsx`: prop `to` opsional (jadi Link).
+- `Signatures.jsx` (section `#menu`): disamakan dengan Figma (Section 2: Best Sellers): judul di tengah, kartu warna #D42F32 / #FFD93D / #CFCB74 / #609CD6, badge nomor, deskripsi, donat di bawah (`assets/signatures/`), swirl mix-blend-overlay. Kartu bisa diklik ke Detail Produk.
 - `Icon.jsx`: ikon baru (heart, trash, arrow, check, tag, chat, box, chart, logout, copy, edit).
 - `App.jsx`: isi landing dipindah ke `pages/HomePage.jsx`; fetch menu dan cart dipindah ke context. `PLACEHOLDER_CART` dihapus.
-- Komponen `Wishlist.jsx` lama (belum ada styling) masih tampil di landing dan tidak diubah.
+- `PromoHighlight.jsx` (baru): section "Promo Hari Ini" tepat di bawah Hero, berisi carousel. Tombol "Lihat Promo" atau gambar slide membuka `/promo#KODE` dan promo itu disorot.
+- `HeaderSearch.jsx` (baru): ikon Search membuka kotak pencarian. Hasil tersaring saat mengetik (nama, kategori, deskripsi), klik hasil atau Enter ke Detail Produk.
+- `Wishlist.jsx`: didesain ulang (input dan tombol sesuai tema, centang sudah dicoba, hapus, progress) dan sekarang memakai key `madu_donat_wishlist_notes`, sama dengan halaman Wishlist.
+
+## Halaman Promo
+
+Isi: Flash Voucher dengan hitung mundur sampai tengah malam, Promo Unggulan (4 kartu, bisa di-link lewat `#KODE`),
+Semua Voucher dengan filter jenis, Program Spesial, Paket Hemat (produk Box Sets), dan Syarat & Ketentuan.
+Voucher tambahan: `MEMBER10`, `HAPPYHOUR`, `FLASHMADU` (25%, min Rp 80rb, maks Rp 25rb).
 
 ## Cara menjalankan
 
@@ -108,7 +121,12 @@ npm run dev   # terminal 2, buka http://localhost:5173
 npm run build
 ```
 
-Akun admin demo: `admin@madudonut.id` / `admin123`.
+Akun demo (bisa juga lewat tombol sekali klik di halaman Login):
+
+| Peran | Email | Password |
+|-------|-------|----------|
+| Admin | `admin@madudonut.id` | `admin123` |
+| Pelanggan | `pelanggan@madudonut.id` | `demo123` |
 Login adalah **simulasi** (data di localStorage), bukan autentikasi sungguhan.
 Saat deploy, rewrite semua route ke `index.html`.
 
@@ -116,3 +134,23 @@ Saat deploy, rewrite semua route ke `index.html`.
 
 Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang → Checkout → Pesanan Berhasil
 → Daftar akun → Profil (riwayat) → `/admin`, ubah status pesanan → cek lagi di Profil.
+
+## Login & Akun
+
+- **Login Google** (`components/GoogleLoginButton.jsx`, paket `@react-oauth/google`). Kalau `VITE_GOOGLE_CLIENT_ID` diisi di `.env`, tombol memakai Google Identity Services asli dan nama, email, serta foto diambil dari token Google. Kalau kosong, tombol membuka pemilih akun demo yang diberi label jelas.
+- **Cara dapat Client ID Google:**
+  1. Buka https://console.cloud.google.com, buat project.
+  2. Menu *APIs & Services → OAuth consent screen*, pilih External, isi nama aplikasi dan email.
+  3. Menu *Credentials → Create Credentials → OAuth client ID*, tipe *Web application*.
+  4. Di *Authorized JavaScript origins* tambahkan `http://localhost:5173` (dan domain deploy nanti).
+  5. Salin Client ID ke file `.env` (contoh di `.env.example`): `VITE_GOOGLE_CLIENT_ID=xxxx.apps.googleusercontent.com`, lalu jalankan ulang `npm run dev`.
+- **Menu akun** (`components/UserMenu.jsx`): belum masuk, ikon orang membuka `/login`. Sudah masuk, ikon berubah jadi foto/inisial dan membuka menu Profil, Pesanan, Alamat, Wishlist, Admin (khusus admin), Keluar.
+- **Profil** (`/profil`) punya tab lewat hash: `#pesanan` (riwayat, filter, progres status, pesan lagi), `#alamat` (tambah, ubah, hapus, alamat utama), `#akun` (data diri), `#voucher`. Alamat tersimpan bisa dipilih di Checkout.
+- **Login praktis:** tombol "Masuk sebagai Admin/Pelanggan", ikon mata untuk melihat password, centang "Ingat saya" (default aktif, sesi tetap ada walau browser ditutup), email terakhir terisi otomatis, pesan error yang membedakan email tidak terdaftar dan password salah.
+
+## Revisi landing sesuai Figma (Menu, Promise, Testimonials, CTA)
+
+- **Menu** (`MenuSection.jsx`, `MenuCard.jsx`): layout tetap, warna tombol disamakan dengan Figma. Filter kategori aktif berwarna kuning (`primary`), yang lain putih dengan shadow tipis. Kartu putih rounded 20px dengan shadow halus. Tombol "+" kuning 44px di kanan bawah, "Lihat detail" jadi tombol outline di kiri, dan baris tombol selalu sejajar antar kartu.
+- **Promise** (`Promises.jsx`): heading di tengah, 3 kartu putih rounded dengan ikon dalam lingkaran kuning pucat. Ikon baru `droplet` dan `bread` ditambahkan di `Icon.jsx` (sebelumnya nama ikon `bi-*` tidak terpetakan sehingga ikonnya kosong).
+- **Testimonials** (`Testimonials.jsx`): latar cream, eyebrow "What Our Guests Say", 3 kartu putih rounded, bintang oranye. Teks kutipan disamakan dengan Figma.
+- **CTA banner** (`Footer.jsx`): kartu kuning rounded 28px yang tidak full sampai pinggir layar, aksen lingkaran putih transparan, teks Figma, tombol pill gelap. Banner ini muncul di semua halaman toko.

@@ -8,6 +8,7 @@
     "css:build": "tailwindcss -i ./src/input.css -o ./src/output.css"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.2",
     "@tailwindcss/cli": "^4.3.5",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

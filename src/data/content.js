@@ -24,12 +24,13 @@ export const SIGNATURES = {
   eyebrow: 'Our Signatures',
   title: 'Crafted to Sweet Perfection',
   description:
-    'Explore our most-loved artisanal honey-glazed creations, prepared every morning and finished with authentic, wildflower raw honey.',
+    'Explore our most cherished honey glazed creations, proofed overnight and finished with authentic artisanal nectars.',
+  // Warna kartu dan susunan mengikuti desain Figma (Section 2: Best Sellers).
   items: [
-    { number: '01', title: 'Berry Honey Glaze', color: 'red', accent: '#BD4A42' },
-    { number: '02', title: 'Golden Crunch Honey', color: 'yellow', accent: '#E7A72B' },
-    { number: '03', title: 'Matcha Honey Drizzle', color: 'green', accent: '#718D62' },
-    { number: '04', title: 'Choco Honeycomb', color: 'blue', accent: '#5C7181' },
+    { number: '01', title: 'Berry Honey Glaze', description: 'Mixed berry glaze with rainbow sprinkles and a light wildflower honey finish.', accent: '#D42F32', dark: false, productId: 6 },
+    { number: '02', title: 'Golden Crunch Honey', description: 'Bright honey-lemon glaze topped with crunchy chocolate sprinkles.', accent: '#FFD93D', dark: true, productId: 2 },
+    { number: '03', title: 'Matcha Honey Drizzle', description: 'Toasted almond flakes under a silky matcha and raw honey drizzle.', accent: '#CFCB74', dark: true },
+    { number: '04', title: 'Choco Honeycomb', description: 'Almond flakes, blueberry glaze and dark chocolate honeycomb lines.', accent: '#609CD6', dark: true, productId: 4 },
   ],
 }
 
@@ -38,19 +39,19 @@ export const PROMISES = {
   title: 'Naturally Better, From Hive to Bite',
   items: [
     {
-      icon: 'bi-flower1',
+      icon: 'droplet',
       title: 'Real Raw Honey',
       description:
-        'Sourced sustainably from local apiaries across Java and Flores. No corn syrup or artificial sweeteners ever.',
+        'Sourced sustainably from local organic beekeepers across Java and Flores. No corn syrup or artificial sweeteners ever.',
     },
     {
-      icon: 'bi-cup-hot',
+      icon: 'bread',
       title: 'Baked Fresh Daily',
       description:
         'Crafted in small batches every morning at 5 AM with French butter and a 24-hour slow-fermented brioche dough.',
     },
     {
-      icon: 'bi-truck',
+      icon: 'truck',
       title: 'Fast Warm Delivery',
       description:
         'Delivered in temperature-controlled insulated eco-boxes so every bite arrives delightfully warm and fluffy.',
@@ -59,7 +60,7 @@ export const PROMISES = {
 }
 
 export const TESTIMONIALS = {
-  eyebrow: 'Testimonials',
+  eyebrow: 'What Our Guests Say',
   title: 'Love at First Drizzle',
   items: [
     {
@@ -70,14 +71,14 @@ export const TESTIMONIALS = {
     },
     {
       quote:
-        'The Honey Butter Sea Salt donut changed my life. Sweet, savory, fluffy perfection. Arrived warm within 25 minutes.',
+        'The Honey Butter Sea Salt donut changed my life. Sweet, savory, fluffy perfection. Arrived warm within 35 minutes.',
       author: 'Reza Pratama',
       role: 'Food Reviewer',
     },
     {
       quote:
-        'Ordered the 12-donut sharing box for our office meeting. Everyone was asking about the roasted almond flavor. Stunning packaging too.',
-      author: 'Clarissa Tan',
+        'Ordered the 12-donut sharing box for our office meeting. Everyone was asking about the toasted almond flavor. Stunning packaging too.',
+      author: 'Clarissa Salim',
       role: 'Corporate Client',
     },
   ],
@@ -86,7 +87,7 @@ export const TESTIMONIALS = {
 export const CTA_BANNER = {
   title: 'Taste the Golden Difference Today.',
   description:
-    'Use code HONEY15 for a complimentary jar of wildflower raw honey drizzle on orders over Rp 100.000.',
+    'First-time order? Enjoy complimentary warm delivery and a free signature mini donut box on orders over Rp 100.000.',
   buttonText: 'Order Fresh Donuts Now',
 }
 

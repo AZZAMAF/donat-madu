@@ -8,17 +8,19 @@ const QUICK_LINK_MAP = Object.fromEntries(NAV_LINKS.map((link) => [link.label.to
 export default function Footer() {
   return (
     <>
-      <section className="bg-primary px-6 py-14 sm:px-10 lg:px-16">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div>
-            <h2 className="mb-3 font-headline text-4xl -tracking-[0.03em] text-neutral-dark sm:text-5xl">
+      {/* CTA banner versi Figma: kartu kuning rounded, tidak full sampai pinggir layar. */}
+      <section className="bg-bg-cream px-6 pb-20 pt-4 sm:px-10 lg:px-16">
+        <div className="relative mx-auto flex max-w-[1100px] flex-col items-start justify-between gap-8 overflow-hidden rounded-[28px] bg-primary px-8 py-12 sm:px-12 md:flex-row md:items-center">
+          <span aria-hidden="true" className="pointer-events-none absolute -bottom-24 -right-16 size-64 rounded-full bg-white/20" />
+          <div className="relative">
+            <h2 className="mb-3 font-headline text-3xl leading-tight -tracking-[0.02em] text-neutral-dark sm:text-[40px]">
               {CTA_BANNER.title}
             </h2>
-            <p className="max-w-2xl text-neutral-dark/70">{CTA_BANNER.description}</p>
+            <p className="max-w-xl text-neutral-dark/75">{CTA_BANNER.description}</p>
           </div>
           <Link
             to="/#menu-list"
-            className="shrink-0 rounded-full bg-neutral-dark px-7 py-4 font-semibold text-white transition hover:bg-accent-dark"
+            className="relative shrink-0 rounded-full bg-neutral-dark px-7 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-choco-dark"
           >
             {CTA_BANNER.buttonText}
           </Link>
