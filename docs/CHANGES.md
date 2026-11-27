@@ -163,3 +163,9 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - **Ukuran sentuh:** tombol ikon header, tombol wishlist, filter, link nav dan titik carousel promo sekarang punya area klik minimal 44px.
 - **Hero di HP:** jarak dirapatkan dan gambar donat dibesarkan supaya langsung terlihat di layar pertama.
 - **Detail produk:** "Mungkin Kamu Juga Suka" selalu menampilkan 3 kartu (kategori sama dulu, lalu menu lain).
+
+## Foto menu baru
+
+- Foto `public/images/menu-1.jpg` sampai `menu-9.jpg` diganti foto baru (900×900, dikompres ±130 KB per foto) sehingga tidak ada lagi latar hitam/blur.
+- Deskripsi beberapa menu (Golden Honey Crunch, Choco Honeycomb, Honeycomb Creme Brulee, Passionfruit Honey Burst) disesuaikan dengan isi fotonya.
+- Nama file tetap sama, jadi data produk yang sudah diubah lewat Admin tetap memakai foto baru.

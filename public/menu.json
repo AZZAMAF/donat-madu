@@ -18,7 +18,7 @@
     {
       "id": 2,
       "name": "Golden Honey Crunch",
-      "description": "Kepingan honeycomb karamel renyah di atas glaze madu susu andalan kami.",
+      "description": "Glaze karamel madu dengan taburan kacang panggang yang renyah.",
       "price": 26000,
       "category": "Classic Glazed",
       "image": "/images/menu-2.jpg"
@@ -34,7 +34,7 @@
     {
       "id": 4,
       "name": "Choco Honeycomb",
-      "description": "Glaze cokelat hitam berlapis honeycomb karamel dan siraman madu murni.",
+      "description": "Glaze krim lembut bertabur bubuk kakao, dengan sentuhan madu murni.",
       "price": 28000,
       "category": "Chocolate & Honey",
       "image": "/images/menu-4.jpg"
@@ -42,7 +42,7 @@
     {
       "id": 5,
       "name": "Honeycomb Creme Brulee",
-      "description": "Isian vla vanila dengan lapisan gula madu yang dibakar sampai renyah.",
+      "description": "Glaze vanila madu yang lumer dengan taburan gula halus di atasnya.",
       "price": 30000,
       "category": "Chocolate & Honey",
       "image": "/images/menu-5.jpg"
@@ -58,7 +58,7 @@
     {
       "id": 7,
       "name": "Passionfruit Honey Burst",
-      "description": "Isian selai markisa yang segar di bawah lapisan madu yang mengilap.",
+      "description": "Glaze madu lemon yang segar dengan parutan kulit lemon dan gula kristal.",
       "price": 29000,
       "category": "Fruity Infusions",
       "image": "/images/menu-7.jpg"
