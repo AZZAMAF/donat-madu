@@ -57,7 +57,7 @@ export default function LoginPage() {
           <h1 className="mb-2 font-headline text-3xl text-neutral-dark">Halo, {user.name}!</h1>
           <p className="mb-6 text-neutral-dark/65">Kamu sudah masuk sebagai {user.email}.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to={user.role === 'admin' ? '/admin' : '/profil'} className="rounded-full bg-primary px-6 py-3 font-semibold text-neutral-dark hover:bg-primary-dark">
+            <Link to={user.role === 'admin' ? '/admin' : '/profil'} className="rounded-full bg-neutral-dark px-6 py-3 font-semibold text-white hover:bg-choco-dark">
               {user.role === 'admin' ? 'Buka Dashboard' : 'Ke Profil'}
             </Link>
             <button type="button" onClick={logout} className="rounded-full border border-neutral-dark/30 px-6 py-3 font-semibold text-neutral-dark hover:bg-neutral-dark/5">Keluar</button>
@@ -69,8 +69,8 @@ export default function LoginPage() {
 
   return (
     <section className="grid min-h-[80vh] bg-bg-cream lg:grid-cols-2">
-      <div className="relative hidden overflow-hidden bg-primary lg:block">
-        <img src="/images/menu-4.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-90" />
+      <div className="relative hidden overflow-hidden bg-neutral-dark lg:block">
+        <img src="/images/donat-semua.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-dark/85 via-neutral-dark/30 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-12 text-white">
           <h2 className="mb-3 font-headline text-5xl leading-[1.05]">Manisnya madu, sekali klik.</h2>
@@ -116,7 +116,7 @@ export default function LoginPage() {
 
             {error && <p role="alert" className="rounded-[10px] bg-accent-red/10 px-4 py-2 text-sm text-accent-red">{error}</p>}
 
-            <button type="submit" className="mt-2 h-12 rounded-full bg-primary font-semibold text-neutral-dark transition hover:bg-primary-dark">
+            <button type="submit" className="mt-2 h-12 rounded-full bg-neutral-dark font-semibold text-white transition hover:bg-choco-dark">
               {mode === 'masuk' ? 'Masuk' : 'Daftar Sekarang'}
             </button>
           </form>

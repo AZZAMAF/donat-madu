@@ -182,3 +182,14 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - Ringkasan (total pesanan, belanja, wishlist, voucher) jadi satu kartu dengan garis pemisah, angka pakai font sans tebal.
 - `EmptyState` dipakai di banyak halaman: kartu polos tanpa garis putus-putus, ikon di lingkaran cream, tombol cokelat gelap.
 - Semua kartu di halaman profil memakai warna `#FFFDF8` dan radius 20px supaya sama dengan landing page.
+
+## Perbaikan hasil review semua halaman
+
+- **Tombol utama** di semua halaman toko (keranjang, checkout, login, promo, wishlist, profil, admin, 404) sekarang cokelat gelap. Kuning hanya dipakai untuk tombol "+" di kartu menu dan tombol hero landing. "Beli Sekarang" di detail produk jadi tombol outline supaya beda dengan "Tambah ke Keranjang".
+- **Header:** link nav yang aktif sekarang sesuai halaman (fungsi `isActiveLink` di `Header.jsx`). Di halaman keranjang/login/dll tidak ada yang aktif; di detail produk yang aktif "Menu".
+- **Banner CTA** hanya tampil di landing, Promo dan detail produk (`CTA_PAGES` di `Footer.jsx`).
+- **Halaman Promo:** kartu Promo Unggulan jadi kartu cream dengan foto di kotak sendiri (tidak menimpa teks di HP). Warna promo tinggal titik kecil di label. Kartu voucher pakai potongan tiket cream yang sama untuk semua voucher. Tombol di banner Flash Voucher jadi putih supaya terlihat di latar gelap.
+- **Wishlist:** kartu disamakan dengan kartu menu, bagian "Catatan Rasa" jadi satu kartu penuh.
+- **Toast** muncul di pojok kanan bawah (di HP tetap di tengah bawah).
+- **Admin:** kartu statistik dan panel memakai gaya kartu cream yang sama dengan halaman lain; label "Admin" tidak kuning lagi.
+- **Foto baru:** foto aneka donat dipakai untuk 12-Box Office Sharing (`menu-9.jpg`) dan panel kiri halaman Login (`donat-semua.jpg`).

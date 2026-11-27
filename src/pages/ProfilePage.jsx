@@ -189,7 +189,7 @@ function OrdersTab({ orders }) {
                   {order.discount > 0 && <p className="mb-2 text-[#4E7A3A]">Hemat {formatRupiah(order.discount)} dengan {order.voucherCode}</p>}
                   <div className="mt-4 flex flex-wrap gap-3">
                     <Link to={`/pesanan-berhasil/${order.id}`} className="rounded-full border border-neutral-dark/30 px-4 py-2 font-semibold text-neutral-dark hover:bg-neutral-dark/5">Detail pesanan</Link>
-                    <button type="button" onClick={() => reorder(order)} className="rounded-full bg-primary px-4 py-2 font-semibold text-neutral-dark hover:bg-primary-dark">Pesan lagi</button>
+                    <button type="button" onClick={() => reorder(order)} className="rounded-full bg-neutral-dark px-4 py-2 font-semibold text-white hover:bg-choco-dark">Pesan lagi</button>
                   </div>
                 </div>
               )}
@@ -228,7 +228,7 @@ function AddressTab() {
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="font-headline text-3xl text-neutral-dark">Alamat Tersimpan</h2>
         {!form && (
-          <button type="button" onClick={() => open(null)} className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-neutral-dark hover:bg-primary-dark">
+          <button type="button" onClick={() => open(null)} className="inline-flex items-center gap-2 rounded-full bg-neutral-dark px-5 py-2.5 text-sm font-semibold text-white hover:bg-choco-dark">
             <Icon name="plus" className="size-4" /> Tambah Alamat
           </button>
         )}
@@ -302,7 +302,7 @@ function AccountTab() {
           {user.provider === 'google' ? 'Akun ini terhubung dengan Google, foto profil diambil dari Google.' : 'Email dipakai untuk masuk dan tidak bisa diubah.'}
         </p>
         <div className="sm:col-span-2">
-          <button type="submit" className="rounded-full bg-primary px-6 py-2.5 font-semibold text-neutral-dark hover:bg-primary-dark">Simpan Perubahan</button>
+          <button type="submit" className="rounded-full bg-neutral-dark px-6 py-2.5 font-semibold text-white hover:bg-choco-dark">Simpan Perubahan</button>
         </div>
       </form>
     </section>
@@ -330,7 +330,7 @@ function VoucherTab() {
               <button
                 type="button"
                 onClick={() => { setVoucherCode(selected ? '' : v.code); if (!selected) showToast(`Voucher ${v.code} dipilih`) }}
-                className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold ${selected ? 'bg-[#4E7A3A]/10 text-[#4E7A3A]' : 'bg-primary text-neutral-dark hover:bg-primary-dark'}`}
+                className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold ${selected ? 'bg-[#4E7A3A]/10 text-[#4E7A3A]' : 'bg-neutral-dark text-white hover:bg-choco-dark'}`}
               >
                 {selected ? '✓ Dipakai' : 'Pakai'}
               </button>

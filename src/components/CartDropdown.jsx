@@ -48,7 +48,7 @@ export default function CartDropdown({ cart, onQtyChange, onRemove, onClose }) {
             <Link
               to="/checkout"
               onClick={onClose}
-              className="mt-4 block w-full rounded-full bg-primary py-3 text-center font-semibold text-neutral-dark transition hover:bg-primary-dark"
+              className="mt-4 block w-full rounded-full bg-neutral-dark py-3 text-center font-semibold text-white transition hover:bg-choco-dark"
             >
               Checkout
             </Link>

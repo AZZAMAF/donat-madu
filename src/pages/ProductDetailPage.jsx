@@ -78,14 +78,14 @@ function ProductDetail({ id }) {
             <button
               type="button"
               onClick={() => addToCart(product, qty)}
-              className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-7 font-semibold text-neutral-dark transition hover:bg-primary-dark"
+              className="inline-flex h-12 items-center gap-2 rounded-full bg-neutral-dark px-7 font-semibold text-white transition hover:bg-choco-dark"
             >
               <Icon name="bag" className="size-5" /> Tambah ke Keranjang
             </button>
             <button
               type="button"
               onClick={buyNow}
-              className="inline-flex h-12 items-center rounded-full bg-neutral-dark px-7 font-semibold text-white transition hover:bg-accent-dark"
+              className="inline-flex h-12 items-center rounded-full border border-neutral-dark px-7 font-semibold text-neutral-dark transition hover:bg-neutral-dark hover:text-white"
             >
               Beli Sekarang
             </button>

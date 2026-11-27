@@ -1,30 +1,38 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { BRAND, CTA_BANNER, FOOTER, NAV_LINKS } from '../data/content'
 
 // Quick links di footer menunjuk anchor yang sama dengan nav utama,
 // supaya tidak ada lagi tautan mati href="#".
 const QUICK_LINK_MAP = Object.fromEntries(NAV_LINKS.map((link) => [link.label.toLowerCase(), link.href]))
 
+// Banner CTA hanya di halaman jualan, tidak di login/keranjang/checkout/404.
+const CTA_PAGES = [/^\/$/, /^\/promo/, /^\/menu\//]
+
 export default function Footer() {
+  const { pathname } = useLocation()
+  const showCta = CTA_PAGES.some((re) => re.test(pathname))
+
   return (
     <>
       {/* CTA banner: kartu cream polos dengan border tipis, tanpa ornamen. */}
-      <section className="bg-bg-cream px-6 pb-20 pt-4 sm:px-10 lg:px-16">
-        <div className="relative mx-auto flex max-w-[1100px] flex-col items-start justify-between gap-8 overflow-hidden rounded-[28px] border border-neutral-dark/10 bg-[#FFFDF8] px-8 py-12 shadow-[0_4px_16px_rgba(59,42,30,0.06)] sm:px-12 md:flex-row md:items-center">
-          <div className="relative">
-            <h2 className="mb-3 font-headline text-3xl leading-tight -tracking-[0.02em] text-neutral-dark sm:text-[40px]">
-              {CTA_BANNER.title}
-            </h2>
-            <p className="max-w-xl text-[#7A6455]">{CTA_BANNER.description}</p>
+      {showCta && (
+        <section className="bg-bg-cream px-6 pb-20 pt-4 sm:px-10 lg:px-16">
+          <div className="relative mx-auto flex max-w-[1100px] flex-col items-start justify-between gap-8 overflow-hidden rounded-[28px] border border-neutral-dark/10 bg-[#FFFDF8] px-8 py-12 shadow-[0_4px_16px_rgba(59,42,30,0.06)] sm:px-12 md:flex-row md:items-center">
+            <div className="relative">
+              <h2 className="mb-3 font-headline text-3xl leading-tight -tracking-[0.02em] text-neutral-dark sm:text-[40px]">
+                {CTA_BANNER.title}
+              </h2>
+              <p className="max-w-xl text-[#7A6455]">{CTA_BANNER.description}</p>
+            </div>
+            <Link
+              to="/#menu-list"
+              className="relative shrink-0 rounded-full bg-neutral-dark px-7 py-4 font-semibold text-white transition hover:bg-choco-dark"
+            >
+              {CTA_BANNER.buttonText}
+            </Link>
           </div>
-          <Link
-            to="/#menu-list"
-            className="relative shrink-0 rounded-full bg-neutral-dark px-7 py-4 font-semibold text-white transition hover:bg-choco-dark"
-          >
-            {CTA_BANNER.buttonText}
-          </Link>
-        </div>
-      </section>
+        </section>
+      )}
 
       <footer id="contact" className="bg-choco-dark px-6 py-16 text-white sm:px-10 lg:px-16">
         <div className="mx-auto grid max-w-[1280px] gap-10 md:grid-cols-[1.4fr_0.6fr_0.9fr]">

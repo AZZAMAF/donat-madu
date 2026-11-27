@@ -67,7 +67,7 @@ export default function CartPage() {
             <OrderSummary totals={totals} />
             <Link
               to="/checkout"
-              className="mt-6 flex h-12 w-full items-center justify-center rounded-full bg-primary font-semibold text-neutral-dark transition hover:bg-primary-dark"
+              className="mt-6 flex h-12 w-full items-center justify-center rounded-full bg-neutral-dark font-semibold text-white transition hover:bg-choco-dark"
             >
               Lanjut ke Checkout
             </Link>

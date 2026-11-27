@@ -62,7 +62,7 @@ export default function OrderSuccessPage() {
           <Link to={user ? '/profil' : '/login?redirect=/profil'} className="inline-flex h-12 items-center rounded-full border border-neutral-dark/40 px-6 font-semibold text-neutral-dark transition hover:bg-neutral-dark/5">
             Lihat Riwayat Pesanan
           </Link>
-          <Link to="/#menu-list" className="inline-flex h-12 items-center rounded-full bg-primary px-6 font-semibold text-neutral-dark transition hover:bg-primary-dark">
+          <Link to="/#menu-list" className="inline-flex h-12 items-center rounded-full bg-neutral-dark px-6 font-semibold text-white transition hover:bg-choco-dark">
             Belanja Lagi
           </Link>
         </div>
