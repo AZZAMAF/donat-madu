@@ -174,3 +174,11 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 
 - **CTA banner:** tidak kuning lagi. Sekarang kartu cream dengan border tipis, tanpa lingkaran dekorasi, tombol cokelat gelap.
 - **Filter menu:** yang tidak aktif hanya border putih dengan latar transparan (latar putih muncul saat hover). Yang aktif cokelat gelap dengan teks putih.
+
+## Halaman Profil dirapikan
+
+- Kartu identitas dan menu profil digabung jadi satu kartu; menu jadi daftar rapi (yang aktif diberi latar cream), bukan tombol-tombol putih terpisah.
+- Avatar huruf sekarang cokelat gelap dengan huruf putih (berlaku juga di header).
+- Ringkasan (total pesanan, belanja, wishlist, voucher) jadi satu kartu dengan garis pemisah, angka pakai font sans tebal.
+- `EmptyState` dipakai di banyak halaman: kartu polos tanpa garis putus-putus, ikon di lingkaran cream, tombol cokelat gelap.
+- Semua kartu di halaman profil memakai warna `#FFFDF8` dan radius 20px supaya sama dengan landing page.

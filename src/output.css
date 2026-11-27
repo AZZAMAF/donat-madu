@@ -495,6 +495,10 @@
     width: calc(var(--spacing) * 12);
     height: calc(var(--spacing) * 12);
   }
+  .size-14 {
+    width: calc(var(--spacing) * 14);
+    height: calc(var(--spacing) * 14);
+  }
   .size-16 {
     width: calc(var(--spacing) * 16);
     height: calc(var(--spacing) * 16);
@@ -1420,6 +1424,10 @@
     --tw-tracking: 0.5px;
     letter-spacing: 0.5px;
   }
+  .tracking-\[0\.12em\] {
+    --tw-tracking: 0.12em;
+    letter-spacing: 0.12em;
+  }
   .tracking-\[0\.14em\] {
     --tw-tracking: 0.14em;
     letter-spacing: 0.14em;
@@ -1850,6 +1858,14 @@
     .hover\:bg-cream-deep:hover {
       background-color: var(--color-cream-deep);
     }
+    .hover\:bg-cream-deep\/60:hover {
+      background-color: color-mix(in srgb, #F8F1E4 60%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-cream-deep\/60:hover {
+        background-color: color-mix(in oklab, var(--color-cream-deep) 60%, transparent);
+      }
+    }
     .hover\:bg-neutral-dark\/5:hover {
       background-color: color-mix(in srgb, #3B2A1E 5%, transparent);
     }
@@ -2192,15 +2208,39 @@
     .lg\:overflow-visible {
       overflow: visible;
     }
-    .lg\:rounded-\[12px\] {
-      border-radius: 12px;
-    }
     .lg\:px-16 {
       padding-inline: calc(var(--spacing) * 16);
     }
-    .lg\:pb-0 {
-      padding-bottom: 0px;
+  }
+  .\[\&\>\*\]\:border-neutral-dark\/10 > * {
+    border-color: color-mix(in srgb, #3B2A1E 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-neutral-dark) 10%, transparent);
     }
+  }
+  @media (width >= 48rem) {
+    .md\:\[\&\>\*\]\:border-r > * {
+      border-right-style: var(--tw-border-style);
+      border-right-width: 1px;
+    }
+    .md\:\[\&\>\*\:last-child\]\:border-r-0 > :last-child {
+      border-right-style: var(--tw-border-style);
+      border-right-width: 0px;
+    }
+  }
+  .\[\&\>\*\:nth-child\(-n\+2\)\]\:border-b > :nth-child(-n+2) {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  @media (width >= 48rem) {
+    .md\:\[\&\>\*\:nth-child\(-n\+2\)\]\:border-b-0 > :nth-child(-n+2) {
+      border-bottom-style: var(--tw-border-style);
+      border-bottom-width: 0px;
+    }
+  }
+  .\[\&\>\*\:nth-child\(odd\)\]\:border-r > :nth-child(odd) {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 1px;
   }
 }
 html {

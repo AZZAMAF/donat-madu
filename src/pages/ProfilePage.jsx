@@ -50,35 +50,39 @@ export default function ProfilePage() {
       }
     >
       <div className="grid items-start gap-8 lg:grid-cols-[300px_1fr]">
-        <aside className="flex flex-col gap-5 lg:sticky lg:top-28">
-          <div className="rounded-[16px] border border-neutral-dark/10 bg-white p-6 text-center">
-            <Avatar user={user} className="mx-auto mb-4 size-20 text-3xl" />
-            <p className="font-headline text-2xl text-neutral-dark">{user.name}</p>
-            <p className="truncate text-sm text-neutral-dark/60">{user.email}</p>
-            <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-cream-deep px-3 py-1 text-xs font-semibold text-neutral-dark/70">
-              {user.provider === 'google' ? 'Masuk dengan Google' : user.role === 'admin' ? 'Admin' : 'Akun email'}
-            </span>
+        {/* Satu kartu: identitas di atas, menu di bawah, dipisah garis tipis. */}
+        <aside className="overflow-hidden rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] lg:sticky lg:top-28">
+          <div className="flex items-center gap-4 p-5">
+            <Avatar user={user} className="size-14 text-2xl" />
+            <div className="min-w-0">
+              <p className="truncate font-headline text-xl text-neutral-dark">{user.name}</p>
+              <p className="truncate text-sm text-[#7A6455]">{user.email}</p>
+              <p className="mt-1 text-xs font-semibold text-neutral-dark/50">
+                {user.provider === 'google' ? 'Masuk dengan Google' : user.role === 'admin' ? 'Admin' : 'Akun email'}
+              </p>
+            </div>
           </div>
 
-          <nav aria-label="Menu profil" className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
+          <nav aria-label="Menu profil" className="flex gap-1 overflow-x-auto border-t border-neutral-dark/10 p-2 lg:flex-col lg:overflow-visible">
             {TABS.map((t) => (
               <Link
                 key={t.id}
                 to={`/profil#${t.id}`}
                 aria-current={tab === t.id ? 'page' : undefined}
-                className={`flex shrink-0 items-center gap-3 rounded-full px-4 py-2.5 text-sm font-semibold transition lg:rounded-[12px] ${tab === t.id ? 'bg-neutral-dark text-white' : 'bg-white text-neutral-dark hover:bg-white/70'}`}
+                className={`flex min-h-11 shrink-0 items-center gap-3 rounded-[12px] px-3 text-sm font-semibold transition ${tab === t.id ? 'bg-cream-deep text-neutral-dark' : 'text-[#7A6455] hover:bg-cream-deep/60 hover:text-neutral-dark'}`}
               >
                 <Icon name={t.icon} className="size-4" /> {t.label}
               </Link>
             ))}
-            <Link to="/wishlist" className="flex shrink-0 items-center gap-3 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-neutral-dark transition hover:bg-white/70 lg:rounded-[12px]">
+            <Link to="/wishlist" className="flex min-h-11 shrink-0 items-center gap-3 rounded-[12px] px-3 text-sm font-semibold text-[#7A6455] transition hover:bg-cream-deep/60 hover:text-neutral-dark">
               <Icon name="heart" className="size-4" /> Wishlist <span className="ml-auto text-xs text-neutral-dark/50">{wishlist.length}</span>
             </Link>
           </nav>
         </aside>
 
         <div className="flex min-w-0 flex-col gap-6">
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {/* Ringkasan dalam satu kartu, dipisah garis, bukan 4 kotak terpisah. */}
+          <div className="grid grid-cols-2 overflow-hidden rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] md:grid-cols-4 [&>*]:border-neutral-dark/10 [&>*:nth-child(odd)]:border-r md:[&>*]:border-r md:[&>*:last-child]:border-r-0 [&>*:nth-child(-n+2)]:border-b md:[&>*:nth-child(-n+2)]:border-b-0">
             <Stat label="Total pesanan" value={myOrders.length} />
             <Stat label="Total belanja" value={formatRupiah(totalSpent)} />
             <Stat label="Wishlist" value={`${wishlist.length} donat`} />
@@ -91,7 +95,7 @@ export default function ProfilePage() {
           {tab === 'voucher' && <VoucherTab />}
 
           {tab === 'pesanan' && savedProducts.length > 0 && (
-            <section className="rounded-[16px] border border-neutral-dark/10 bg-white p-6">
+            <section className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="font-headline text-2xl text-neutral-dark">Dari Wishlist-mu</h2>
                 <Link to="/wishlist" className="text-sm font-semibold text-accent-dark hover:underline">Lihat semua →</Link>
@@ -141,13 +145,13 @@ function OrdersTab({ orders }) {
           ))}
         </div>
       </div>
-      {shown.length === 0 && <p className="rounded-[16px] bg-white p-8 text-center text-neutral-dark/60">Tidak ada pesanan di filter ini.</p>}
+      {shown.length === 0 && <p className="rounded-[20px] bg-[#FFFDF8] p-8 text-center text-neutral-dark/60">Tidak ada pesanan di filter ini.</p>}
       <ul className="flex flex-col gap-4">
         {shown.map((order) => {
           const open = openOrder === order.id
           const step = STEPS.indexOf(order.status)
           return (
-            <li key={order.id} className="rounded-[16px] border border-neutral-dark/10 bg-white">
+            <li key={order.id} className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8]">
               <button type="button" onClick={() => setOpenOrder(open ? null : order.id)} aria-expanded={open} className="flex w-full flex-wrap items-center justify-between gap-3 p-5 text-left">
                 <div>
                   <p className="font-headline text-lg text-neutral-dark">{order.id}</p>
@@ -231,7 +235,7 @@ function AddressTab() {
       </div>
 
       {form && (
-        <form onSubmit={submit} className="mb-5 grid gap-4 rounded-[16px] border border-neutral-dark/10 bg-white p-6 sm:grid-cols-2">
+        <form onSubmit={submit} className="mb-5 grid gap-4 rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6 sm:grid-cols-2">
           <label className="text-sm font-semibold text-neutral-dark">Label
             <select value={form.label} onChange={(e) => setForm({ ...form, label: e.target.value })} className={`${inputClass} mt-1`}>
               {['Rumah', 'Kantor', 'Kos', 'Lainnya'].map((l) => <option key={l}>{l}</option>)}
@@ -288,7 +292,7 @@ function AccountTab() {
   }
 
   return (
-    <section className="rounded-[16px] border border-neutral-dark/10 bg-white p-6">
+    <section className="rounded-[20px] border border-neutral-dark/10 bg-[#FFFDF8] p-6">
       <h2 className="mb-5 font-headline text-3xl text-neutral-dark">Data Diri</h2>
       <form onSubmit={save} className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-semibold text-neutral-dark">Nama lengkap<input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={`${inputClass} mt-1`} /></label>
@@ -340,9 +344,9 @@ function VoucherTab() {
 
 function Stat({ label, value }) {
   return (
-    <div className="rounded-[16px] border border-neutral-dark/10 bg-white p-4">
-      <p className="text-xs text-neutral-dark/55">{label}</p>
-      <p className="truncate font-headline text-xl text-neutral-dark">{value}</p>
+    <div className="p-5">
+      <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-neutral-dark/50">{label}</p>
+      <p className="truncate text-lg font-bold text-neutral-dark">{value}</p>
     </div>
   )
 }
