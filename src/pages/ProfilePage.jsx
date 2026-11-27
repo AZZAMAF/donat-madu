@@ -1,32 +1,35 @@
 import { useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import Avatar from '../components/Avatar'
 import EmptyState from '../components/EmptyState'
 import Icon from '../components/Icon'
 import PageShell from '../components/PageShell'
 import StatusBadge from '../components/StatusBadge'
 import { useShop } from '../context/ShopContext'
+import { VOUCHERS } from '../data/vouchers'
 import { formatRupiah, formatTanggal } from '../utils/format'
 
 const inputClass =
   'w-full rounded-[12px] border border-neutral-dark/20 bg-white px-4 py-3 text-neutral-dark outline-none transition focus:border-secondary'
 
+const TABS = [
+  { id: 'pesanan', label: 'Pesanan Saya', icon: 'bag' },
+  { id: 'alamat', label: 'Alamat Tersimpan', icon: 'truck' },
+  { id: 'akun', label: 'Data Diri', icon: 'person' },
+  { id: 'voucher', label: 'Voucher Saya', icon: 'tag' },
+]
+
 export default function ProfilePage() {
-  const { user, orders, wishlist, logout, updateProfile, showToast } = useShop()
-  const [editing, setEditing] = useState(false)
-  const [form, setForm] = useState({ name: user?.name ?? '', phone: user?.phone ?? '', address: user?.address ?? '' })
-  const [openOrder, setOpenOrder] = useState(null)
+  const { user, orders, wishlist, products, voucherCode, logout } = useShop()
+  const { hash } = useLocation()
+  const navigate = useNavigate()
 
   if (!user) return <Navigate to="/login?redirect=/profil" replace />
 
+  const tab = TABS.some((t) => `#${t.id}` === hash) ? hash.slice(1) : 'pesanan'
   const myOrders = orders.filter((o) => o.userEmail === user.email)
   const totalSpent = myOrders.filter((o) => o.status !== 'Dibatalkan').reduce((sum, o) => sum + o.total, 0)
-
-  const save = (event) => {
-    event.preventDefault()
-    updateProfile({ name: form.name.trim(), phone: form.phone.trim(), address: form.address.trim() })
-    setEditing(false)
-    showToast('Profil disimpan')
-  }
+  const savedProducts = products.filter((p) => wishlist.includes(p.id))
 
   return (
     <PageShell
@@ -40,102 +43,298 @@ export default function ProfilePage() {
               <Icon name="chart" className="size-4" /> Dashboard Admin
             </Link>
           )}
-          <button type="button" onClick={logout} className="inline-flex items-center gap-2 rounded-full border border-neutral-dark/30 px-5 py-2.5 font-semibold text-neutral-dark hover:bg-neutral-dark/5">
+          <button type="button" onClick={() => { logout(); navigate('/') }} className="inline-flex items-center gap-2 rounded-full border border-neutral-dark/30 px-5 py-2.5 font-semibold text-neutral-dark hover:bg-neutral-dark/5">
             <Icon name="logout" className="size-4" /> Keluar
           </button>
         </div>
       }
     >
-      <div className="grid items-start gap-8 lg:grid-cols-[340px_1fr]">
-        <aside className="flex flex-col gap-5">
-          <div className="rounded-[16px] border border-neutral-dark/10 bg-white p-6">
-            <div className="mb-5 flex items-center gap-4">
-              <span className="grid size-14 place-items-center rounded-full bg-primary font-headline text-2xl text-neutral-dark">
-                {user.name.charAt(0).toUpperCase()}
-              </span>
-              <div className="min-w-0">
-                <p className="truncate font-headline text-xl text-neutral-dark">{user.name}</p>
-                <p className="truncate text-sm text-neutral-dark/60">{user.email}</p>
-              </div>
-            </div>
-
-            {editing ? (
-              <form onSubmit={save} className="flex flex-col gap-3">
-                <label className="text-sm font-semibold text-neutral-dark">Nama<input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={`${inputClass} mt-1`} required /></label>
-                <label className="text-sm font-semibold text-neutral-dark">No. WhatsApp<input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={`${inputClass} mt-1`} /></label>
-                <label className="text-sm font-semibold text-neutral-dark">Alamat<textarea rows={3} value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className={`${inputClass} mt-1`} /></label>
-                <div className="flex gap-2">
-                  <button type="submit" className="flex-1 rounded-full bg-primary py-2.5 font-semibold text-neutral-dark hover:bg-primary-dark">Simpan</button>
-                  <button type="button" onClick={() => setEditing(false)} className="rounded-full border border-neutral-dark/30 px-4 py-2.5 font-semibold text-neutral-dark">Batal</button>
-                </div>
-              </form>
-            ) : (
-              <>
-                <dl className="flex flex-col gap-3 text-sm">
-                  <div><dt className="text-neutral-dark/50">No. WhatsApp</dt><dd className="font-semibold text-neutral-dark">{user.phone || '-'}</dd></div>
-                  <div><dt className="text-neutral-dark/50">Alamat</dt><dd className="font-semibold text-neutral-dark">{user.address || 'Belum diisi'}</dd></div>
-                </dl>
-                <button type="button" onClick={() => { setForm({ name: user.name, phone: user.phone ?? '', address: user.address ?? '' }); setEditing(true) }} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:underline">
-                  <Icon name="edit" className="size-4" /> Ubah profil
-                </button>
-              </>
-            )}
+      <div className="grid items-start gap-8 lg:grid-cols-[300px_1fr]">
+        <aside className="flex flex-col gap-5 lg:sticky lg:top-28">
+          <div className="rounded-[16px] border border-neutral-dark/10 bg-white p-6 text-center">
+            <Avatar user={user} className="mx-auto mb-4 size-20 text-3xl" />
+            <p className="font-headline text-2xl text-neutral-dark">{user.name}</p>
+            <p className="truncate text-sm text-neutral-dark/60">{user.email}</p>
+            <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-cream-deep px-3 py-1 text-xs font-semibold text-neutral-dark/70">
+              {user.provider === 'google' ? 'Masuk dengan Google' : user.role === 'admin' ? 'Admin' : 'Akun email'}
+            </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <Stat label="Total pesanan" value={myOrders.length} />
-            <Stat label="Total belanja" value={formatRupiah(totalSpent)} />
-          </div>
-
-          <Link to="/wishlist" className="flex items-center justify-between rounded-[16px] border border-neutral-dark/10 bg-white p-5 transition hover:border-secondary">
-            <span className="flex items-center gap-3 font-semibold text-neutral-dark"><Icon name="heart" className="size-5 text-accent-red" /> Wishlist saya</span>
-            <span className="text-sm text-neutral-dark/60">{wishlist.length} item →</span>
-          </Link>
+          <nav aria-label="Menu profil" className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
+            {TABS.map((t) => (
+              <Link
+                key={t.id}
+                to={`/profil#${t.id}`}
+                aria-current={tab === t.id ? 'page' : undefined}
+                className={`flex shrink-0 items-center gap-3 rounded-full px-4 py-2.5 text-sm font-semibold transition lg:rounded-[12px] ${tab === t.id ? 'bg-neutral-dark text-white' : 'bg-white text-neutral-dark hover:bg-white/70'}`}
+              >
+                <Icon name={t.icon} className="size-4" /> {t.label}
+              </Link>
+            ))}
+            <Link to="/wishlist" className="flex shrink-0 items-center gap-3 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-neutral-dark transition hover:bg-white/70 lg:rounded-[12px]">
+              <Icon name="heart" className="size-4" /> Wishlist <span className="ml-auto text-xs text-neutral-dark/50">{wishlist.length}</span>
+            </Link>
+          </nav>
         </aside>
 
-        <section>
-          <h2 className="mb-5 font-headline text-3xl text-neutral-dark">Riwayat Pesanan</h2>
-          {myOrders.length === 0 ? (
-            <EmptyState icon="box" title="Belum ada pesanan" description="Pesanan yang kamu buat saat masuk akan muncul di sini." actionLabel="Mulai Belanja" />
-          ) : (
-            <ul className="flex flex-col gap-4">
-              {myOrders.map((order) => {
-                const open = openOrder === order.id
-                return (
-                  <li key={order.id} className="rounded-[16px] border border-neutral-dark/10 bg-white">
-                    <button type="button" onClick={() => setOpenOrder(open ? null : order.id)} aria-expanded={open} className="flex w-full flex-wrap items-center justify-between gap-3 p-5 text-left">
-                      <div>
-                        <p className="font-headline text-lg text-neutral-dark">{order.id}</p>
-                        <p className="text-xs text-neutral-dark/55">{formatTanggal(order.createdAt)} · {order.items.reduce((s, i) => s + i.qty, 0)} item</p>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <StatusBadge status={order.status} />
-                        <strong className="text-secondary">{formatRupiah(order.total)}</strong>
-                        <span className={`text-neutral-dark/50 transition ${open ? 'rotate-90' : ''}`} aria-hidden="true">›</span>
-                      </div>
-                    </button>
-                    {open && (
-                      <div className="border-t border-neutral-dark/10 px-5 pb-5 pt-4 text-sm">
-                        <ul className="mb-4 flex flex-col gap-2">
-                          {order.items.map((item) => (
-                            <li key={item.id} className="flex justify-between gap-3">
-                              <span>{item.qty}× {item.name}</span>
-                              <span className="font-semibold">{formatRupiah(item.price * item.qty)}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        {order.discount > 0 && <p className="text-[#4E7A3A]">Hemat {formatRupiah(order.discount)} dengan {order.voucherCode}</p>}
-                        <Link to={`/pesanan-berhasil/${order.id}`} className="mt-3 inline-block font-semibold text-secondary hover:underline">Lihat detail pesanan →</Link>
-                      </div>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
+        <div className="flex min-w-0 flex-col gap-6">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            <Stat label="Total pesanan" value={myOrders.length} />
+            <Stat label="Total belanja" value={formatRupiah(totalSpent)} />
+            <Stat label="Wishlist" value={`${wishlist.length} donat`} />
+            <Stat label="Voucher dipilih" value={voucherCode || '-'} />
+          </div>
+
+          {tab === 'pesanan' && <OrdersTab orders={myOrders} />}
+          {tab === 'alamat' && <AddressTab />}
+          {tab === 'akun' && <AccountTab />}
+          {tab === 'voucher' && <VoucherTab />}
+
+          {tab === 'pesanan' && savedProducts.length > 0 && (
+            <section className="rounded-[16px] border border-neutral-dark/10 bg-white p-6">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="font-headline text-2xl text-neutral-dark">Dari Wishlist-mu</h2>
+                <Link to="/wishlist" className="text-sm font-semibold text-secondary hover:underline">Lihat semua →</Link>
+              </div>
+              <div className="flex gap-4 overflow-x-auto pb-1">
+                {savedProducts.slice(0, 6).map((p) => (
+                  <Link key={p.id} to={`/menu/${p.id}`} className="w-32 shrink-0">
+                    <img src={p.image} alt="" className="mb-2 aspect-square w-full rounded-[12px] object-cover" />
+                    <p className="truncate text-sm font-semibold text-neutral-dark">{p.name}</p>
+                    <p className="text-xs text-secondary">{formatRupiah(p.price)}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
           )}
-        </section>
+        </div>
       </div>
     </PageShell>
+  )
+}
+
+const STEPS = ['Menunggu Konfirmasi', 'Diproses', 'Dikirim', 'Selesai']
+
+function OrdersTab({ orders }) {
+  const { addToCart, getProduct } = useShop()
+  const navigate = useNavigate()
+  const [filter, setFilter] = useState('Semua')
+  const [openOrder, setOpenOrder] = useState(orders[0]?.id ?? null)
+  const shown = filter === 'Semua' ? orders : orders.filter((o) => (filter === 'Aktif' ? !['Selesai', 'Dibatalkan'].includes(o.status) : o.status === filter))
+
+  const reorder = (order) => {
+    order.items.forEach((item) => addToCart(getProduct(item.id) ?? item, item.qty))
+    navigate('/keranjang')
+  }
+
+  if (orders.length === 0) {
+    return <EmptyState icon="box" title="Belum ada pesanan" description="Pesanan yang kamu buat saat masuk akan muncul di sini." actionLabel="Mulai Belanja" />
+  }
+
+  return (
+    <section>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <h2 className="font-headline text-3xl text-neutral-dark">Pesanan Saya</h2>
+        <div className="flex flex-wrap gap-2">
+          {['Semua', 'Aktif', 'Selesai', 'Dibatalkan'].map((f) => (
+            <button key={f} type="button" onClick={() => setFilter(f)} className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${filter === f ? 'bg-neutral-dark text-white' : 'border border-neutral-dark/20 text-neutral-dark hover:border-neutral-dark/50'}`}>{f}</button>
+          ))}
+        </div>
+      </div>
+      {shown.length === 0 && <p className="rounded-[16px] bg-white p-8 text-center text-neutral-dark/60">Tidak ada pesanan di filter ini.</p>}
+      <ul className="flex flex-col gap-4">
+        {shown.map((order) => {
+          const open = openOrder === order.id
+          const step = STEPS.indexOf(order.status)
+          return (
+            <li key={order.id} className="rounded-[16px] border border-neutral-dark/10 bg-white">
+              <button type="button" onClick={() => setOpenOrder(open ? null : order.id)} aria-expanded={open} className="flex w-full flex-wrap items-center justify-between gap-3 p-5 text-left">
+                <div>
+                  <p className="font-headline text-lg text-neutral-dark">{order.id}</p>
+                  <p className="text-xs text-neutral-dark/55">{formatTanggal(order.createdAt)} · {order.items.reduce((s, i) => s + i.qty, 0)} item</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <StatusBadge status={order.status} />
+                  <strong className="text-secondary">{formatRupiah(order.total)}</strong>
+                  <span className={`text-neutral-dark/50 transition ${open ? 'rotate-90' : ''}`} aria-hidden="true">›</span>
+                </div>
+              </button>
+              {open && (
+                <div className="border-t border-neutral-dark/10 px-5 pb-5 pt-5 text-sm">
+                  {order.status === 'Dibatalkan' ? (
+                    <p className="mb-4 rounded-[10px] bg-accent-red/10 px-4 py-2 text-accent-red">Pesanan ini dibatalkan.</p>
+                  ) : (
+                    <ol className="mb-6 grid grid-cols-4 gap-1" aria-label="Status pengiriman">
+                      {STEPS.map((s, i) => (
+                        <li key={s} className="flex flex-col items-center text-center">
+                          <span className={`mb-2 h-1.5 w-full rounded-full ${i <= step ? 'bg-primary' : 'bg-cream-deep'}`} />
+                          <span className={`text-[11px] leading-tight sm:text-xs ${i <= step ? 'font-semibold text-neutral-dark' : 'text-neutral-dark/45'}`}>{s}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  )}
+                  <ul className="mb-4 flex flex-col gap-3">
+                    {order.items.map((item) => (
+                      <li key={item.id} className="flex items-center gap-3">
+                        <img src={item.image} alt="" className="size-11 rounded-[10px] object-cover" />
+                        <span className="flex-1">{item.qty}× {item.name}</span>
+                        <span className="font-semibold">{formatRupiah(item.price * item.qty)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {order.discount > 0 && <p className="mb-2 text-[#4E7A3A]">Hemat {formatRupiah(order.discount)} dengan {order.voucherCode}</p>}
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <Link to={`/pesanan-berhasil/${order.id}`} className="rounded-full border border-neutral-dark/30 px-4 py-2 font-semibold text-neutral-dark hover:bg-neutral-dark/5">Detail pesanan</Link>
+                    <button type="button" onClick={() => reorder(order)} className="rounded-full bg-primary px-4 py-2 font-semibold text-neutral-dark hover:bg-primary-dark">Pesan lagi</button>
+                  </div>
+                </div>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}
+
+const EMPTY_ADDRESS = { label: 'Rumah', recipient: '', phone: '', address: '', isDefault: false }
+
+function AddressTab() {
+  const { user, saveAddress, deleteAddress, setDefaultAddress, showToast } = useShop()
+  const addresses = user.addresses ?? []
+  const [form, setForm] = useState(null)
+  const [error, setError] = useState('')
+
+  const open = (address) => {
+    setError('')
+    setForm(address ? { ...address } : { ...EMPTY_ADDRESS, recipient: user.name, phone: user.phone ?? '' })
+  }
+
+  const submit = (event) => {
+    event.preventDefault()
+    if (form.recipient.trim().length < 2) return setError('Nama penerima wajib diisi.')
+    if (form.address.trim().length < 10) return setError('Alamat minimal 10 karakter.')
+    saveAddress({ ...form, recipient: form.recipient.trim(), phone: form.phone.trim(), address: form.address.trim() })
+    showToast('Alamat disimpan')
+    setForm(null)
+  }
+
+  return (
+    <section>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <h2 className="font-headline text-3xl text-neutral-dark">Alamat Tersimpan</h2>
+        {!form && (
+          <button type="button" onClick={() => open(null)} className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-neutral-dark hover:bg-primary-dark">
+            <Icon name="plus" className="size-4" /> Tambah Alamat
+          </button>
+        )}
+      </div>
+
+      {form && (
+        <form onSubmit={submit} className="mb-5 grid gap-4 rounded-[16px] border border-neutral-dark/10 bg-white p-6 sm:grid-cols-2">
+          <label className="text-sm font-semibold text-neutral-dark">Label
+            <select value={form.label} onChange={(e) => setForm({ ...form, label: e.target.value })} className={`${inputClass} mt-1`}>
+              {['Rumah', 'Kantor', 'Kos', 'Lainnya'].map((l) => <option key={l}>{l}</option>)}
+            </select>
+          </label>
+          <label className="text-sm font-semibold text-neutral-dark">Nama penerima<input value={form.recipient} onChange={(e) => setForm({ ...form, recipient: e.target.value })} className={`${inputClass} mt-1`} /></label>
+          <label className="text-sm font-semibold text-neutral-dark sm:col-span-2">No. WhatsApp<input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} inputMode="tel" className={`${inputClass} mt-1`} /></label>
+          <label className="text-sm font-semibold text-neutral-dark sm:col-span-2">Alamat lengkap<textarea rows={3} value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className={`${inputClass} mt-1`} placeholder="Nama jalan, nomor rumah, kecamatan, patokan" /></label>
+          <label className="flex items-center gap-2 text-sm text-neutral-dark sm:col-span-2">
+            <input type="checkbox" checked={form.isDefault} onChange={(e) => setForm({ ...form, isDefault: e.target.checked })} className="size-4 accent-[#C97F0D]" /> Jadikan alamat utama
+          </label>
+          {error && <p role="alert" className="text-sm text-accent-red sm:col-span-2">{error}</p>}
+          <div className="flex gap-2 sm:col-span-2">
+            <button type="submit" className="rounded-full bg-neutral-dark px-6 py-2.5 font-semibold text-white hover:bg-accent-dark">Simpan</button>
+            <button type="button" onClick={() => setForm(null)} className="rounded-full border border-neutral-dark/30 px-6 py-2.5 font-semibold text-neutral-dark">Batal</button>
+          </div>
+        </form>
+      )}
+
+      {addresses.length === 0 && !form ? (
+        <EmptyState icon="truck" title="Belum ada alamat" description="Simpan alamat supaya checkout berikutnya tinggal pilih." actionLabel={null} />
+      ) : (
+        <ul className="grid gap-4 md:grid-cols-2">
+          {addresses.map((a) => (
+            <li key={a.id} className={`flex flex-col rounded-[16px] border bg-white p-5 ${a.isDefault ? 'border-secondary' : 'border-neutral-dark/10'}`}>
+              <div className="mb-2 flex items-center gap-2">
+                <span className="rounded-full bg-cream-deep px-3 py-0.5 text-xs font-bold text-neutral-dark">{a.label}</span>
+                {a.isDefault && <span className="rounded-full bg-primary px-3 py-0.5 text-xs font-bold text-neutral-dark">Utama</span>}
+              </div>
+              <p className="font-semibold text-neutral-dark">{a.recipient} · {a.phone || '-'}</p>
+              <p className="mb-4 text-sm text-neutral-dark/65">{a.address}</p>
+              <div className="mt-auto flex flex-wrap gap-3 text-sm font-semibold">
+                <button type="button" onClick={() => open(a)} className="text-secondary hover:underline">Ubah</button>
+                {!a.isDefault && <button type="button" onClick={() => setDefaultAddress(a.id)} className="text-neutral-dark/70 hover:underline">Jadikan utama</button>}
+                <button type="button" onClick={() => deleteAddress(a.id)} className="text-accent-red hover:underline">Hapus</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )
+}
+
+function AccountTab() {
+  const { user, updateProfile, showToast } = useShop()
+  const [form, setForm] = useState({ name: user.name, phone: user.phone ?? '' })
+
+  const save = (event) => {
+    event.preventDefault()
+    if (form.name.trim().length < 2) return
+    updateProfile({ name: form.name.trim(), phone: form.phone.trim() })
+    showToast('Data diri disimpan')
+  }
+
+  return (
+    <section className="rounded-[16px] border border-neutral-dark/10 bg-white p-6">
+      <h2 className="mb-5 font-headline text-3xl text-neutral-dark">Data Diri</h2>
+      <form onSubmit={save} className="grid gap-4 sm:grid-cols-2">
+        <label className="text-sm font-semibold text-neutral-dark">Nama lengkap<input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={`${inputClass} mt-1`} /></label>
+        <label className="text-sm font-semibold text-neutral-dark">No. WhatsApp<input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} inputMode="tel" placeholder="0812xxxxxxx" className={`${inputClass} mt-1`} /></label>
+        <label className="text-sm font-semibold text-neutral-dark sm:col-span-2">Email<input value={user.email} readOnly className={`${inputClass} mt-1 bg-cream-deep text-neutral-dark/60`} /></label>
+        <p className="text-xs text-neutral-dark/55 sm:col-span-2">
+          {user.provider === 'google' ? 'Akun ini terhubung dengan Google, foto profil diambil dari Google.' : 'Email dipakai untuk masuk dan tidak bisa diubah.'}
+        </p>
+        <div className="sm:col-span-2">
+          <button type="submit" className="rounded-full bg-primary px-6 py-2.5 font-semibold text-neutral-dark hover:bg-primary-dark">Simpan Perubahan</button>
+        </div>
+      </form>
+    </section>
+  )
+}
+
+function VoucherTab() {
+  const { voucherCode, setVoucherCode, showToast } = useShop()
+  return (
+    <section>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <h2 className="font-headline text-3xl text-neutral-dark">Voucher Saya</h2>
+        <Link to="/promo" className="text-sm font-semibold text-secondary hover:underline">Semua promo →</Link>
+      </div>
+      <ul className="grid gap-4 md:grid-cols-2">
+        {VOUCHERS.map((v) => {
+          const selected = voucherCode === v.code
+          return (
+            <li key={v.code} className={`flex items-center gap-4 rounded-[16px] border bg-white p-4 ${selected ? 'border-secondary ring-2 ring-primary/40' : 'border-neutral-dark/10'}`}>
+              <span className="grid size-12 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: v.color }}><Icon name="tag" className="size-5" /></span>
+              <div className="min-w-0 flex-1">
+                <p className="truncate font-semibold text-neutral-dark">{v.title}</p>
+                <p className="text-xs text-neutral-dark/55">{v.code} · min. {formatRupiah(v.minSpend)}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => { setVoucherCode(selected ? '' : v.code); if (!selected) showToast(`Voucher ${v.code} dipilih`) }}
+                className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold ${selected ? 'bg-[#4E7A3A]/10 text-[#4E7A3A]' : 'bg-primary text-neutral-dark hover:bg-primary-dark'}`}
+              >
+                {selected ? '✓ Dipakai' : 'Pakai'}
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+    </section>
   )
 }
 
@@ -143,7 +342,7 @@ function Stat({ label, value }) {
   return (
     <div className="rounded-[16px] border border-neutral-dark/10 bg-white p-4">
       <p className="text-xs text-neutral-dark/55">{label}</p>
-      <p className="font-headline text-xl text-neutral-dark">{value}</p>
+      <p className="truncate font-headline text-xl text-neutral-dark">{value}</p>
     </div>
   )
 }

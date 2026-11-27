@@ -16,10 +16,12 @@ const inputClass =
 export default function CheckoutPage() {
   const navigate = useNavigate()
   const { cart, user, voucherCode, placeOrder } = useShop()
+  const savedAddresses = user?.addresses ?? []
+  const mainAddress = savedAddresses.find((a) => a.isDefault)
   const [form, setForm] = useState({
-    name: user?.name ?? '',
-    phone: user?.phone ?? '',
-    address: user?.address ?? '',
+    name: mainAddress?.recipient ?? user?.name ?? '',
+    phone: mainAddress?.phone || user?.phone || '',
+    address: mainAddress?.address ?? user?.address ?? '',
     note: '',
     delivery: 'antar',
     payment: 'cod',
@@ -106,6 +108,24 @@ export default function CheckoutPage() {
                 <Choice key={method.value} name="delivery" checked={form.delivery === method.value} value={method.value} onChange={update('delivery')} label={method.label} note={method.note} />
               ))}
             </div>
+            {form.delivery === 'antar' && savedAddresses.length > 0 && (
+              <div className="mt-4">
+                <p className="mb-2 text-sm font-semibold text-neutral-dark">Pilih alamat tersimpan</p>
+                <div className="flex flex-wrap gap-2">
+                  {savedAddresses.map((a) => (
+                    <button
+                      key={a.id}
+                      type="button"
+                      onClick={() => { setForm({ ...form, name: a.recipient, phone: a.phone || form.phone, address: a.address }); setErrors({}) }}
+                      className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${form.address === a.address ? 'border-secondary bg-primary/15 text-neutral-dark' : 'border-neutral-dark/20 text-neutral-dark/70 hover:border-neutral-dark/50'}`}
+                    >
+                      {a.label}{a.isDefault ? ' (utama)' : ''}
+                    </button>
+                  ))}
+                  <Link to="/profil#alamat" className="rounded-full px-3 py-2 text-sm font-semibold text-secondary hover:underline">Kelola alamat</Link>
+                </div>
+              </div>
+            )}
             {form.delivery === 'antar' && (
               <div className="mt-4">
                 <Field label="Alamat lengkap" error={errors.address}>

@@ -12,6 +12,18 @@ export const ADMIN_ACCOUNT = {
   role: 'admin',
 }
 
+// SIMULASI: akun pelanggan demo supaya presentasi tidak perlu daftar dulu.
+export const DEMO_CUSTOMER = {
+  name: 'Pelanggan Demo',
+  email: 'pelanggan@madudonut.id',
+  password: 'demo123',
+  phone: '081234567890',
+  address: '',
+  role: 'customer',
+  provider: 'email',
+  addresses: [],
+}
+
 export const STORAGE_KEYS = {
   cart: 'madu_donat_cart',
   wishlist: 'madu_donat_wishlist',
@@ -21,4 +33,6 @@ export const STORAGE_KEYS = {
   orders: 'madu_donat_orders',
   products: 'madu_donat_products',
   voucher: 'madu_donat_voucher',
+  remember: 'madu_donat_remember',
+  lastEmail: 'madu_donat_last_email',
 }

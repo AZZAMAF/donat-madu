@@ -3,7 +3,7 @@ import { BRAND, NAV_LINKS } from '../data/content'
 import CartDropdown from './CartDropdown'
 import HeaderSearch from './HeaderSearch'
 import Icon from './Icon'
-import IconButton from './IconButton'
+import UserMenu from './UserMenu'
 
 export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQtyChange, onRemove }) {
   return (
@@ -60,7 +60,7 @@ export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQt
           )}
         </div>
 
-        <IconButton label="Akun saya" icon="person" to="/profil" />
+        <UserMenu />
       </div>
     </header>
   )
