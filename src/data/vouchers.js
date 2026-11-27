@@ -47,6 +47,52 @@ export const VOUCHERS = [
     color: '#5C7181',
     validUntil: '2026-12-31',
   },
+  {
+    code: 'MEMBER10',
+    title: 'Diskon Member 10%',
+    description: 'Khusus pelanggan yang punya akun: potongan 10% minimal belanja Rp 60.000, maksimal Rp 20.000.',
+    type: 'percent',
+    value: 10,
+    maxDiscount: 20000,
+    minSpend: 60000,
+    color: '#805600',
+    validUntil: '2026-12-31',
+  },
+  {
+    code: 'HAPPYHOUR',
+    title: 'Happy Hour Hemat Rp 5.000',
+    description: 'Ngemil sore lebih hemat Rp 5.000 untuk belanja minimal Rp 40.000.',
+    type: 'fixed',
+    value: 5000,
+    minSpend: 40000,
+    color: '#C97F0D',
+    validUntil: '2026-12-31',
+  },
+  {
+    code: 'FLASHMADU',
+    title: 'Flash Voucher 25%',
+    description: 'Diskon 25% minimal belanja Rp 80.000, maksimal Rp 25.000. Hanya berlaku hari ini!',
+    type: 'percent',
+    value: 25,
+    maxDiscount: 25000,
+    minSpend: 80000,
+    color: '#B3261E',
+    validUntil: '2026-12-31',
+    flash: true,
+  },
+]
+
+export const VOUCHER_TYPE_LABELS = {
+  percent: 'Diskon %',
+  fixed: 'Potongan Harga',
+  shipping: 'Gratis Ongkir',
+}
+
+export const PROMO_PROGRAMS = [
+  { title: 'Beli 6 Lebih Hemat', description: '6-Box Honey Assortment lebih hemat dibanding beli enam donat satuan.', icon: 'box' },
+  { title: 'Ulang Tahun Gratis Donat', description: 'Tunjukkan KTP di toko saat ulang tahun, dapat 1 Classic Wildflower Glaze gratis.', icon: 'star' },
+  { title: 'Antar Hangat 45 Menit', description: 'Pesanan se-Jakarta Selatan sampai dalam 45 menit, masih hangat.', icon: 'truck' },
+  { title: 'Kumpulkan Poin Madu', description: 'Setiap belanja Rp 10.000 dapat 1 poin. 50 poin bisa ditukar 1 box donat.', icon: 'flower' },
 ]
 
 export const PROMO_SLIDES = [

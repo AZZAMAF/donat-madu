@@ -8,7 +8,8 @@ supaya developer atau AI agent lain bisa langsung paham struktur dan alurnya.
 | Commit | Isi |
 |--------|-----|
 | `9b58f6a` feat: tambah 9 halaman e-commerce dengan React Router dan ShopContext | Semua halaman baru, router, context bersama, util harga/voucher, dan penyesuaian kecil di landing page. |
-| (commit ini) docs: dokumentasi perubahan | File ini. |
+| docs: dokumentasi perubahan | File ini. |
+| feat: carousel promo di landing, search bar, dan wishlist landing | Revisi: carousel pindah ke landing (`PromoHighlight`), halaman Promo diperkaya, search di header jalan, section Wishlist di landing didesain ulang. |
 
 Sebelum branch ini, `main` berisi landing page satu halaman (commit terakhir `46efd0c`).
 
@@ -97,7 +98,15 @@ Tampilan landing tetap sama, kecuali bagian menu.
 - `IconButton.jsx`: prop `to` opsional (jadi Link).
 - `Icon.jsx`: ikon baru (heart, trash, arrow, check, tag, chat, box, chart, logout, copy, edit).
 - `App.jsx`: isi landing dipindah ke `pages/HomePage.jsx`; fetch menu dan cart dipindah ke context. `PLACEHOLDER_CART` dihapus.
-- Komponen `Wishlist.jsx` lama (belum ada styling) masih tampil di landing dan tidak diubah.
+- `PromoHighlight.jsx` (baru): section "Promo Hari Ini" tepat di bawah Hero, berisi carousel. Tombol "Lihat Promo" atau gambar slide membuka `/promo#KODE` dan promo itu disorot.
+- `HeaderSearch.jsx` (baru): ikon Search membuka kotak pencarian. Hasil tersaring saat mengetik (nama, kategori, deskripsi), klik hasil atau Enter ke Detail Produk.
+- `Wishlist.jsx`: didesain ulang (input dan tombol sesuai tema, centang sudah dicoba, hapus, progress) dan sekarang memakai key `madu_donat_wishlist_notes`, sama dengan halaman Wishlist.
+
+## Halaman Promo
+
+Isi: Flash Voucher dengan hitung mundur sampai tengah malam, Promo Unggulan (4 kartu, bisa di-link lewat `#KODE`),
+Semua Voucher dengan filter jenis, Program Spesial, Paket Hemat (produk Box Sets), dan Syarat & Ketentuan.
+Voucher tambahan: `MEMBER10`, `HAPPYHOUR`, `FLASHMADU` (25%, min Rp 80rb, maks Rp 25rb).
 
 ## Cara menjalankan
 

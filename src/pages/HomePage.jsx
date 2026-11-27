@@ -1,5 +1,6 @@
 import Hero from '../components/Hero'
 import MenuSection from '../components/MenuSection'
+import PromoHighlight from '../components/PromoHighlight'
 import Promises from '../components/Promises'
 import Signatures from '../components/Signatures'
 import Testimonials from '../components/Testimonials'
@@ -14,6 +15,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <PromoHighlight />
       <Signatures />
       <Promises />
       <MenuSection

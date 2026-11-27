@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { BRAND, NAV_LINKS } from '../data/content'
 import CartDropdown from './CartDropdown'
+import HeaderSearch from './HeaderSearch'
 import Icon from './Icon'
 import IconButton from './IconButton'
 
@@ -29,7 +30,7 @@ export default function Header({ totalQty, isCartOpen, setIsCartOpen, cart, onQt
       </nav>
 
       <div className="flex items-center justify-self-end gap-4 max-[900px]:col-start-2 max-[900px]:row-start-1">
-        <IconButton label="Cari menu" icon="search" to="/#menu-list" />
+        <HeaderSearch />
 
         {/* Satu wrapper buat hover + klik. onMouseLeave ada di sini supaya panel
             tidak tertutup saat pointer pindah dari ikon ke panel dropdown. */}
