@@ -200,3 +200,11 @@ Promo → pilih voucher → Home, tambah donat → Detail Produk → Keranjang �
 - Foto baru `menu-10.jpg` (matcha) dan `menu-11.jpg` (mango lime); rasa lain sementara memakai ulang foto yang mirip.
 - Kartu Signatures "Matcha Honey Drizzle" sekarang tertaut ke produk id 12.
 - Catatan: kalau produk pernah diubah lewat Admin, browser memakai daftar produk tersimpan. Tekan "Reset data awal" di Admin > Produk (atau hapus localStorage `madu_donat_products`) supaya 18 menu baru muncul.
+
+## Pelanggan bisa membatalkan pesanan
+
+- Komponen baru `CancelOrderButton.jsx`: tombol "Batalkan pesanan" dengan konfirmasi dua langkah di halaman ("Ya, batalkan" / "Tidak jadi").
+- Muncul di halaman Pesanan Berhasil dan di Profil > Pesanan Saya, hanya selama status masih **Menunggu Konfirmasi** (`canCancelOrder` di `utils/order.js`). Setelah admin memproses, pesanan tidak bisa dibatalkan pelanggan.
+- Fungsi `cancelOrder(id)` di `ShopContext` mengubah status jadi "Dibatalkan" dan mencatat `cancelledAt`. Pesanan batal tidak dihitung ke total belanja dan pendapatan admin.
+- Halaman Pesanan Berhasil berubah jadi "Pesanan Dibatalkan" (ikon merah, tombol kirim ulang WhatsApp disembunyikan).
+- Nomor WhatsApp toko diganti ke +62 899-9724-4659.

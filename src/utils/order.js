@@ -51,6 +51,9 @@ export function generateOrderId() {
 
 export const ORDER_STATUSES = ['Menunggu Konfirmasi', 'Diproses', 'Dikirim', 'Selesai', 'Dibatalkan']
 
+// Pelanggan boleh membatalkan selama admin belum memproses pesanan.
+export const canCancelOrder = (order) => order?.status === 'Menunggu Konfirmasi'
+
 export const PAYMENT_METHODS = [
   { value: 'cod', label: 'Bayar di tempat (COD)' },
   { value: 'transfer', label: 'Transfer bank' },

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import Avatar from '../components/Avatar'
+import CancelOrderButton from '../components/CancelOrderButton'
 import EmptyState from '../components/EmptyState'
 import Icon from '../components/Icon'
 import PageShell from '../components/PageShell'
@@ -190,7 +191,11 @@ function OrdersTab({ orders }) {
                   <div className="mt-4 flex flex-wrap gap-3">
                     <Link to={`/pesanan-berhasil/${order.id}`} className="rounded-full border border-neutral-dark/30 px-4 py-2 font-semibold text-neutral-dark hover:bg-neutral-dark/5">Detail pesanan</Link>
                     <button type="button" onClick={() => reorder(order)} className="rounded-full bg-neutral-dark px-4 py-2 font-semibold text-white hover:bg-choco-dark">Pesan lagi</button>
+                    <CancelOrderButton order={order} />
                   </div>
+                  {order.status === 'Menunggu Konfirmasi' && (
+                    <p className="mt-3 text-xs text-neutral-dark/50">Pesanan bisa dibatalkan selama belum dikonfirmasi admin.</p>
+                  )}
                 </div>
               )}
             </li>
