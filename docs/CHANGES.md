@@ -99,7 +99,7 @@ Tampilan landing tetap sama, kecuali bagian menu.
 - `Header.jsx`: ikon Search ke `/#menu-list`, ikon Profil ke `/profil`, link nav jadi `/#anchor` supaya jalan dari halaman lain.
 - `Footer.jsx`: link jadi `/#anchor` (alasannya sama).
 - `IconButton.jsx`: prop `to` opsional (jadi Link).
-- `Signatures.jsx` (section `#menu`): 4 gambar donat dari desain (`assets/signatures/`) menggantikan gambar hero yang sama, plus ornamen swirl.
+- `Signatures.jsx` (section `#menu`): disamakan dengan Figma (Section 2: Best Sellers): judul di tengah, kartu warna #D42F32 / #FFD93D / #CFCB74 / #609CD6, badge nomor, deskripsi, donat di bawah (`assets/signatures/`), swirl mix-blend-overlay. Kartu bisa diklik ke Detail Produk.
 - `Icon.jsx`: ikon baru (heart, trash, arrow, check, tag, chat, box, chart, logout, copy, edit).
 - `App.jsx`: isi landing dipindah ke `pages/HomePage.jsx`; fetch menu dan cart dipindah ke context. `PLACEHOLDER_CART` dihapus.
 - `PromoHighlight.jsx` (baru): section "Promo Hari Ini" tepat di bawah Hero, berisi carousel. Tombol "Lihat Promo" atau gambar slide membuka `/promo#KODE` dan promo itu disorot.

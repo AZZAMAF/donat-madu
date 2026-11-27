@@ -24,12 +24,13 @@ export const SIGNATURES = {
   eyebrow: 'Our Signatures',
   title: 'Crafted to Sweet Perfection',
   description:
-    'Explore our most-loved artisanal honey-glazed creations, prepared every morning and finished with authentic, wildflower raw honey.',
+    'Explore our most cherished honey glazed creations, proofed overnight and finished with authentic artisanal nectars.',
+  // Warna kartu dan susunan mengikuti desain Figma (Section 2: Best Sellers).
   items: [
-    { number: '01', title: 'Berry Honey Glaze', color: 'red', accent: '#BD4A42' },
-    { number: '02', title: 'Golden Crunch Honey', color: 'yellow', accent: '#E7A72B' },
-    { number: '03', title: 'Matcha Honey Drizzle', color: 'green', accent: '#718D62' },
-    { number: '04', title: 'Choco Honeycomb', color: 'blue', accent: '#5C7181' },
+    { number: '01', title: 'Berry Honey Glaze', description: 'Mixed berry glaze with rainbow sprinkles and a light wildflower honey finish.', accent: '#D42F32', dark: false, productId: 6 },
+    { number: '02', title: 'Golden Crunch Honey', description: 'Bright honey-lemon glaze topped with crunchy chocolate sprinkles.', accent: '#FFD93D', dark: true, productId: 2 },
+    { number: '03', title: 'Matcha Honey Drizzle', description: 'Toasted almond flakes under a silky matcha and raw honey drizzle.', accent: '#CFCB74', dark: true },
+    { number: '04', title: 'Choco Honeycomb', description: 'Almond flakes, blueberry glaze and dark chocolate honeycomb lines.', accent: '#609CD6', dark: true, productId: 4 },
   ],
 }
 
